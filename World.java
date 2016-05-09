@@ -14,11 +14,15 @@ public class World extends Scene {
         super("images/mlgbackground.jpg");
         elements = new ArrayList<WorldElement>();
         
+        /*
         addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e){
                 addElement(new Dorito(e.getX(),e.getY()));
             }
         });
+        */
+        
+        addMouseListener(new PopUpListener(this));
     }
 
     public void paintComponent(Graphics g) {
