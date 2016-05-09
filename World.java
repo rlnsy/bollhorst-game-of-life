@@ -9,18 +9,15 @@ public class World extends Scene {
 
     private ArrayList<WorldElement> elements;
 
-    public World(String imagePath) throws IOException {
-        super(imagePath);
+    public World() throws IOException {
+        super("images/background.png");
         elements = new ArrayList<WorldElement>();
     }
 
-    public void paintComponent(Graphics g)
-    {
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
         for(WorldElement e : elements)
-        {
             e.draw(g);
-        }
     }
 
     public void addElement(WorldElement e){

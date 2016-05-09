@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=scene\ xPos\ yPos\ imagePath
+comment0.target=WorldElement(Scene,\ int,\ int,\ java.lang.String)
+comment1.params=g
+comment1.target=void\ draw(java.awt.Graphics)
+comment2.params=height
+comment2.target=void\ setHeight(int)
+comment3.params=width
+comment3.target=void\ setWidth(int)
+numComments=4

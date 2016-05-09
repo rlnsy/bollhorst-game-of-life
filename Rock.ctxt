@@ -1,0 +1,4 @@
+#BlueJ class context
+comment0.params=world\ xPos\ yPos
+comment0.target=Rock(World,\ int,\ int)
+numComments=1

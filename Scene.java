@@ -17,6 +17,7 @@ public class Scene extends JPanel implements ActionListener{
         super();
         backgroundImage = ImageIO.read(new File(imagePath));
         setPreferredSize(new Dimension(1800,900));
+        new Timer(20,this).start(); // Timer for repainting
     }
 
     public void paintComponent(Graphics g) {
@@ -24,6 +25,8 @@ public class Scene extends JPanel implements ActionListener{
         g.drawImage(backgroundImage, 0, 0, this);
     }
 
+    // refresh grpahics whenever action performed
+    // uses timer created in game
     public void actionPerformed(ActionEvent e) {
         repaint();
     }
