@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.event.*;
 import java.io.*;
 
 public class Game extends JFrame{
@@ -17,22 +16,17 @@ public class Game extends JFrame{
     public Game(String header) {
         super(header);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1800, 900);
+        setSize(1920, 1080);
 
         try {
             world = new World();
-            //setContentPane(world);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         getContentPane().add(world);
 
-        addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent e){
-                world.addElement(new Rock(world,e.getX(),e.getY()));
-            }
-        });
+        
 
         pack();
     }

@@ -1,10 +1,16 @@
 #BlueJ class context
-comment0.params=scene\ xPos\ yPos\ imagePath
-comment0.target=WorldElement(Scene,\ int,\ int,\ java.lang.String)
+comment0.params=xPos\ yPos\ imagePath
+comment0.target=WorldElement(int,\ int,\ java.lang.String)
 comment1.params=g
 comment1.target=void\ draw(java.awt.Graphics)
-comment2.params=height
-comment2.target=void\ setHeight(int)
-comment3.params=width
-comment3.target=void\ setWidth(int)
-numComments=4
+comment2.params=world
+comment2.target=void\ setWorld(World)
+comment3.params=height
+comment3.target=void\ setHeight(int)
+comment4.params=width
+comment4.target=void\ setWidth(int)
+comment5.params=by
+comment5.target=void\ increaseX(int)
+comment6.params=
+comment6.target=void\ doSomething()
+numComments=7

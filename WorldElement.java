@@ -6,9 +6,9 @@ import java.awt.*;
 import java.io.*;
 import javax.imageio.ImageIO;
 
-public class WorldElement extends JComponent {
+public abstract class WorldElement extends JComponent {
 
-    private JPanel scene;
+    private World world;
     
     private Image sprite;
     private int xPos;
@@ -16,7 +16,7 @@ public class WorldElement extends JComponent {
     private int height;
     private int width;
     
-    public WorldElement(Scene scene, int xPos, int yPos, String imagePath)
+    public WorldElement(int xPos, int yPos, String imagePath)
     {
         this.xPos = xPos;
         this.yPos = yPos;
@@ -28,10 +28,7 @@ public class WorldElement extends JComponent {
             sprite = ImageIO.read(new File(imagePath));
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
-
-        this.scene = scene;
-        
+        }       
         /*
         Thread elementThread = new Thread(new Runnable() {
             public void run() {
@@ -45,18 +42,17 @@ public class WorldElement extends JComponent {
         */
     }
 
-    public void draw(Graphics g)
-    {
-        g.drawImage(sprite, xPos - width/2, yPos - height/2,scene);
+    public void draw(Graphics g) {
+        g.drawImage(sprite, xPos - width/2, yPos - height/2,world);
     }
     
-    public void setHeight(int height)
-    {
-        this.height = height;
-    }
+    public void setWorld(World world) { this.world = world; }
     
-    public void setWidth(int width)
-    {
-        this.width = width;
-    }
+    public void setHeight(int height) { this.height = height; }
+    
+    public void setWidth(int width) { this.width = width; }
+    
+    public void increaseX(int by) { xPos += by;}
+    
+    public abstract void doSomething();
 }

@@ -16,7 +16,7 @@ public class Scene extends JPanel implements ActionListener{
     public Scene(String imagePath) throws IOException {
         super();
         backgroundImage = ImageIO.read(new File(imagePath));
-        setPreferredSize(new Dimension(1800,900));
+        setPreferredSize(new Dimension(1920,1080));
         new Timer(20,this).start(); // Timer for repainting
     }
 
