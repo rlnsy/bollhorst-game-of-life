@@ -9,7 +9,7 @@ public class World extends Scene {
     private ElementMenu menu;
 
     public World() throws IOException {
-        super("images/mlgbackground.jpg");
+        super("images/Blue back.png");
         elements = new ArrayList<WorldElement>();
         menu = new ElementMenu();
         
