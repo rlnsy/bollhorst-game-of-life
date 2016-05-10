@@ -60,4 +60,8 @@ public abstract class WorldElement extends JComponent {
     public void setWidth(int width) { this.width = width; }
     
     public abstract void doSomething();
+    
+    public void moveDown() {
+        yPos++;
+    }
 }

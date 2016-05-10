@@ -12,7 +12,7 @@ public class Game extends JFrame{
     public Game(String header) {
         super(header);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1920, 1080);
+        setSize(910, 512);
         try {
             world = new World();
         } catch (IOException e) {
