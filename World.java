@@ -7,11 +7,16 @@ public class World extends Scene {
 
     private ArrayList<WorldElement> elements;
     private ElementMenu menu;
+    private int height;
+    private int width;
 
     public World() throws IOException {
         super("images/Blue back.png");
         elements = new ArrayList<WorldElement>();
         menu = new ElementMenu();
+        
+        height = 512;
+        width = 910;
         
         /*
         addMouseListener(new MouseAdapter() {
@@ -47,5 +52,10 @@ public class World extends Scene {
             e.doSomething();
     }
     
+    public ArrayList<WorldElement> getElements()
+    {
+        return elements;
+    }
     public ElementMenu getMenu() { return menu; }
+    public int getHeight() { return height; }
 }
