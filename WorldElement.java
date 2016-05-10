@@ -40,6 +40,8 @@ public abstract class WorldElement extends JComponent {
 
         elementThread.start();
         */
+       
+       // world added by setWorld in World.addElement 
     }
 
     public void draw(Graphics g) {
@@ -48,11 +50,14 @@ public abstract class WorldElement extends JComponent {
     
     public void setWorld(World world) { this.world = world; }
     
+    public void setLocation(int xValue, int yValue) { 
+        xPos = xValue;
+        yPos = yValue;
+    }
+    
     public void setHeight(int height) { this.height = height; }
     
     public void setWidth(int width) { this.width = width; }
-    
-    public void increaseX(int by) { xPos += by;}
     
     public abstract void doSomething();
 }

@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=label\ position\ element
+comment0.target=void\ addItem(java.lang.String,\ int,\ WorldElement)
+comment1.params=index
+comment1.target=ElementMenuItem\ getItem(int)
+comment2.params=
+comment2.target=int\ getNumItems()
+numComments=3

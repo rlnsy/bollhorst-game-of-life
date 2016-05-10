@@ -1,6 +1,3 @@
-/**
- * Created by rowli on 5/7/2016.
- */
 import java.awt.*;
 import java.util.ArrayList;
 import java.io.IOException;
@@ -9,10 +6,12 @@ import java.awt.event.*;
 public class World extends Scene {
 
     private ArrayList<WorldElement> elements;
+    private ElementMenu menu;
 
     public World() throws IOException {
         super("images/mlgbackground.jpg");
         elements = new ArrayList<WorldElement>();
+        menu = new ElementMenu();
         
         /*
         addMouseListener(new MouseAdapter() {
@@ -47,4 +46,6 @@ public class World extends Scene {
         for(WorldElement e : elements)
             e.doSomething();
     }
+    
+    public ElementMenu getMenu() { return menu; }
 }

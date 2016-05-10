@@ -9,6 +9,6 @@ public class Dorito extends WorldElement {
     }
     
     public void doSomething() {
-        increaseX(1);
+        
     }
  }

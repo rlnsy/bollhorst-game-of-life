@@ -5,27 +5,37 @@ import java.util.ArrayList;
 class ElementPicker extends JPopupMenu implements ActionListener {
     
     private World world;
-    private int x;
-    private int y;
+    private int xPos;
+    private int yPos;
     
-    private ArrayList<JMenuItem> items;
+    private ArrayList<ElementMenuItem> items;
     
-    public ElementPicker(int x, int y, World world){
+    public ElementPicker(int xPos, int yPos, World world){
         this.world = world;
-        this.x = x;
-        this.y = y;
-        
-        items = new ArrayList<JMenuItem>();
-        items.add(new JMenuItem("Add Dorito"));
-        items.add(new JMenuItem("Add other"));
-        
-        for(JMenuItem i : items) {
+        this.xPos = xPos;
+        this.yPos = yPos;
+        add(new JLabel("Place new object..."));
+        items = new ArrayList<ElementMenuItem>();
+
+        for(int i = 0; i < world.getMenu().getNumItems(); i++)
+            items.add(world.getMenu().getItem(i));
+       
+        for(ElementMenuItem i : items) {
             i.addActionListener(this);
             add(i);
         }
     }
     
     public void actionPerformed(ActionEvent e) {
-        world.addElement(new Dorito(x,y));
+        JMenuItem item = (JMenuItem)e.getSource();
+        int index = items.indexOf(item);
+        for(ElementMenuItem i : items) {
+            if(i.getPosition() == index)
+            {
+                WorldElement placeElement = i.getPlaceElement();
+                placeElement.setLocation(xPos,yPos);
+                world.addElement(placeElement);
+            }
+        }
     }
 }
