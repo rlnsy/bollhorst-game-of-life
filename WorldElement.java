@@ -51,7 +51,7 @@ public abstract class WorldElement extends JComponent {
     }
     
     public void update() {
-        if(!inBounds())
+        if(!inBounds() && !(this instanceof Inventory))
             isVisible  = false;
         behave();
     }
