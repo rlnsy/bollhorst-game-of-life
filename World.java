@@ -22,6 +22,7 @@ public class World extends Scene {
         WorldClickListener testListener = new WorldClickListener(this);
         testListener.changeCurrentElement(1);
         addMouseListener(testListener);
+        addElement(0,0,new Inventory());
     }
 
     public void paintComponent(Graphics g) {
