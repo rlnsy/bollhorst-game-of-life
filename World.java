@@ -27,7 +27,8 @@ public class World extends Scene {
         }
     }
     
-    public void addElement(WorldElement e){
+    public void addElement(int xPos, int yPos, WorldElement e){
+        e.setLocation(xPos, yPos);
         elements.add(e);
         e.setWorld(this);
     }

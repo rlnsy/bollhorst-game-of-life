@@ -33,8 +33,7 @@ class ElementPicker extends JPopupMenu implements ActionListener {
             if(i.getPosition() == index)
             {
                 WorldElement placeElement = i.getPlaceElement();
-                placeElement.setLocation(xPos,yPos);
-                world.addElement(placeElement);
+                world.addElement(xPos,yPos, placeElement);
             }
         }
     }

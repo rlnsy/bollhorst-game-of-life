@@ -19,7 +19,6 @@ public class Game extends JFrame{
             throw new RuntimeException(e);
         }
         getContentPane().add(world);
-        System.out.println(world.getHeight());
         pack();
     }
 }

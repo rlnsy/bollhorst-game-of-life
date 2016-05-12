@@ -14,10 +14,10 @@ public abstract class WorldElement extends JComponent {
     private int xPos, yPos;
     private int width, height;
     
-    public WorldElement(int xPos, int yPos, String imagePath)
+    public WorldElement(String imagePath)
     {
-       this.xPos = xPos;
-       this.yPos = yPos;
+       this.xPos = 0;
+       this.yPos = 0;
     
        try {
            sprite = ImageIO.read(new File(imagePath));
@@ -30,7 +30,7 @@ public abstract class WorldElement extends JComponent {
     }
 
     public Rectangle getHitBox() {
-        return new Rectangle(xPos,yPos,width,height);
+        return new Rectangle(xPos-width/2,yPos-height/2,width,height);
     }
     
     public void draw(Graphics g) {
@@ -54,6 +54,10 @@ public abstract class WorldElement extends JComponent {
    
     public void moveDown(int value) {
         yPos+= value;
+    }
+    
+    public void moveUp(int value) {
+        yPos-= value;
     }
    
     public World getWorld() { return world; }
