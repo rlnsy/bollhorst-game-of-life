@@ -18,6 +18,7 @@ public class World extends Scene {
     public void init() {
         super.init();
         addMouseListener(new PopUpListener(this));
+        addMouseListener(new WorldClickListener(this));
     }
 
     public void paintComponent(Graphics g) {

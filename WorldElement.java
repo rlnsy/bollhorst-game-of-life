@@ -28,7 +28,7 @@ public abstract class WorldElement extends JComponent {
        width = sprite.getWidth(null);
        height = sprite.getHeight(null);
     }
-
+    
     public Rectangle getHitBox() {
         return new Rectangle(xPos-width/2,yPos-height/2,width,height);
         // return a rectangle representing a 1 thick buffer around the image
