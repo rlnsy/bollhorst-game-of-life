@@ -83,4 +83,7 @@ public abstract class WorldElement extends JComponent {
         boolean inBoundsY = yPos + height/2 < world.getHeight() && yPos - height/2 > 0;
         return inBoundsX && inBoundsY;
     }
+    
+    public int getX() { return xPos; }
+    public int getY() { return yPos; }
 }
