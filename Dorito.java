@@ -3,6 +3,6 @@ public class Dorito extends WorldElement {
         super("images/dorito.png");
     }
     
-    public void update() {
+    public void behave() {
     }
  }

@@ -1,7 +1,11 @@
 import javax.swing.*;
 import java.io.*;
+import java.awt.*;
 // hello
 public class Game extends JFrame{
+    
+    private final int WINDOW_WIDTH = 910;
+    private final int  WINDOW_HEIGHT = 512;
     
     private World world;
    
@@ -11,13 +15,13 @@ public class Game extends JFrame{
 
     public Game(String header) {
         super(header);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(910, 512);
         try {
             world = new World();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         getContentPane().add(world);
         pack();
     }

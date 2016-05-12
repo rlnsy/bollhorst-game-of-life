@@ -3,7 +3,7 @@ public class Water extends WorldElement {
         super("images/water.png");
     }
     
-    public void update() {
+    public void behave() {
         gravitate();
     }
 }

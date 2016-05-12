@@ -7,10 +7,13 @@ import javax.imageio.ImageIO;
 public class Scene extends JPanel implements ActionListener{
 
     private Image backgroundImage;
+    private int width,height;
 
     public Scene(String imagePath) throws IOException {
         super();
         backgroundImage = ImageIO.read(new File(imagePath));
+        width = (int)backgroundImage.getWidth(null);
+        height = (int)backgroundImage.getHeight(null);
     }
 
     public void init() {
@@ -30,4 +33,8 @@ public class Scene extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         repaint();
     }
+    
+    public int getWidth() { return width; }
+    
+    public int getHeight() { return height; }
 }

@@ -14,19 +14,20 @@ public abstract class WorldElement extends JComponent {
     private int xPos, yPos;
     private int width, height;
     
+    private boolean isVisible;
+    
     public WorldElement(String imagePath)
     {
        this.xPos = 0;
        this.yPos = 0;
-    
        try {
            sprite = ImageIO.read(new File(imagePath));
        } catch (IOException e) {
            throw new RuntimeException(e);
        }    
-       
        width = sprite.getWidth(null);
        height = sprite.getHeight(null);
+       isVisible = true;
     }
     
     public Rectangle getHitBox() {
@@ -35,7 +36,8 @@ public abstract class WorldElement extends JComponent {
     }
     
     public void draw(Graphics g) {
-        g.drawImage(sprite, xPos-width/2, yPos-height/2,world);
+        if(isVisible)
+            g.drawImage(sprite, xPos-width/2, yPos-height/2,world);
     }
     
     public void setWorld(World world) { this.world = world; }
@@ -51,7 +53,13 @@ public abstract class WorldElement extends JComponent {
         return false;
     }
     
-    public abstract void update();
+    public void update() {
+        if(!inBounds())
+            isVisible  = false;
+        behave();
+    }
+    
+    public abstract void behave();
    
     public void moveDown(int value) {
         yPos+= value;
@@ -71,5 +79,11 @@ public abstract class WorldElement extends JComponent {
         }
         if(canMove)
             moveDown(2);
+    }
+    
+    public boolean inBounds() {
+        boolean inBoundsX = xPos + width/2 < world.getWidth() && xPos - width/2 > 0;
+        boolean inBoundsY = yPos + height/2 < world.getHeight() && yPos - height/2 > 0;
+        return inBoundsX && inBoundsY;
     }
 }

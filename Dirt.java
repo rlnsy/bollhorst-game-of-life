@@ -3,7 +3,7 @@ public class Dirt extends WorldElement {
         super("images/dirt.png");
     }
     
-    public void update() {
+    public void behave() {
         //gravitate();
     }
 }
