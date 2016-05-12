@@ -10,10 +10,10 @@ public abstract class WorldElement extends JComponent {
     private Image sprite;
     private int xPos, yPos;
     private int width, height;
-    
     private boolean isVisible;
+    private boolean isCollisionElement;
     
-    public WorldElement(String imagePath)
+    public WorldElement(String imagePath, boolean collidable)
     {
        this.xPos = 0;
        this.yPos = 0;
@@ -24,6 +24,7 @@ public abstract class WorldElement extends JComponent {
        }    
        width = sprite.getWidth(null);
        height = sprite.getHeight(null);
+       isCollisionElement = collidable;
        isVisible = true;
     }
     
@@ -51,7 +52,7 @@ public abstract class WorldElement extends JComponent {
     }
     
     public void update() {
-        if(!inBounds() && !(this instanceof Inventory))
+        if(!inBounds())
             isVisible  = false;
         behave();
     }

@@ -3,7 +3,7 @@ public class Water extends WorldElement {
     private WorldElement base;
     
     public Water () {
-        super("images/water.png");
+        super("images/water.png",true);
     }
     
     public void behave() {

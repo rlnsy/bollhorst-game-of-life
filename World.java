@@ -8,11 +8,13 @@ public class World extends Scene {
 
     private ArrayList<WorldElement> elements;
     private ElementMenu menu;
+    private Inventory inventory;
 
     public World() throws IOException {
         super("images/Blue back.png");
         elements = new ArrayList<WorldElement>();
         menu = new ElementMenu();
+        inventory = new Inventory(this);
         init();
     }
     
@@ -22,11 +24,11 @@ public class World extends Scene {
         WorldClickListener testListener = new WorldClickListener(this);
         testListener.changeCurrentElement(1);
         addMouseListener(testListener);
-        addElement(455,51,new Inventory());
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        inventory.draw(g);
         for(WorldElement e : elements) {
             e.draw(g);
         }
