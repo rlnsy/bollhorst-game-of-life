@@ -1,6 +1,3 @@
-/**
- * Created by rowli on 5/7/2016.
- */
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;

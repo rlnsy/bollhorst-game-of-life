@@ -2,6 +2,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.io.IOException;
 import java.awt.event.*;
+import javax.swing.*;
 
 public class World extends Scene {
 
