@@ -2,5 +2,5 @@
 comment0.params=xPos\ yPos
 comment0.target=Dorito(int,\ int)
 comment1.params=
-comment1.target=void\ doSomething()
+comment1.target=void\ update()
 numComments=2

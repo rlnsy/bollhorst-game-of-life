@@ -2,9 +2,9 @@ import javax.swing.*;
 import java.io.*;
 // hello
 public class Game extends JFrame{
-
+    
     private World world;
-
+   
     public static void main(String[] args) {
         new Game("Bollhorst's Game of Life").setVisible(true);
     }
@@ -19,6 +19,7 @@ public class Game extends JFrame{
             throw new RuntimeException(e);
         }
         getContentPane().add(world);
+        System.out.println(world.getHeight());
         pack();
     }
 }

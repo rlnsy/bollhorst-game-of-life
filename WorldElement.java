@@ -11,41 +11,30 @@ public abstract class WorldElement extends JComponent {
     private World world;
     
     private Image sprite;
-    private int xPos;
-    private int yPos;
-    private int height;
-    private int width;
+    private int xPos, yPos;
+    private int width, height;
     
     public WorldElement(int xPos, int yPos, String imagePath)
     {
-        this.xPos = xPos;
-        this.yPos = yPos;
-        
-        height = 0;
-        width = 0;
-
-        try {
-            sprite = ImageIO.read(new File(imagePath));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }       
-        /*
-        Thread elementThread = new Thread(new Runnable() {
-            public void run() {
-                while(true) {
-                    repaint();
-                }
-            }
-        });
-
-        elementThread.start();
-        */
+       this.xPos = xPos;
+       this.yPos = yPos;
+    
+       try {
+           sprite = ImageIO.read(new File(imagePath));
+       } catch (IOException e) {
+           throw new RuntimeException(e);
+       }    
        
-       // world added by setWorld in World.addElement 
+       width = sprite.getWidth(null);
+       height = sprite.getHeight(null);
     }
 
+    public Rectangle getHitBox() {
+        return new Rectangle(xPos,yPos,width,height);
+    }
+    
     public void draw(Graphics g) {
-        g.drawImage(sprite, xPos - width/2, yPos - height/2,world);
+        g.drawImage(sprite, xPos-width/2, yPos-height/2,world);
     }
     
     public void setWorld(World world) { this.world = world; }
@@ -55,24 +44,17 @@ public abstract class WorldElement extends JComponent {
         yPos = yValue;
     }
     
-    public void setHeight(int height) { this.height = height; }
+    public boolean isTouching(WorldElement e) {
+        if(!equals(e)&&(getHitBox().intersects(e.getHitBox())))
+            return true;
+        return false;
+    }
     
-    public void setWidth(int width) { this.width = width; }
-    
-    public abstract void doSomething();
+    public abstract void update();
    
-    public void moveDown() {
-        boolean canMove = true;
-        for (WorldElement e : world.getElements())
-        {
-            if(!e.equals(this)) {
-                if((yPos + height/2 >= e.yPos - e.height/2) || (yPos + height/2 >= world.getHeight()))
-                    canMove = false;
-            }
-        }
-        
-        if(canMove)
-            yPos++;
+    public void moveDown(int value) {
+        yPos+= value;
     }
    
+    public World getWorld() { return world; }
 }

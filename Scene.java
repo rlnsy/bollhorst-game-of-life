@@ -1,6 +1,3 @@
-/**
- * Created by rowli on 5/7/2016.
- */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -11,15 +8,18 @@ public class Scene extends JPanel implements ActionListener{
 
     private Image backgroundImage;
 
-    public Scene() {}
-
     public Scene(String imagePath) throws IOException {
         super();
         backgroundImage = ImageIO.read(new File(imagePath));
-        setPreferredSize(new Dimension(910,512));
-        new Timer(20,this).start(); // Timer for repainting
     }
 
+    public void init() {
+        int width = backgroundImage.getWidth(null);   
+        int height = backgroundImage.getHeight(null);
+        setPreferredSize(new Dimension(width,height));
+        new Timer(20,this).start(); // Timer for repainting
+    }
+    
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(backgroundImage, 0, 0, this);
