@@ -1,6 +1,0 @@
-#BlueJ class context
-comment0.params=xPos\ yPos\ world
-comment0.target=ElementPicker(int,\ int,\ World)
-comment1.params=e
-comment1.target=void\ actionPerformed(java.awt.event.ActionEvent)
-numComments=2

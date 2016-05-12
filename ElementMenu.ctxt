@@ -1,6 +1,0 @@
-#BlueJ class context
-comment0.params=index
-comment0.target=ElementMenuItem\ getItem(int)
-comment1.params=
-comment1.target=int\ getNumItems()
-numComments=2
