@@ -31,6 +31,7 @@ public abstract class WorldElement extends JComponent {
 
     public Rectangle getHitBox() {
         return new Rectangle(xPos-width/2,yPos-height/2,width,height);
+        // return a rectangle representing a 1 thick buffer around the image
     }
     
     public void draw(Graphics g) {
@@ -61,4 +62,14 @@ public abstract class WorldElement extends JComponent {
     }
    
     public World getWorld() { return world; }
+    
+    public void gravitate() {
+        boolean canMove = true;
+        for(WorldElement e : getWorld().getElements()) {
+            if(isTouching(e))
+                canMove = false;
+        }
+        if(canMove)
+            moveDown(2);
+    }
 }

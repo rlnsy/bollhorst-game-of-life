@@ -7,7 +7,7 @@ public class ElementMenu //TODO: remove default values/returns
         ElementMenuItem item;
         switch(index) {
             case 0 :
-            item = new ElementMenuItem("Dorito",0,new Dorito());
+            item = new ElementMenuItem("Water",0,new Water());
             break;
             case 1 :
             item = new ElementMenuItem("Dirt",1,new Dirt());

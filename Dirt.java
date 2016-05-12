@@ -4,6 +4,6 @@ public class Dirt extends WorldElement {
     }
     
     public void update() {
-        //System.out.println(getHitBox().getWidth() + " " + getHitBox().getHeight());
+        //gravitate();
     }
 }
