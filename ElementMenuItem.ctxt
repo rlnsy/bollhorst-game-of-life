@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.params=label\ positionInMenu\ element
-comment0.target=ElementMenuItem(java.lang.String,\ int,\ WorldElement)
-comment1.params=
-comment1.target=int\ getPosition()
-comment2.params=
-comment2.target=WorldElement\ getPlaceElement()
-numComments=3
