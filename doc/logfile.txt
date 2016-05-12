@@ -1,6 +1,6 @@
 Class documentation
 <---- javadoc command: ---->
-C:\Program Files (x86)\BlueJ\jdk\bin\javadoc.exe
+/Applications/BlueJ.app/Contents/Frameworks/jdk.framework/Versions/A/Contents/Home/bin/javadoc
 -author
 -version
 -nodeprecated
@@ -12,31 +12,57 @@ C:\Program Files (x86)\BlueJ\jdk\bin\javadoc.exe
 -source
 1.8
 -classpath
-C:\Program Files (x86)\BlueJ\lib\bluejcore.jar;C:\Program Files (x86)\BlueJ\lib\junit-4.8.2.jar;C:\Users\Rowan\Documents\gpdraw.jar;E:\APCS\GridWorldCode\gridworld.jar;C:\Users\Rowan\Documents\GridWorldCode\gridworld.jar;C:\Program Files (x86)\BlueJ\lib\userlib\pi4j-core.jar;C:\Program Files (x86)\BlueJ\lib\userlib\pi4j-device.jar;C:\Program Files (x86)\BlueJ\lib\userlib\pi4j-gpio-extension.jar;C:\Program Files (x86)\BlueJ\lib\userlib\pi4j-service.jar;C:\Users\Rowan\Documents\GitHub\bollhorst-game-of-life
+/Applications/BlueJ.app/Contents/Resources/Java/bluejcore.jar:/Applications/BlueJ.app/Contents/Resources/Java/junit-4.8.2.jar:/Users/natredfern/Desktop/GridWorldCode/GridWorldCode/gridworld.jar:/Applications/BlueJ.app/Contents/Resources/Java/userlib/pi4j-core.jar:/Applications/BlueJ.app/Contents/Resources/Java/userlib/pi4j-device.jar:/Applications/BlueJ.app/Contents/Resources/Java/userlib/pi4j-gpio-extension.jar:/Applications/BlueJ.app/Contents/Resources/Java/userlib/pi4j-service.jar:/Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life
 -d
-C:\Users\Rowan\Documents\GitHub\bollhorst-game-of-life\doc
+/Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life/doc
 -encoding
 UTF-8
 -charset
 UTF-8
 -docletpath
-C:\Program Files (x86)\BlueJ\lib\bjdoclet.jar
+/Applications/BlueJ.app/Contents/Resources/Java/bjdoclet.jar
 -doclet
 bluej.doclet.doclets.formats.html.HtmlDoclet
-C:\Users\Rowan\Documents\GitHub\bollhorst-game-of-life\Game.java
+/Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life/WorldElement.java
 <---- end of javadoc command ---->
-Loading source file C:\Users\Rowan\Documents\GitHub\bollhorst-game-of-life\Game.java...
+Loading source file /Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life/WorldElement.java...
 Constructing Javadoc information...
-Standard Doclet version 1.8.0_40
+Standard Doclet version 1.8.0_31
 Building tree for all the packages and classes...
-Generating C:\Users\Rowan\Documents\GitHub\bollhorst-game-of-life\doc\Game.html...
-Generating C:\Users\Rowan\Documents\GitHub\bollhorst-game-of-life\doc\package-frame.html...
-Generating C:\Users\Rowan\Documents\GitHub\bollhorst-game-of-life\doc\package-summary.html...
-Generating C:\Users\Rowan\Documents\GitHub\bollhorst-game-of-life\doc\constant-values.html...
-Generating C:\Users\Rowan\Documents\GitHub\bollhorst-game-of-life\doc\serialized-form.html...
+Generating /Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life/doc/WorldElement.html...
+Generating /Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life/doc/package-frame.html...
+Generating /Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life/doc/package-summary.html...
+Generating /Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life/doc/constant-values.html...
+Generating /Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life/doc/serialized-form.html...
+/Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life/Inventory.java:3: error: cannot find symbol
+public class Inventory extends MouseAdapter
+                               ^
+  symbol: class MouseAdapter
+/Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life/Inventory.java:5: error: cannot find symbol
+    private Image background;
+            ^
+  symbol:   class Image
+  location: class Inventory
+/Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life/Inventory.java:7: error: variable width is already defined in class Inventory
+    int width = 910;
+        ^
+/Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life/Inventory.java:8: error: variable height is already defined in class Inventory
+    int height = 100;
+        ^
+/Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life/Inventory.java:9: error: cannot find symbol
+    public void paint(Graphics2D g,T object,int width,int height)
+                      ^
+  symbol:   class Graphics2D
+  location: class Inventory
+/Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life/Inventory.java:9: error: cannot find symbol
+    public void paint(Graphics2D g,T object,int width,int height)
+                                   ^
+  symbol:   class T
+  location: class Inventory
 Building index for all the packages and classes...
 Building index for all classes...
-Generating C:\Users\Rowan\Documents\GitHub\bollhorst-game-of-life\doc\allclasses-frame.html...
-Generating C:\Users\Rowan\Documents\GitHub\bollhorst-game-of-life\doc\allclasses-noframe.html...
-Generating C:\Users\Rowan\Documents\GitHub\bollhorst-game-of-life\doc\index.html...
-Generating C:\Users\Rowan\Documents\GitHub\bollhorst-game-of-life\doc\stylesheet.css...
+Generating /Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life/doc/allclasses-frame.html...
+Generating /Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life/doc/allclasses-noframe.html...
+Generating /Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life/doc/index.html...
+Generating /Users/natredfern/Desktop/Homework/APCS/bollhorst-game-of-life/doc/stylesheet.css...
+6 errors
