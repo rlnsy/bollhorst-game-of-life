@@ -5,5 +5,6 @@ public class Water extends WorldElement {
     
     public void behave() {
         gravitate();
+        
     }
 }
