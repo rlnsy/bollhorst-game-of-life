@@ -1,6 +1,6 @@
 public class Water extends WorldElement {
     
-    private WorldElement platform;
+    private WorldElement base;
     
     public Water () {
         super("images/water.png");
@@ -8,8 +8,8 @@ public class Water extends WorldElement {
     
     public void behave() {
         gravitate();
-        if(platform != null) {
-            if(getX() > platform.getX())
+        if(base != null) {
+            if(getX() > base.getX())
                 setLocation(getX()+1,getY());
             else
                 setLocation(getX()-1,getY());
@@ -21,7 +21,7 @@ public class Water extends WorldElement {
         for(WorldElement e : getWorld().getElements()) {
             if(isTouching(e)) {
                 canMove = false;
-                platform = e;
+                base = e;
             }
         }
         if(canMove)
