@@ -18,7 +18,7 @@ class ElementPicker extends JPopupMenu implements ActionListener {
         items = new ArrayList<ElementMenuItem>();
 
         for(int i = 0; i < world.getMenu().getNumItems(); i++)
-            items.add(world.getMenu().getItem(i));
+            items.add(world.getMenu().getMenuItem(i));
        
         for(ElementMenuItem i : items) {
             i.addActionListener(this);

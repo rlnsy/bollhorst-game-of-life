@@ -3,7 +3,7 @@ public class ElementMenu //TODO: remove default values/returns
 {
     private int numItems = 2;
     
-    public ElementMenuItem getItem(int index) {
+    public ElementMenuItem getMenuItem(int index) {
         ElementMenuItem item;
         switch(index) {
             case 0 :
@@ -17,6 +17,22 @@ public class ElementMenu //TODO: remove default values/returns
             break;
         }
         return item;
+    }
+    
+    public WorldElement getElement(int index) {
+        WorldElement element;
+        switch(index) {
+            case 0 :
+            element = new Water();
+            break;
+            case 1 :
+            element = new Dirt();
+            break;
+            default :
+            element = new Dorito();
+            break;
+        }
+        return element;
     }
     
     public int getNumItems() { return numItems; }
