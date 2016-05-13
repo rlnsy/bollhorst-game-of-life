@@ -1,30 +1,5 @@
-public class Water extends WorldElement {
-    
-    private WorldElement base;
-    
+public class Water extends Liquid {
     public Water () {
-        super("images/water.png",true);
-    }
-    
-    public void behave() {
-        gravitate();
-        if(base != null) {
-            if(getX() > base.getX())
-                setLocation(getX()+1,getY());
-            else
-                setLocation(getX()-1,getY());
-        }
-    }
-    
-    public void gravitate() {
-        boolean canMove = true;
-        for(WorldElement e : getWorld().getElements()) {
-            if(isTouching(e)) {
-                canMove = false;
-                base = e;
-            }
-        }
-        if(canMove)
-            moveDown(2);
+        super("images/water.png");
     }
 }
