@@ -73,7 +73,7 @@ public class World extends Scene {
         super.actionPerformed(e);
         update();
         checkForDeadElements();
-        System.out.println(elements.size());
+        //System.out.println(elements.size());
     }
     
     public void update() {

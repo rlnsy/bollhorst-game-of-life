@@ -1,8 +1,8 @@
 import javax.swing.*;
 import java.io.*;
 import java.awt.*;
-// hello
-public class Game extends JFrame{
+
+public class Game extends JFrame {
     
     private final int WINDOW_WIDTH = 910;
     private final int  WINDOW_HEIGHT = 512;
