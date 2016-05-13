@@ -24,6 +24,15 @@ public class World extends Scene {
         WorldClickListener testListener = new WorldClickListener(this);
         testListener.changeCurrentElement(1);
         addMouseListener(testListener);
+        
+        JButton invButton = new JButton("Inventory");
+        invButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                inventory.changeVisibility();
+            }
+        });
+        
+        add(invButton);
     }
 
     public void paintComponent(Graphics g) {

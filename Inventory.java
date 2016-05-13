@@ -19,12 +19,19 @@ public class Inventory extends JComponent {
        } catch (IOException e) {
            throw new RuntimeException(e);
        }
-       isVisible = true;
+       isVisible = false;
        world = world;
     }
   
     public void draw(Graphics g) {
         if(isVisible)
             g.drawImage(background,0,0,world);
+    }
+    
+    public void changeVisibility() {
+        if(isVisible)
+            isVisible = false;
+        else
+            isVisible = true;
     }
 }
