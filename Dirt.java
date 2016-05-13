@@ -1,6 +1,6 @@
 public class Dirt extends WorldElement {
     public Dirt () {
-        super("images/dirt.png",true);
+        super("images/dirt.png");
     }
     
     public void behave() {

@@ -11,9 +11,8 @@ public abstract class WorldElement extends JComponent {
     private int xPos, yPos;
     private int width, height;
     private boolean isVisible;
-    private boolean isCollisionElement;
     
-    public WorldElement(String imagePath, boolean collidable)
+    public WorldElement(String imagePath)
     {
        this.xPos = 0;
        this.yPos = 0;
@@ -24,7 +23,6 @@ public abstract class WorldElement extends JComponent {
        }    
        width = sprite.getWidth(null);
        height = sprite.getHeight(null);
-       isCollisionElement = collidable;
        isVisible = true;
     }
     
@@ -89,4 +87,6 @@ public abstract class WorldElement extends JComponent {
     
     public int getX() { return xPos; }
     public int getY() { return yPos; }
+    public int getWidth() { return width; }
+    public int getHeight() { return height; }
 }
