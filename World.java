@@ -9,6 +9,7 @@ public class World extends Scene {
     private ArrayList<WorldElement> elements;
     private ElementMenu menu;
     private Inventory inventory;
+    private WorldClickListener clickListener;
 
     public World() throws IOException {
         super("images/Blue back.png");
@@ -21,18 +22,19 @@ public class World extends Scene {
     public void init() {
         super.init();
         addMouseListener(new PopUpListener(this));
-        WorldClickListener testListener = new WorldClickListener(this);
-        testListener.changeCurrentElement(1);
-        addMouseListener(testListener);
+        clickListener = new WorldClickListener(this);
         
+        clickListener.changeCurrentElement(0);
+        
+        addMouseListener(clickListener);
         JButton invButton = new JButton("Inventory");
         invButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 inventory.changeVisibility();
             }
         });
-        
         add(invButton);
+        addMouseMotionListener(clickListener);
     }
 
     public void paintComponent(Graphics g) {
