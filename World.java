@@ -45,10 +45,26 @@ public class World extends Scene {
         }
     }
     
+    public void checkForDeadElements() {
+        int i = 0;
+        while(i < elements.size()) {
+            WorldElement e = elements.get(i);
+            if(!e.isVisible()) {
+                removeElement(i);
+            }
+            else
+                i++;
+        }
+    }
+    
     public void addElement(int xPos, int yPos, WorldElement e){
         e.setLocation(xPos, yPos);
         elements.add(e);
         e.setWorld(this);
+    }
+    
+    public void removeElement(int index) {
+        elements.remove(index);
     }
     
     // refresh grpahics whenever action performed
@@ -56,6 +72,8 @@ public class World extends Scene {
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
         update();
+        checkForDeadElements();
+        System.out.println(elements.size());
     }
     
     public void update() {
