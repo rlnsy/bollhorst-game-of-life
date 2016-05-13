@@ -57,6 +57,8 @@ public abstract class WorldElement extends JComponent {
         behave();
     }
     
+    public boolean isVisible() { return isVisible; }
+    
     public abstract void behave();
    
     public void moveDown(int value) {
