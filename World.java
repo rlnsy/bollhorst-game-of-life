@@ -24,7 +24,7 @@ public class World extends Scene {
         addMouseListener(new PopUpListener(this));
         clickListener = new WorldClickListener(this);
         
-        clickListener.changeCurrentElement(0);
+        clickListener.changeCurrentElement(1); // DEFAULT ITEM
         
         addMouseListener(clickListener);
         JButton invButton = new JButton("Inventory");
@@ -71,8 +71,8 @@ public class World extends Scene {
     // uses timer created in game
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
-        update();
         checkForDeadElements();
+        update();
         //System.out.println(elements.size());
     }
     
