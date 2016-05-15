@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public abstract class Liquid extends WorldElement
 {
     private WorldElement base;
@@ -18,19 +20,20 @@ public abstract class Liquid extends WorldElement
     }
     
     public void gravitate() {
-        boolean canMove = true;
-        for(WorldElement e : getWorld().getElements()) {
-            if(isTouching(e) && !(e instanceof Liquid)) {
-                canMove = false;
-                supported = true;
-                base = e;
+        boolean canFall = true;
+        ArrayList<WorldElement> neighbours = getTouching();
+        int neighbourIndex = 0;
+        while(neighbourIndex < neighbours.size()) {
+            WorldElement neighbour = neighbours.get(neighbourIndex);
+            if(isSupportedBy(neighbour)) {
+                canFall = false;
+                neighbourIndex = neighbours.size();
+                base = neighbour;
             }
-            else if(e instanceof Liquid && isTouching(e) && ((Liquid)e).isSupported()) {
-                canMove = false;
-                base = e;
-            }
+            else
+                neighbourIndex++;
         }
-        if(canMove)
+        if(canFall)
             moveDown(2);
     }
     

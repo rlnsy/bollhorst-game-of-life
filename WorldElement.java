@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import javax.imageio.ImageIO;
+import java.util.ArrayList;
 
 public abstract class WorldElement extends JComponent {
 
@@ -69,13 +70,45 @@ public abstract class WorldElement extends JComponent {
     public World getWorld() { return world; }
     
     public void gravitate() {
-        boolean canMove = true;
-        for(WorldElement e : getWorld().getElements()) {
-            if(isTouching(e))
-                canMove = false;
+        boolean canFall = true;
+        ArrayList<WorldElement> neighbours = getTouching();
+        int neighbourIndex = 0;
+        while(neighbourIndex < neighbours.size()) {
+            WorldElement neighbour = neighbours.get(neighbourIndex);
+            if(isSupportedBy(neighbour)) {
+                canFall = false;
+                neighbourIndex = neighbours.size();
+            }
+            else
+                neighbourIndex++;
         }
-        if(canMove)
+        if(canFall)
             moveDown(2);
+    }
+    
+    public boolean isSupportedBy(WorldElement other) {
+        if(other instanceof Island)
+            return true;
+        else {
+            ArrayList<WorldElement> touchingOther = other.getTouching();
+            touchingOther.remove(touchingOther.indexOf(this));
+            if(other.getY() > getY()) {
+                for(WorldElement e : touchingOther) {
+                    if(other.isSupportedBy(e))
+                        return true;
+                }
+            }
+        }     
+        return false;
+    }
+    
+    public ArrayList<WorldElement> getTouching() {
+        ArrayList<WorldElement> touching = new ArrayList<WorldElement>();
+        for(WorldElement e : world.getElements()) {
+            if(isTouching(e))
+                touching.add(e);
+        }
+        return touching;
     }
     
     public boolean inBounds() {
