@@ -19,13 +19,22 @@ public class Inventory extends JComponent {
        } catch (IOException e) {
            throw new RuntimeException(e);
        }
+       
+       JButton button = new JButton();
+       try {
+        Image img = ImageIO.read(new File("images/dirt.png"));
+        button.setIcon(new ImageIcon(img));
+      } catch (IOException ex) {
+      }
+       world.add(button);
        isVisible = false;
        world = world;
     }
   
     public void draw(Graphics g) {
         if(isVisible)
-            g.drawImage(background,0,0,world);
+           g.drawImage(background,0,0,world);
+
     }
     
     public void changeVisibility() {

@@ -28,11 +28,13 @@ public class World extends Scene {
         
         addMouseListener(clickListener);
         JButton invButton = new JButton("Inventory");
-        invButton.addActionListener(new ActionListener() {
+        invButton.addActionListener(new ActionListener() 
+        {
             public void actionPerformed(ActionEvent e) {
                 inventory.changeVisibility();
             }
         });
+        
         add(invButton);
         addMouseMotionListener(clickListener);
     }
