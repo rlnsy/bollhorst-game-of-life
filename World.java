@@ -12,7 +12,7 @@ public class World extends Scene {
     private WorldClickListener clickListener;
 
     public World() throws IOException {
-        super("images/Blue back.png");
+        super("images/background2.png");
         elements = new ArrayList<WorldElement>();
         menu = new ElementMenu();
         inventory = new Inventory(this);
@@ -24,7 +24,7 @@ public class World extends Scene {
         addMouseListener(new PopUpListener(this));
         clickListener = new WorldClickListener(this);
         
-        clickListener.changeCurrentElement(1); // DEFAULT ITEM
+        clickListener.changeCurrentElement(0); // DEFAULT ITEM
         
         addMouseListener(clickListener);
         JButton invButton = new JButton("Inventory");

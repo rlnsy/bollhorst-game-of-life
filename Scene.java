@@ -20,7 +20,7 @@ public class Scene extends JPanel implements ActionListener{
         int width = backgroundImage.getWidth(null);   
         int height = backgroundImage.getHeight(null);
         setPreferredSize(new Dimension(width,height));
-        new Timer(1,this).start(); // Timer for repainting
+        new Timer(20,this).start(); // Timer for repainting
     }
     
     public void paintComponent(Graphics g) {
