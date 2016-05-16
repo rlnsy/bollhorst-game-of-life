@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class ElementMenu //TODO: remove default values/returns
 {
-    private int numItems = 3;
+    private int numItems = 4;
     
     public ElementMenuItem getMenuItem(int index) {
         ElementMenuItem item;
@@ -14,6 +14,9 @@ public class ElementMenu //TODO: remove default values/returns
             break;
             case 2 :
             item = new ElementMenuItem("Island",2,new Island());
+            break;
+            case 3 :
+            item = new ElementMenuItem("Villager",3,new Villager());
             break;
             default :
             item = new ElementMenuItem("Dorito",0,new Dorito());
