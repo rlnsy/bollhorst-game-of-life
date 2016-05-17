@@ -11,7 +11,7 @@ public class Inventory extends JPanel {
     private Image background;
     private boolean isVisible;
     private World world;
-    
+    JButton button;
     
     public Inventory(World world)
     {
@@ -23,7 +23,7 @@ public class Inventory extends JPanel {
        
        for(int i = 0; i < world.getMenu().getNumItems(); i++)
        {
-           JButton button = new JButton();
+           button = new JButton();
            try {
             String imagePath = "images/dirt.png";
             // can't get it to source different images - getElement doesn't exist??
@@ -33,7 +33,7 @@ public class Inventory extends JPanel {
            } catch (IOException ex) {
            }
            world.add(button);
-           button.isVisible();
+           button.setVisible(false);
        }
        isVisible = false;
        world = world;
@@ -47,8 +47,14 @@ public class Inventory extends JPanel {
     
     public void changeVisibility() {
         if(isVisible)
-            isVisible = false;
+        { 
+          isVisible = false;
+          button.setVisible(false);
+        }
         else
-            isVisible = true;
+        {
+          isVisible = true;
+          button.setVisible(true);
+        }
     }
 }
