@@ -37,5 +37,4 @@ public abstract class Liquid extends WorldElement
             moveDown(2);
     }
     
-    public boolean isSupported() { return supported; }
 }

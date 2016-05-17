@@ -27,6 +27,7 @@ public class Inventory extends JComponent {
       } catch (IOException ex) {
       }
        world.add(button);
+       button.isVisible();
        isVisible = false;
        world = world;
     }
@@ -34,7 +35,6 @@ public class Inventory extends JComponent {
     public void draw(Graphics g) {
         if(isVisible)
            g.drawImage(background,0,0,world);
-
     }
     
     public void changeVisibility() {
