@@ -12,6 +12,7 @@ public class Inventory extends JComponent {
     private boolean isVisible;
     private World world;
     
+    
     public Inventory(World world)
     {
         try {
@@ -20,16 +21,23 @@ public class Inventory extends JComponent {
            throw new RuntimeException(e);
        }
        
-       JButton button = new JButton();
-       try {
-        Image img = ImageIO.read(new File("images/dirt.png"));
-        button.setIcon(new ImageIcon(img));
-      } catch (IOException ex) {
-      }
-       world.add(button);
-       button.isVisible();
+       for(int i = 0; i < world.getMenu().getNumItems(); i++)
+       {
+           JButton button = new JButton();
+           try {
+            String imagePath = "images/dirt.png";
+            // can't get it to source different images - getElement doesn't exist??
+            //String imagePath = getElement(i).getImagePath();
+            Image img = ImageIO.read(new File(imagePath));
+            button.setIcon(new ImageIcon(img));
+           } catch (IOException ex) {
+           }
+           world.add(button);
+           button.isVisible();
+       }
        isVisible = false;
        world = world;
+    
     }
   
     public void draw(Graphics g) {

@@ -12,6 +12,7 @@ public abstract class WorldElement extends JComponent {
     private int xPos, yPos;
     private int width, height;
     private boolean isVisible;
+    private String imagePath;
     
     public WorldElement(String imagePath)
     {
@@ -117,6 +118,7 @@ public abstract class WorldElement extends JComponent {
         return inBoundsX && inBoundsY;
     }
     
+    public String getImagePath(){ return imagePath; }
     public int getX() { return xPos; }
     public int getY() { return yPos; }
     public int getWidth() { return width; }
