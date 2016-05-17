@@ -7,7 +7,7 @@ import java.awt.event.*;
 import java.awt.*;
  
 
-public class Inventory extends JComponent {
+public class Inventory extends JPanel {
     private Image background;
     private boolean isVisible;
     private World world;
