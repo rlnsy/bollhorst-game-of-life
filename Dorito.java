@@ -12,7 +12,7 @@ public class Dorito extends WorldElement {
     
     public Image getThumbnail() {
         try {
-           return ImageIO.read(new File("images/toolbar_spites/dorito.png"));
+           return ImageIO.read(new File("images/toolbar_sprites/dorito.png"));
        } catch (IOException e) {
            throw new RuntimeException(e);
        }    

@@ -12,7 +12,7 @@ public class Villager extends WorldElement
     }
     public Image getThumbnail() {
         try {
-           return ImageIO.read(new File("images/toolbar_spites/dirt.png"));
+           return ImageIO.read(new File("images/toolbar_sprites/dirt.png"));
        } catch (IOException e) {
            throw new RuntimeException(e);
        }    
