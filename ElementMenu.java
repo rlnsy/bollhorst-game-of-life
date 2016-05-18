@@ -43,6 +43,7 @@ public class ElementMenu //TODO: remove default values/returns
             break;
             case 3 :
             element = new Villager();
+            break;
             default :
             element = new Dorito();
             break;
@@ -51,7 +52,7 @@ public class ElementMenu //TODO: remove default values/returns
     }
     
     public Image getElementThumbnail(int elementID) {
-            return getElement(elementID).getThumbnail();
+        return getElement(elementID).getThumbnail();
     }
     
     public int getNumItems() { return numItems; }

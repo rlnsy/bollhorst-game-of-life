@@ -12,7 +12,7 @@ public class Water extends Liquid {
     
     public Image getThumbnail() {
         try {
-           return ImageIO.read(new File("images/toolbar_sprites/water.png"));
+           return ImageIO.read(new File("images/toolbar_spites/water.png"));
        } catch (IOException e) {
            throw new RuntimeException(e);
        }    
