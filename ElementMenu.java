@@ -5,7 +5,7 @@ import javax.imageio.ImageIO;
 import java.util.ArrayList;
 public class ElementMenu //TODO: remove default values/returns
 {
-    private int numItems = 4;
+    private int numItems = 5;
     
     public ElementMenuItem getMenuItem(int elementID) {
         ElementMenuItem item;
