@@ -1,11 +1,15 @@
+import javax.swing.*;
+import java.awt.*;
+import java.io.*;
+import javax.imageio.ImageIO;
 import java.util.ArrayList;
 public class ElementMenu //TODO: remove default values/returns
 {
     private int numItems = 4;
     
-    public ElementMenuItem getMenuItem(int index) {
+    public ElementMenuItem getMenuItem(int elementID) {
         ElementMenuItem item;
-        switch(index) {
+        switch(elementID) {
             case 0 :
             item = new ElementMenuItem("Water",0,new Water());
             break;
@@ -25,9 +29,9 @@ public class ElementMenu //TODO: remove default values/returns
         return item;
     }
     
-    public WorldElement getElement(int index) {
+    public WorldElement getElement(int elementID) {
         WorldElement element;
-        switch(index) {
+        switch(elementID) {
             case 0 :
             element = new Water();
             break;
@@ -42,6 +46,10 @@ public class ElementMenu //TODO: remove default values/returns
             break;
         }
         return element;
+    }
+    
+    public Image getDefaultSprite(int elementID) {
+            return getElement(elementID).getSprite();
     }
     
     public int getNumItems() { return numItems; }
