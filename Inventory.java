@@ -11,33 +11,33 @@ import java.util.ArrayList;
 public class Inventory extends JPanel {
     private final Image background;
     private boolean isVisible;
-    private final World WORLD;
+    private World world;
     private ArrayList<InventoryButton> buttons;
     
     public Inventory(World world )
     {
-       WORLD = world;
+       world = world;
         try {
            background = ImageIO.read(new File("images/Toolbar.png"));
        } catch (IOException e) {
            throw new RuntimeException(e);
        }
        buttons = new ArrayList<InventoryButton>();
-       for(int i = 0; i < WORLD.getMenu().getNumItems(); i++)
+       for(int i = 0; i < world.getMenu().getNumItems(); i++)
        {
-           InventoryButton newButton = new InventoryButton(i,WORLD);
-           Image icon = WORLD.getMenu().getElementThumbnail(i);
+           InventoryButton newButton = new InventoryButton(i,world);
+           Image icon = world.getMenu().getElementThumbnail(i);
            newButton.setIcon(new ImageIcon(icon));
            newButton.setVisible(false);
            buttons.add(newButton);
-           WORLD.add(newButton);
+           world.add(newButton);
        }
        isVisible = false;
     }
   
     public void draw(Graphics g) {
         if(isVisible)
-           g.drawImage(background,0,0,WORLD);
+           g.drawImage(background,0,0,world);
     }
     
     public void changeVisibility() {
