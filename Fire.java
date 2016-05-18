@@ -13,13 +13,8 @@ public class Fire extends WorldElement
     
     public void behave() {
         age++;
-        if(age == 20) {
-           try {
-               setSprite(ImageIO.read(new File("images/element_sprites/water.png")));
-           } catch (IOException e) {
-               throw new RuntimeException(e);
-           }  
-        }
+        if(age == 20)
+            setSprite(Game.readImage("images/toolbar_sprites/water.png"));
     }
     
     public Image getThumbnail() {
