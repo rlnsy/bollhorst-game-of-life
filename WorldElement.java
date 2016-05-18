@@ -94,7 +94,18 @@ public abstract class WorldElement extends JComponent {
     }
     
     public void randomMove() {
-        int randomNum = (int) Math.random();
+        double randomNum = Math.random();
+        if(randomNum < 0.99)
+        {
+        }
+        if(randomNum > 0.995)
+        {
+            xPos += 0.05;
+        }
+        else
+        {
+            xPos -= 0.05;
+        }
     }
     
     public boolean isSupportedBy(WorldElement other) {
