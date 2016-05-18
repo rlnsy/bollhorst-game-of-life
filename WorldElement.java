@@ -15,6 +15,9 @@ public abstract class WorldElement extends JComponent {
     private String imagePath;
     private boolean held;
     private boolean isMovable;
+    private boolean isBurning;
+    private int burnedFor;
+    private int maxBurnTime;
     
     public WorldElement(String imagePath, boolean isMovable)
     {
@@ -26,6 +29,7 @@ public abstract class WorldElement extends JComponent {
        held = false;
        isMovable = isMovable;
        isVisible = true;
+       maxBurnTime = 50;
     }
     
     public Rectangle getHitBox() {
@@ -53,6 +57,10 @@ public abstract class WorldElement extends JComponent {
     public void update() {
         if(!inBounds())
             isVisible  = false;
+        if(isBurning)
+            burnedFor++;
+        if(burnedFor == maxBurnTime)
+            isVisible = false;
         behave();
     }
     
@@ -137,6 +145,13 @@ public abstract class WorldElement extends JComponent {
         boolean inBoundsX = xPos + width/2 < world.getWidth() && xPos - width/2 > 0;
         boolean inBoundsY = yPos + height/2 < world.getHeight() && yPos - height/2 > 0;
         return inBoundsX && inBoundsY;
+    }
+    
+    public void burn() {
+        if(!(this instanceof Island)) {
+            setSprite(sprite);
+            isBurning = true;
+        }
     }
     
     public String getImagePath(){ return imagePath; }
