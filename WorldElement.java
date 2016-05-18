@@ -94,7 +94,7 @@ public abstract class WorldElement extends JComponent {
     }
     
     public void randomMove() {
-        xPos++;
+        int randomNum = (int) Math.random();
     }
     
     public boolean isSupportedBy(WorldElement other) {
