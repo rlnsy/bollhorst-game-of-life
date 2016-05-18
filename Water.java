@@ -1,5 +1,5 @@
 public class Water extends Liquid {
     public Water () {
-        super("images/water.png");
+        super("images/element_sprites/water.png");
     }
 }

@@ -18,7 +18,7 @@ public class Inventory extends JPanel {
     {
        world = world;
         try {
-           background = ImageIO.read(new File("images/Toolbar.png"));
+           background = ImageIO.read(new File("images/backgrounds/Toolbar.png"));
        } catch (IOException e) {
            throw new RuntimeException(e);
        }

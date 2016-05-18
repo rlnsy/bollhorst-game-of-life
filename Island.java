@@ -1,6 +1,6 @@
 public class Island extends WorldElement {
     public Island () {
-        super("images/island.png");
+        super("images/element_sprites/island.png");
     }
     
     public void behave() {}
