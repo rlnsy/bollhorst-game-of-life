@@ -3,18 +3,18 @@ import java.awt.Point;
 
 public class WorldClickListener extends MouseAdapter implements MouseMotionListener {
     private World world;
-    private int currentElementIndex;
+    private int mouseElementID;
     private WorldElement pickedUp;
     private boolean movingElement;
     
     public WorldClickListener(World world) {
         this.world = world;
-        currentElementIndex = 0;
+        mouseElementID = 0;
         movingElement = false;
     }
     
-    public void changeCurrentElement(int elementIndex) {
-        currentElementIndex = elementIndex;
+    public void setMouseElement(int elementID) {
+        mouseElementID = elementID;
     }
     
     public void mouseClicked(MouseEvent e) {
@@ -31,12 +31,12 @@ public class WorldClickListener extends MouseAdapter implements MouseMotionListe
                     movingElement = true;
                 }
             }
-            world.addElement(e.getX(),e.getY(),world.getMenu().getElement(currentElementIndex));
+            world.addElement(e.getX(),e.getY(),world.getMenu().getElement(mouseElementID));
         }
     }
     
     public void mouseDragged(MouseEvent e) {
-       world.addElement(e.getX(),e.getY(),world.getMenu().getElement(currentElementIndex));
+       world.addElement(e.getX(),e.getY(),world.getMenu().getElement(mouseElementID));
     }
     
     public void mouseMoved(MouseEvent e) {

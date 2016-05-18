@@ -24,18 +24,16 @@ public class World extends Scene {
         addMouseListener(new PopUpListener(this));
         clickListener = new WorldClickListener(this);
         
-        clickListener.changeCurrentElement(0); // DEFAULT ITEM
-        
         addMouseListener(clickListener);
-        JButton invButton = new JButton("Inventory");
-        invButton.addActionListener(new ActionListener() 
+        JButton invOpener = new JButton("Inventory");
+        invOpener.addActionListener(new ActionListener() 
         {
             public void actionPerformed(ActionEvent e) {
                 inventory.changeVisibility();
             }
         });
         
-        add(invButton);
+        add(invOpener);
         addMouseMotionListener(clickListener);
     }
 
@@ -86,4 +84,8 @@ public class World extends Scene {
     public ArrayList<WorldElement> getElements() { return elements; }
     
     public ElementMenu getMenu() { return menu; }
+    
+    public void setMouseElement(int elementID) {
+        clickListener.setMouseElement(elementID);
+    }
 }
