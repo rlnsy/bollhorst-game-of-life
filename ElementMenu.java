@@ -41,6 +41,8 @@ public class ElementMenu //TODO: remove default values/returns
             case 2 :
             element = new Island();
             break;
+            case 3 :
+            element = new Villager();
             default :
             element = new Dorito();
             break;
