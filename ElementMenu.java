@@ -5,7 +5,7 @@ import javax.imageio.ImageIO;
 import java.util.ArrayList;
 public class ElementMenu //TODO: remove default values/returns
 {
-    private int numItems = 5;
+    private int numItems = 6;
     
     public ElementMenuItem getMenuItem(int elementID) {
         ElementMenuItem item;
@@ -21,6 +21,9 @@ public class ElementMenu //TODO: remove default values/returns
             break;
             case 3 :
             item = new ElementMenuItem("Villager",3,new Villager());
+            break;
+            case 4 :
+            item = new ElementMenuItem("Fire",4,new Fire());
             break;
             default :
             item = new ElementMenuItem("Dorito",0,new Dorito());
@@ -43,6 +46,9 @@ public class ElementMenu //TODO: remove default values/returns
             break;
             case 3 :
             element = new Villager();
+            break;
+            case 4 :
+            element = new Fire();
             break;
             default :
             element = new Dorito();

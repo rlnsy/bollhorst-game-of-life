@@ -20,11 +20,7 @@ public abstract class WorldElement extends JComponent {
     {
        this.xPos = 0;
        this.yPos = 0;
-       try {
-           sprite = ImageIO.read(new File(imagePath));
-       } catch (IOException e) {
-           throw new RuntimeException(e);
-       }    
+       sprite = Game.readImage(imagePath);
        width = sprite.getWidth(null);
        height = sprite.getHeight(null);
        held = false;
@@ -61,6 +57,10 @@ public abstract class WorldElement extends JComponent {
     }
     
     public boolean isVisible() { return isVisible; }
+    
+    public void setVisble(boolean isVisible) { 
+        this.isVisible = isVisible; 
+    }
     
     public abstract void behave();
    
@@ -141,4 +141,6 @@ public abstract class WorldElement extends JComponent {
     
     public Image getSprite() { return sprite; }
     public boolean isMovable() { return isMovable; }
+    
+    public void setSprite(Image newSprite) {sprite = newSprite; }
 }

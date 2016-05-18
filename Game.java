@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.io.*;
 import java.awt.*;
+import javax.imageio.ImageIO;
 
 public class Game extends JFrame {
     
@@ -24,5 +25,13 @@ public class Game extends JFrame {
         setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         getContentPane().add(world);
         pack();
+    }
+    
+    public static Image readImage(String imagePath) {
+        try {
+           return ImageIO.read(new File(imagePath));
+       } catch (IOException e) {
+           throw new RuntimeException(e);
+       }    
     }
 }
