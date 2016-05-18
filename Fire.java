@@ -14,7 +14,7 @@ public class Fire extends WorldElement
     public void behave() {
         age++;
         if(age == 20)
-            setSprite(Game.readImage("images/element_sprites/water.png"));
+            setLocation(10000,10000);
     }
     
     public Image getThumbnail() {
