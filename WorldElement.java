@@ -128,6 +128,8 @@ public abstract class WorldElement extends JComponent {
     public int getWidth() { return width; }
     public int getHeight() { return height; }
     
+    public abstract Image getThumbnail();
+    
     public void hold() { held = true; }
     public void release() { held = false; }
     
