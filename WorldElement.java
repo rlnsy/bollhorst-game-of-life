@@ -150,13 +150,6 @@ public abstract class WorldElement extends JComponent {
         return inBoundsX && inBoundsY;
     }
     
-    public void burn() {
-        if(!(this instanceof Island)) {
-            setSprite(sprite);
-            isBurning = true;
-        }
-    }
-    
     public String getImagePath(){ return imagePath; }
     public int getX() { return xPos; }
     public int getY() { return yPos; }
@@ -172,4 +165,8 @@ public abstract class WorldElement extends JComponent {
     public boolean isMovable() { return isMovable; }
     
     public void setSprite(Image newSprite) {sprite = newSprite; }
+    
+    public void setBurning(boolean isBurning) {
+        this.isBurning = isBurning;
+    }
 }

@@ -6,7 +6,7 @@ import javax.imageio.ImageIO;
 public class Fire extends WorldElement
 {
     private int age;
-    private final int MAX_AGE = 100;
+    private final int MAX_AGE = 40;
     public Fire() {
         super("images/element_sprites/fire.png",false);
         age = 0;
@@ -17,9 +17,14 @@ public class Fire extends WorldElement
         if(age == MAX_AGE)
             setLocation(10000,10000);
         for(WorldElement e : getTouching()) {
-            if(!(e instanceof Liquid))
-                e.burn();
+            if(!(e instanceof Liquid || e instanceof Island || e instanceof Fire))
+                burn(e);
         }
+    }
+    
+    public void burn(WorldElement e) {
+        e.setSprite(Game.readImage("images/element_sprites/villager_forward_fire.png"));
+        e.setBurning(true);
     }
     
     public Image getThumbnail() {
