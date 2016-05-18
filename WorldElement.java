@@ -18,6 +18,7 @@ public abstract class WorldElement extends JComponent {
     private boolean isBurning;
     private int burnedFor;
     private int maxBurnTime;
+    private double playerMovement;
     
     public WorldElement(String imagePath, boolean isMovable)
     {
@@ -103,19 +104,19 @@ public abstract class WorldElement extends JComponent {
     
     public void randomMove() {
         double randomNum = Math.random();
-        double amountChanged = 0.0;
         if(randomNum < 0.99)
         {
-            xPos += amountChanged;
+            xPos += playerMovement;
         }
         if(randomNum > 0.995)
         {
-            amountChanged = 0.05;
+            playerMovement = 0.005;
         }
         else if(randomNum <= 0.995 && randomNum > 0.99)
         {
-            amountChanged = -0.05;
+            playerMovement = -0.005;
         }
+        
     }
     
     public boolean isSupportedBy(WorldElement other) {
