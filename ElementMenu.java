@@ -51,7 +51,7 @@ public class ElementMenu //TODO: remove default values/returns
     }
     
     public Image getElementThumbnail(int elementID) {
-            return getElement(elementID).getSprite(); //TODO: return better images
+            return getElement(elementID).getThumbnail();
     }
     
     public int getNumItems() { return numItems; }
