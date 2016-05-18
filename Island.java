@@ -10,10 +10,6 @@ public class Island extends WorldElement {
     public void behave() {}
     
     public Image getThumbnail() {
-        try {
-           return ImageIO.read(new File("images/toolbar_sprites/island.png"));
-       } catch (IOException e) {
-           throw new RuntimeException(e);
-       }    
+           return Game.readImage("images/toolbar_sprites/island.png");
     }
 }

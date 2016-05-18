@@ -11,10 +11,6 @@ public class Villager extends WorldElement
         gravitate();
     }
     public Image getThumbnail() {
-        try {
-           return ImageIO.read(new File("images/toolbar_sprites/villager.png"));
-       } catch (IOException e) {
-           throw new RuntimeException(e);
-       }    
+           return Game.readImage("images/toolbar_sprites/villager.png");
     }
 }
