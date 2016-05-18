@@ -9,6 +9,7 @@ public class Villager extends WorldElement
     }
     public void behave() {
         gravitate();
+        randomMove();
     }
     public Image getThumbnail() {
         try {

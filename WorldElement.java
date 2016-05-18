@@ -93,6 +93,10 @@ public abstract class WorldElement extends JComponent {
         }
     }
     
+    public void randomMove() {
+        xPos++;
+    }
+    
     public boolean isSupportedBy(WorldElement other) {
         if(other instanceof Island)
             return true;
