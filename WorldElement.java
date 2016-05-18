@@ -103,16 +103,18 @@ public abstract class WorldElement extends JComponent {
     
     public void randomMove() {
         double randomNum = Math.random();
+        double amountChanged = 0.0;
         if(randomNum < 0.99)
         {
+            xPos += amountChanged;
         }
         if(randomNum > 0.995)
         {
-            xPos += 0.05;
+            amountChanged = 0.05;
         }
-        else
+        else if(randomNum <= 0.995 && randomNum > 0.99)
         {
-            xPos -= 0.05;
+            amountChanged = -0.05;
         }
     }
     
