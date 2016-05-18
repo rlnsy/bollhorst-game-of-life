@@ -9,7 +9,6 @@ public class InventoryButton extends JButton{
         addActionListener( new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 WORLD.setMouseElement(CLICK_ELEMENT_ID);
-                System.out.println("button click on " + CLICK_ELEMENT_ID);
             }
         });
     }
