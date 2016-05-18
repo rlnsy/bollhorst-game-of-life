@@ -20,11 +20,13 @@ public class WorldClickListener extends MouseAdapter implements MouseMotionListe
     public void mouseClicked(MouseEvent e) {
         if(movingElement) {
             movingElement = false;
+            pickedUp.release();
             pickedUp = null;
         }
         else {
             for(WorldElement elem : world.getElements()) {
                 if(elem.getHitBox().contains(new Point(e.getX(),e.getY()))) {
+                    elem.hold();
                     pickedUp = elem;
                     movingElement = true;
                 }

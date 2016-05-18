@@ -13,6 +13,7 @@ public abstract class WorldElement extends JComponent {
     private int width, height;
     private boolean isVisible;
     private String imagePath;
+    private boolean held;
     
     public WorldElement(String imagePath)
     {
@@ -25,6 +26,7 @@ public abstract class WorldElement extends JComponent {
        }    
        width = sprite.getWidth(null);
        height = sprite.getHeight(null);
+       held = false;
        isVisible = true;
     }
     
@@ -71,20 +73,22 @@ public abstract class WorldElement extends JComponent {
     public World getWorld() { return world; }
     
     public void gravitate() {
-        boolean canFall = true;
-        ArrayList<WorldElement> neighbours = getTouching();
-        int neighbourIndex = 0;
-        while(neighbourIndex < neighbours.size()) {
-            WorldElement neighbour = neighbours.get(neighbourIndex);
-            if(isSupportedBy(neighbour)) {
-                canFall = false;
-                neighbourIndex = neighbours.size();
+        if(!held) {
+            boolean canFall = true;
+            ArrayList<WorldElement> neighbours = getTouching();
+            int neighbourIndex = 0;
+            while(neighbourIndex < neighbours.size()) {
+                WorldElement neighbour = neighbours.get(neighbourIndex);
+                if(isSupportedBy(neighbour)) {
+                    canFall = false;
+                    neighbourIndex = neighbours.size();
+                }
+                else
+                    neighbourIndex++;
             }
-            else
-                neighbourIndex++;
+            if(canFall)
+                moveDown(2);
         }
-        if(canFall)
-            moveDown(2);
     }
     
     public boolean isSupportedBy(WorldElement other) {
@@ -123,4 +127,7 @@ public abstract class WorldElement extends JComponent {
     public int getY() { return yPos; }
     public int getWidth() { return width; }
     public int getHeight() { return height; }
+    
+    public void hold() { held = true; }
+    public void release() { held = false; }
 }
