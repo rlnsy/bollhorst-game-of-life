@@ -7,17 +7,17 @@ public class Fire extends WorldElement
 {
     private int age;
     public Fire() {
-        super("images/element_sprites/dirt.png",false);
+        super("images/element_sprites/fire.png",false);
         age = 0;
     }
     
     public void behave() {
         age++;
         if(age == 20)
-            setSprite(Game.readImage("images/toolbar_sprites/water.png"));
+            setSprite(Game.readImage("images/element_sprites/water.png"));
     }
     
     public Image getThumbnail() {
-           return Game.readImage("images/toolbar_sprites/dirt.png");
+           return Game.readImage("images/toolbar_sprites/fire.png");
     }
 }
