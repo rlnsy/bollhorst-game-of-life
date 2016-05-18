@@ -62,6 +62,10 @@ public abstract class WorldElement extends JComponent {
     
     public boolean isVisible() { return isVisible; }
     
+    public void setVisble(boolean isVisible) { 
+        this.isVisible = isVisible; 
+    }
+    
     public abstract void behave();
    
     public void moveDown(int value) {
@@ -137,4 +141,6 @@ public abstract class WorldElement extends JComponent {
     
     public Image getSprite() { return sprite; }
     public boolean isMovable() { return isMovable; }
+    
+    public void setSprite(Image newSprite) {sprite = newSprite; }
 }
