@@ -4,7 +4,7 @@ import java.io.*;
 import javax.imageio.ImageIO;
 public class Dirt extends WorldElement {
     public Dirt () {
-        super("images/element_sprites/dirt.png");
+        super("images/element_sprites/dirt.png",true);
     }
     
     public void behave() {

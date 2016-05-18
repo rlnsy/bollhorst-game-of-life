@@ -14,8 +14,9 @@ public abstract class WorldElement extends JComponent {
     private boolean isVisible;
     private String imagePath;
     private boolean held;
+    private boolean isMovable;
     
-    public WorldElement(String imagePath)
+    public WorldElement(String imagePath, boolean isMovable)
     {
        this.xPos = 0;
        this.yPos = 0;
@@ -27,6 +28,7 @@ public abstract class WorldElement extends JComponent {
        width = sprite.getWidth(null);
        height = sprite.getHeight(null);
        held = false;
+       isMovable = isMovable;
        isVisible = true;
     }
     
@@ -134,4 +136,5 @@ public abstract class WorldElement extends JComponent {
     public void release() { held = false; }
     
     public Image getSprite() { return sprite; }
+    public boolean isMovable() { return isMovable; }
 }

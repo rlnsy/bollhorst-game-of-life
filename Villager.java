@@ -5,7 +5,7 @@ import javax.imageio.ImageIO;
 public class Villager extends WorldElement
 {
     public Villager() {
-        super("images/element_sprites/villager.png");
+        super("images/element_sprites/villager.png",true);
     }
     public void behave() {
         gravitate();

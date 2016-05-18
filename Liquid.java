@@ -5,8 +5,8 @@ public abstract class Liquid extends WorldElement
     private WorldElement base;
     public boolean supported;
     
-    public Liquid(String imagePath) {
-        super(imagePath);
+    public Liquid(String imagePath, boolean isMovable) {
+        super(imagePath, isMovable);
     }
     
     public void behave() {

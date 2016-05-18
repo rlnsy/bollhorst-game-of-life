@@ -25,10 +25,12 @@ public class WorldClickListener extends MouseAdapter implements MouseMotionListe
         }
         else {
             for(WorldElement elem : world.getElements()) {
-                if(elem.getHitBox().contains(new Point(e.getX(),e.getY()))) {
-                    elem.hold();
-                    pickedUp = elem;
-                    movingElement = true;
+                if(elem.isMovable()) {
+                    if(elem.getHitBox().contains(new Point(e.getX(),e.getY()))) {
+                        elem.hold();
+                        pickedUp = elem;
+                        movingElement = true;
+                    }
                 }
             }
             world.addElement(e.getX(),e.getY(),world.getMenu().getElement(mouseElementID));
