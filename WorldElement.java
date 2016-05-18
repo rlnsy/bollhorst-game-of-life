@@ -130,4 +130,6 @@ public abstract class WorldElement extends JComponent {
     
     public void hold() { held = true; }
     public void release() { held = false; }
+    
+    public Image getSprite() { return sprite; }
 }

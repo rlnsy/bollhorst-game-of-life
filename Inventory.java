@@ -5,13 +5,14 @@ import java.awt.event.*;
 import java.io.*;
 import java.awt.event.*;
 import java.awt.*;
+import java.util.ArrayList;
  
 
 public class Inventory extends JPanel {
     private Image background;
     private boolean isVisible;
     private World world;
-    JButton button;
+    private ArrayList<JButton> buttons;
     
     public Inventory(World world)
     {
@@ -20,24 +21,18 @@ public class Inventory extends JPanel {
        } catch (IOException e) {
            throw new RuntimeException(e);
        }
-       
+       buttons = new ArrayList<JButton>();
        for(int i = 0; i < world.getMenu().getNumItems(); i++)
        {
-           button = new JButton();
-           try {
-            String imagePath = "images/dirt.png";
-            // can't get it to source different images - getElement doesn't exist??
-            //String imagePath = getElement(i).getImagePath();
-            Image img = ImageIO.read(new File(imagePath));
-            button.setIcon(new ImageIcon(img));
-           } catch (IOException ex) {
-           }
-           world.add(button);
-           button.setVisible(false);
+           JButton newButton = new JButton();
+           Image icon = world.getMenu().getDefaultSprite(i);
+           newButton.setIcon(new ImageIcon(icon));
+           newButton.setVisible(false);
+           buttons.add(newButton);
+           world.add(newButton);
        }
        isVisible = false;
        world = world;
-    
     }
   
     public void draw(Graphics g) {
@@ -49,12 +44,14 @@ public class Inventory extends JPanel {
         if(isVisible)
         { 
           isVisible = false;
-          button.setVisible(false);
+          for(JButton b : buttons)
+            b.setVisible(false);
         }
         else
         {
           isVisible = true;
-          button.setVisible(true);
+          for(JButton b : buttons)
+            b.setVisible(true);
         }
-    }
+   }
 }
