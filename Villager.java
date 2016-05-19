@@ -9,6 +9,14 @@ public class Villager extends WorldElement
     }
     public void behave() {
         gravitate();
-        randomMove();
+        if(onGround())
+            randomMove();
+    }
+    public boolean onGround() {
+        for(WorldElement e : getTouching()){
+            if(e instanceof Island)
+                return true;
+        }
+        return false;
     }
 }
