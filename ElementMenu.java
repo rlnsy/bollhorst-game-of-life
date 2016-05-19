@@ -5,56 +5,24 @@ import javax.imageio.ImageIO;
 import java.util.ArrayList;
 public class ElementMenu //TODO: remove default values/returns
 {
-    private int numItems = 6;
-    
+    private int numItems = 5;
+    private String[] elementTypeList = {"Water","Dirt","Island","Villager","Fire"};
+   
     public ElementMenuItem getMenuItem(int elementID) {
-        ElementMenuItem item;
-        switch(elementID) {
-            case 0 :
-            item = new ElementMenuItem("Water",0,new Water());
-            break;
-            case 1 :
-            item = new ElementMenuItem("Dirt",1,new Dirt());
-            break;
-            case 2 :
-            item = new ElementMenuItem("Island",2,new Island());
-            break;
-            case 3 :
-            item = new ElementMenuItem("Villager",3,new Villager());
-            break;
-            case 4 :
-            item = new ElementMenuItem("Fire",4,new Fire());
-            break;
-            default :
-            item = new ElementMenuItem("Dorito",0,new Dorito());
-            break;
-        }
-        return item;
+        WorldElement element = getElement(elementID);
+        String menuLabel = element.getClass().getName();
+        return new ElementMenuItem(menuLabel,elementID,element);
     }
     
     public WorldElement getElement(int elementID) {
-        WorldElement element;
-        switch(elementID) {
-            case 0 :
-            element = new Water();
-            break;
-            case 1 :
-            element = new Dirt();
-            break;
-            case 2 :
-            element = new Island();
-            break;
-            case 3 :
-            element = new Villager();
-            break;
-            case 4 :
-            element = new Fire();
-            break;
-            default :
-            element = new Dorito();
-            break;
+        WorldElement newElement = new Dorito();
+        try {
+            newElement = (WorldElement) (Class.forName(elementTypeList[elementID]).newInstance());
         }
-        return element;
+        catch(ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            System.out.println("Could not read class from menu");
+        }
+        return newElement;
     }
     
     public Image getElementThumbnail(int elementID) {
