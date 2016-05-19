@@ -12,7 +12,7 @@ public class World extends Scene {
     private WorldClickListener clickListener;
 
     public World() throws IOException {
-        super(Game.BACKGROUND_IMAGE_LOCATION + "background2.png");
+        super(Game.BACKGROUND_IMAGE_LOCATION + "Blue back.png");
         elements = new ArrayList<WorldElement>();
         menu = new ElementMenu();
         inventory = new Inventory(this);

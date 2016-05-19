@@ -28,7 +28,8 @@ public class Inventory extends JPanel {
            InventoryButton newButton = new InventoryButton(i,world);
            Image icon = world.getMenu().getElementThumbnail(i);
            newButton.setIcon(new ImageIcon(icon));
-           newButton.setBackground(Color.white);
+           newButton.setBackground(new Color(225,208,164));
+           newButton.setPreferredSize(new Dimension(40,40));
            newButton.setVisible(false);
            buttons.add(newButton);
            world.add(newButton);
