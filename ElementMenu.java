@@ -3,7 +3,7 @@ import java.awt.*;
 import java.io.*;
 import javax.imageio.ImageIO;
 import java.util.ArrayList;
-public class ElementMenu //TODO: remove default values/returns
+public class ElementMenu
 {
     private int numItems = 5;
     private String[] elementTypeList = {"Water","Dirt","Island","Villager","Fire"};
