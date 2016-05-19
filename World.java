@@ -12,7 +12,7 @@ public class World extends Scene {
     private WorldClickListener clickListener;
 
     public World() throws IOException {
-        super("images/backgrounds/background2.png");
+        super(Game.BACKGROUND_IMAGE_LOCATION + "background2.png");
         elements = new ArrayList<WorldElement>();
         menu = new ElementMenu();
         inventory = new Inventory(this);
@@ -26,15 +26,14 @@ public class World extends Scene {
         addMouseListener(clickListener);
         
         JButton invOpener = new JButton("Inventory");
-        invOpener.addActionListener(new ActionListener() 
-        {
+        invOpener.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 inventory.changeVisibility();
             }
         });
         invOpener.setBackground(Color.white);
-        
         add(invOpener);
+        
         addMouseMotionListener(clickListener);
     }
 
