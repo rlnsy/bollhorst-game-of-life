@@ -23,8 +23,8 @@ public class World extends Scene {
         super.init();
         addMouseListener(new PopUpListener(this));
         clickListener = new WorldClickListener(this);
-        
         addMouseListener(clickListener);
+        
         JButton invOpener = new JButton("Inventory");
         invOpener.addActionListener(new ActionListener() 
         {
@@ -32,6 +32,7 @@ public class World extends Scene {
                 inventory.changeVisibility();
             }
         });
+        invOpener.setBackground(Color.white);
         
         add(invOpener);
         addMouseMotionListener(clickListener);
