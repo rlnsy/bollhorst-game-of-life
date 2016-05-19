@@ -19,6 +19,7 @@ public abstract class WorldElement extends JComponent {
     private int burnedFor;
     private int maxBurnTime;
     private double playerMovement;
+    private Image effect;
     
     public WorldElement(boolean isMovable)
     {
@@ -40,8 +41,11 @@ public abstract class WorldElement extends JComponent {
     }
     
     public void draw(Graphics g) {
-        if(isVisible)
+        if(isVisible) {
             g.drawImage(sprite, xPos-width/2, yPos-height/2,world);
+            if(effect != null)
+                g.drawImage(effect, xPos-width/2, yPos-height/2,world);
+        }
     }
     
     public void setWorld(World world) { this.world = world; }
@@ -174,5 +178,6 @@ public abstract class WorldElement extends JComponent {
     
     public void setBurning(boolean isBurning) {
         this.isBurning = isBurning;
+        this.effect = Game.getEffectImage("fire",width,height);
     }
 }

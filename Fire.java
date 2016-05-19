@@ -23,7 +23,8 @@ public class Fire extends WorldElement
     }
     
     public void burn(WorldElement e) {
-        e.setSprite(Game.readImage("images/element_sprites/villager_forward_fire.png"));
+        //e.setSprite(Game.readImage("images/element_sprites/villager_forward_fire.png"));
+        //e.addEffect("fire");
         e.setBurning(true);
     }
 }

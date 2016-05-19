@@ -8,6 +8,7 @@ public class Game extends JFrame {
     public static final String DEFAULT_SPRITE_LOCATION = "images/element_sprites/";
     public static final String MENU_THUMBNAIL_LOCATION = "images/toolbar_sprites/";
     public static final String BACKGROUND_IMAGE_LOCATION = "images/backgrounds/";
+    public static final String EFFECT_SPRITE_LOCATION = "images/effect_sprites/";
     
     private final int WINDOW_WIDTH = 910;
     private final int  WINDOW_HEIGHT = 512;
@@ -37,5 +38,15 @@ public class Game extends JFrame {
        } catch (IOException e) {
            throw new RuntimeException(e);
        }    
+    }
+    
+    public static Image getEffectImage(String effectName, int width, int height) {
+        String filePath = "images/effect_sprites/" + effectName + "_" + width + "x" + height + ".png";
+        try {
+           return ImageIO.read(new File(filePath));
+        } catch (IOException e) {
+           System.out.println("Could not find suitable effect image");
+           throw new RuntimeException(e);
+        }    
     }
 }
