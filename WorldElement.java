@@ -20,10 +20,12 @@ public abstract class WorldElement extends JComponent {
     private int maxBurnTime;
     private double playerMovement;
     
-    public WorldElement(String imagePath, boolean isMovable)
+    public WorldElement(boolean isMovable)
     {
        this.xPos = 0;
        this.yPos = 0;
+       String classType = getClass().getName().toLowerCase();
+       String imagePath = "images/element_sprites/" + classType + ".png";
        sprite = Game.readImage(imagePath);
        width = sprite.getWidth(null);
        height = sprite.getHeight(null);
@@ -155,8 +157,12 @@ public abstract class WorldElement extends JComponent {
     public int getY() { return yPos; }
     public int getWidth() { return width; }
     public int getHeight() { return height; }
-    
-    public abstract Image getThumbnail();
+
+    public Image getThumbnail() {
+        String imagePath = "images/toolbar_sprites/";
+        imagePath += getClass().getName().toLowerCase() + ".png";
+        return Game.readImage(imagePath);
+    }
     
     public void hold() { held = true; }
     public void release() { held = false; }

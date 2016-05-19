@@ -8,7 +8,7 @@ public class Fire extends WorldElement
     private int age;
     private final int MAX_AGE = 40;
     public Fire() {
-        super("images/element_sprites/fire.png",false);
+        super(false);
         age = 0;
     }
     
@@ -25,9 +25,5 @@ public class Fire extends WorldElement
     public void burn(WorldElement e) {
         e.setSprite(Game.readImage("images/element_sprites/villager_forward_fire.png"));
         e.setBurning(true);
-    }
-    
-    public Image getThumbnail() {
-           return Game.readImage("images/toolbar_sprites/fire.png");
     }
 }

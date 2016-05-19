@@ -10,7 +10,7 @@ public class ElementMenu
    
     public ElementMenuItem getMenuItem(int elementID) {
         WorldElement element = getElement(elementID);
-        String menuLabel = element.getClass().getName();
+        String menuLabel = elementTypeList[elementID];
         return new ElementMenuItem(menuLabel,elementID,element);
     }
     
