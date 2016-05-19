@@ -25,7 +25,7 @@ public abstract class WorldElement extends JComponent {
        this.xPos = 0;
        this.yPos = 0;
        String classType = getClass().getName().toLowerCase();
-       String imagePath = "images/element_sprites/" + classType + ".png";
+       String imagePath = Game.DEFAULT_SPRITE_LOCATION + classType + ".png";
        sprite = Game.readImage(imagePath);
        width = sprite.getWidth(null);
        height = sprite.getHeight(null);
@@ -159,7 +159,7 @@ public abstract class WorldElement extends JComponent {
     public int getHeight() { return height; }
 
     public Image getThumbnail() {
-        String imagePath = "images/toolbar_sprites/";
+        String imagePath = Game.MENU_THUMBNAIL_LOCATION;
         imagePath += getClass().getName().toLowerCase() + ".png";
         return Game.readImage(imagePath);
     }
