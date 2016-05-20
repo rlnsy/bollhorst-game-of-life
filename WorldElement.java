@@ -114,9 +114,10 @@ public abstract class WorldElement extends JComponent {
         if(randomNum < 0.990)
         {
             if(numMove%100 == 0)
-                xPos += playerMovement;
+               if((playerMovement == 1 && canMoveRight()) || (playerMovement == -1 && canMoveLeft()))
+                    xPos += playerMovement;  
         }
-        if(randomNum <= 0.993 && randomNum >= 0.990 && canMoveLeft())
+        if(randomNum <= 0.993 && randomNum >= 0.990)
         {
             playerMovement = 1;
             numMove++;
@@ -126,7 +127,7 @@ public abstract class WorldElement extends JComponent {
             playerMovement = 0;
             numMove++;
         }
-        if(randomNum > 0.997 && canMoveRight())
+        if(randomNum > 0.997 && canMoveLeft())
         {
             playerMovement = -1;
             numMove++;
