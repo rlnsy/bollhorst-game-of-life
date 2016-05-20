@@ -33,7 +33,8 @@ public class WorldClickListener extends MouseAdapter implements MouseMotionListe
                     }
                 }
             }
-            world.addElement(e.getX(),e.getY(),world.getMenu().getElement(mouseElementID));
+            if(!movingElement)
+                world.addElement(e.getX(),e.getY(),world.getMenu().getElement(mouseElementID));
         }
     }
     
