@@ -132,6 +132,10 @@ public abstract class WorldElement extends JComponent {
         }
     }
     
+    public int getDirectionOf(WorldElement other) {
+        return -1 * (getX() - other.getX());
+    }
+    
     public boolean isSupportedBy(WorldElement other) {
         if(other instanceof Island)
             return true;
