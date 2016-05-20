@@ -154,7 +154,7 @@ public abstract class WorldElement extends JComponent {
     }
     
     public boolean nextTo(WorldElement other) {
-        boolean bool = (getY() < other.getY() + getHeight()/2) && (getY() > other.getY() - getHeight()/2);
+        boolean bool = (getY() < other.getY() + other.getHeight()/2) && (getY() > other.getY() - other.getHeight()/2);
         System.out.println(bool);
         return bool; 
     }
