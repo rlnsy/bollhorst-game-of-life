@@ -137,6 +137,26 @@ public abstract class WorldElement extends JComponent {
         return -1 * (getX() - other.getX());
     }
     
+    public boolean canMoveRight() {
+        for(WorldElement e : getTouching()) {
+            if(e.nextTo(this) && this.getDirectionOf(e) > 0)
+                return false;
+        }
+        return true;
+    }
+    
+    public boolean canMoveLeft() {
+        for(WorldElement e : getTouching()) {
+            if(e.nextTo(this) && this.getDirectionOf(e) < 0)
+                return false;
+        }
+        return true;
+    }
+    
+    public boolean nextTo(WorldElement other) {
+        return (getY() < other.getY() + getHeight()/2) && (getY() > other.getY() - getHeight()/2);
+    }
+    
     public boolean isSupportedBy(WorldElement other) {
         if(other instanceof Island)
             return true;
