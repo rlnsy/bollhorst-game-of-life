@@ -33,7 +33,8 @@ public class World extends Scene {
         });
         invOpener.setBackground(Color.white);
         add(invOpener);
-        
+        Island island = new Island();
+        addElement(455, 490, island);
         addMouseMotionListener(clickListener);
     }
 
