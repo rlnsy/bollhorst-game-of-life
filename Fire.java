@@ -6,9 +6,11 @@ import javax.imageio.ImageIO;
 public class Fire extends WorldElement
 {
     private int age;
-    private final int MAX_AGE = 40;
+    private final int MAX_AGE = 10;
     public Fire() {
         super(false);
+        int fireVar = (int)(Math.random()*3) + 1;
+        setSprite(Game.readImage(Game.DEFAULT_SPRITE_LOCATION + "fire" + fireVar + ".png"));
         age = 0;
     }
     
