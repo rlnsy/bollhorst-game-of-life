@@ -109,26 +109,27 @@ public abstract class WorldElement extends JComponent {
     }
     
     public void randomMove() {
-        ArrayList<WorldElement> neighbours = getTouching();
-        boolean canMove = true;
-        for(WorldElement e : neighbours) {
-            if(e.getY() < getY())
-                canMove = false;
-        }
-        if(canMove) {
-            double randomNum = Math.random();
-            if(randomNum < 0.99)
-            {
+        double randomNum = Math.random();
+        int numMove = 0;
+        if(randomNum < 0.990)
+        {
+            if(numMove%1000 == 0)
                 xPos += playerMovement;
-            }
-            if(randomNum > 0.995)
-            {
-                playerMovement = 0.005;
-            }
-            else if(randomNum <= 0.995 && randomNum > 0.99)
-            {
-                playerMovement = -0.005;
-            }
+        }
+        if(randomNum <= 0.993 && randomNum >= 0.990)
+        {
+            playerMovement = 1;
+            numMove++;
+        }
+        if(randomNum > 0.993 && randomNum <= 0.997)
+        {
+            playerMovement = 0;
+            numMove++;
+        }
+        if(randomNum > 0.997)
+        {
+            playerMovement = -1;
+            numMove++;
         }
     }
     
