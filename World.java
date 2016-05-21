@@ -7,6 +7,7 @@ import javax.swing.*;
 public class World extends Scene {
 
     private ArrayList<WorldElement> elements;
+    private ArrayList<WorldElement> secondaryElements;
     private ElementMenu menu;
     private Inventory inventory;
     private WorldClickListener clickListener;
@@ -14,6 +15,7 @@ public class World extends Scene {
     public World() throws IOException {
         super(Game.BACKGROUND_IMAGE_LOCATION + "Blue back.png");
         elements = new ArrayList<WorldElement>();
+        secondaryElements = new ArrayList<WorldElement>();
         menu = new ElementMenu();
         inventory = new Inventory(this);
         init();
@@ -41,9 +43,10 @@ public class World extends Scene {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         inventory.draw(g);
-        for(WorldElement e : elements) {
+        for(WorldElement e : elements)
             e.draw(g);
-        }
+        for(WorldElement e : secondaryElements)
+            e.draw(g);
     }
     
     public void checkForDeadElements() {
@@ -64,6 +67,12 @@ public class World extends Scene {
         e.setWorld(this);
     }
     
+    public void addSecondaryElement(int xPos, int yPos, WorldElement e){
+        e.setLocation(xPos, yPos);
+        secondaryElements.add(e);
+        e.setWorld(this);
+    }
+    
     public void removeElement(int index) {
         elements.remove(index);
     }
@@ -79,6 +88,8 @@ public class World extends Scene {
     
     public void update() {
         for(WorldElement e : elements)
+            e.update();
+        for(WorldElement e : secondaryElements)
             e.update();
     }
     
