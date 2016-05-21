@@ -20,6 +20,9 @@ public abstract class WorldElement extends JComponent {
     private int maxBurnTime;
     private double playerMovement;
     private Image effect;
+    private boolean isStationary;
+    
+    private int testSteps;
     
     public WorldElement(boolean isMovable)
     {
@@ -33,7 +36,10 @@ public abstract class WorldElement extends JComponent {
        held = false;
        isMovable = isMovable;
        isVisible = true;
+       isStationary = false;
        maxBurnTime = 50;
+       
+       testSteps = 0;
     }
     
     public Rectangle getHitBox() {
@@ -62,6 +68,17 @@ public abstract class WorldElement extends JComponent {
     }
     
     public void update() {
+        int possibleSupports = 0;
+        for(WorldElement e : getTouching()) {
+            if(e.isUnder(this))
+                possibleSupports++;
+        }
+        for(WorldElement e : getTouching()) {
+            if(e.isUnder(this))
+                possibleSupports++;
+        }
+        if(possibleSupports == 0)
+            isStationary = false;
         if(!inBounds())
             isVisible  = false;
         if(isBurning)
@@ -90,7 +107,8 @@ public abstract class WorldElement extends JComponent {
     public World getWorld() { return world; }
     
     public void gravitate() {
-        if(!held) {
+        if(!held && !isStationary) {
+            testSteps++;
             boolean canFall = true;
             ArrayList<WorldElement> neighbours = getTouching();
             int neighbourIndex = 0;
@@ -105,6 +123,8 @@ public abstract class WorldElement extends JComponent {
             }
             if(canFall)
                 moveDown(2);
+            else
+                isStationary = true;
         }
     }
     
@@ -157,6 +177,11 @@ public abstract class WorldElement extends JComponent {
     public boolean nextTo(WorldElement other) {
         boolean bool = (getY() < other.getY() + other.getHeight()/2) && (getY() > other.getY() - other.getHeight()/2);
         return bool; 
+    }
+    
+    public boolean isUnder(WorldElement other) {
+        return ((getY() - getHeight()/2) <= (other.getY() + other.getHeight()/2)) &&
+                ((getX()- getWidth()/2) < (other.getX() + other.getWidth()/2)) && ((getX() + getWidth()/2) > (other.getX() - other.getWidth()));
     }
     
     public boolean isSupportedBy(WorldElement other) {
