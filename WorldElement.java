@@ -164,7 +164,9 @@ public abstract class WorldElement extends JComponent {
             return true;
         else {
             ArrayList<WorldElement> touchingOther = other.getTouching();
-            touchingOther.remove(touchingOther.indexOf(this));
+            int thisIndex = touchingOther.indexOf(this);
+            if(thisIndex > 0)
+                touchingOther.remove(thisIndex);
             if(other.getY() > getY()) {
                 for(WorldElement e : touchingOther) {
                     if(other.isSupportedBy(e))
