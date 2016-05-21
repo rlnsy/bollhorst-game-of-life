@@ -12,9 +12,9 @@ public abstract class Liquid extends WorldElement
     public void behave() {
         gravitate();
         if(base != null && !(base instanceof Liquid)) {
-            if(getX() > base.getX())
+            if(getX() > base.getX() && canMoveRight())
                 setLocation(getX()+1,getY());
-            else
+            else if(canMoveLeft())
                 setLocation(getX()-1,getY());
         }
     }
