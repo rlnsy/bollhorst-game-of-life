@@ -3,12 +3,12 @@ import java.awt.*;
 import java.io.*;
 import javax.imageio.ImageIO;
 
-public class Fire extends WorldElement
+public class Fire extends NonCollidable
 {
     private int age;
     private final int MAX_AGE = 10;
     public Fire() {
-        super(false);
+        super();
         int fireVar = (int)(Math.random()*3) + 1;
         setSprite(Game.readImage(Game.DEFAULT_SPRITE_LOCATION + "fire" + fireVar + ".png"));
         age = 0;
