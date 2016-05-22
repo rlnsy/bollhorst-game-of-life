@@ -1,6 +1,6 @@
-public class Storm extends ProductionElement {
+public class Storm extends WorldElement {
     public Storm() {
-        super();
+        super(false);
     }
     public void behave() {
         setLocation(getX()+1,getY());
