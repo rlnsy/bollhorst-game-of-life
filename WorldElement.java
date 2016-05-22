@@ -73,10 +73,6 @@ public abstract class WorldElement extends JComponent {
             if(e.isUnder(this))
                 possibleSupports++;
         }
-        for(WorldElement e : getTouching()) {
-            if(e.isUnder(this))
-                possibleSupports++;
-        }
         if(possibleSupports == 0)
             isStationary = false;
         if(!inBounds())
@@ -131,29 +127,26 @@ public abstract class WorldElement extends JComponent {
     public void randomMove() {
         double randomNum = Math.random();
         int numMove = 0;
-        if(randomNum < 0.990)
-        {
+        if(randomNum < 0.990) {
             if(numMove%100 == 0)
                if((playerMovement == 1 && canMoveRight()) || (playerMovement == -1 && canMoveLeft()))
                     xPos += playerMovement;  
         }
-        if(randomNum <= 0.993 && randomNum >= 0.990)
-        {
+        else if(randomNum <= 0.993 && randomNum >= 0.990) {
             playerMovement = 1;
             numMove++;
         }
-        if(randomNum > 0.993 && randomNum <= 0.997)
-        {
+        else if(randomNum > 0.993 && randomNum <= 0.997) {
             playerMovement = 0;
             numMove++;
         }
-        if(randomNum > 0.997 && canMoveLeft())
-        {
+        else if(randomNum > 0.997 && canMoveLeft()) {
             playerMovement = -1;
             numMove++;
         }
     }
     
+    // returns + if to right, - if to left
     public int getDirectionOf(WorldElement other) {
         return -1 * (getX() - other.getX());
     }
@@ -234,6 +227,7 @@ public abstract class WorldElement extends JComponent {
     
     public Image getSprite() { return sprite; }
     public boolean isMovable() { return isMovable; }
+    public boolean isStationary() { return isStationary; }
     
     public void setSprite(Image newSprite) {sprite = newSprite; }
     
