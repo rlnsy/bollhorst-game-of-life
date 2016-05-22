@@ -61,10 +61,17 @@ public class World extends Scene {
         }
     }
     
-    public void addElement(int xPos, int yPos, WorldElement e){
-        e.setLocation(xPos, yPos);
-        elements.add(e);
-        e.setWorld(this);
+    public void addElement(int xPos, int yPos, WorldElement element){
+        element.setLocation(xPos, yPos);
+        boolean canPlace = true;
+        for(WorldElement e : elements) {
+            if(element.isTouching(e))
+                canPlace = false;
+        }
+        if(canPlace) {
+            elements.add(element);
+            element.setWorld(this);
+        }
     }
     
     public void addSecondaryElement(int xPos, int yPos, WorldElement e){

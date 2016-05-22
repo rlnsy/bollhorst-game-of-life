@@ -41,11 +41,8 @@ public abstract class WorldElement extends JComponent {
     }
     
     public void update() {
-        int possibleSupports = 0;
-        for(WorldElement e : getTouching()) {
-            if(e.isUnder(this))
-                possibleSupports++;
-        }
+        int possibleSupports = getPossibleSupports().size();
+        
         if(possibleSupports == 0)
             isStationary = false;
         if(!inBounds())
@@ -157,12 +154,12 @@ public abstract class WorldElement extends JComponent {
         if(other instanceof Island)
             return true;
         else {
-            ArrayList<WorldElement> touchingOther = other.getTouching();
-            int thisIndex = touchingOther.indexOf(this);
+            ArrayList<WorldElement> potentialSupports = other.getPossibleSupports();
+            int thisIndex = potentialSupports.indexOf(this);
             if(thisIndex > 0)
-                touchingOther.remove(thisIndex);
+                potentialSupports.remove(thisIndex);
             if(other.getY() > getY()) {
-                for(WorldElement e : touchingOther) {
+                for(WorldElement e : potentialSupports) {
                     if(other.isSupportedBy(e))
                         return true;
                 }
@@ -180,6 +177,15 @@ public abstract class WorldElement extends JComponent {
         return touching;
     }
     
+    public ArrayList<WorldElement> getPossibleSupports() {
+        ArrayList<WorldElement> possible = new ArrayList<WorldElement>();
+        for(WorldElement e : getTouching()) {
+            if(e.isUnder(this))
+                possible.add(e);
+        }
+        return possible;
+    }
+    
     public boolean inBounds() {
         boolean inBoundsX = xPos + width/2 < world.getWidth() && xPos - width/2 > 0;
         boolean inBoundsY = yPos + height/2 < world.getHeight() && yPos - height/2 > 0;
@@ -193,7 +199,9 @@ public abstract class WorldElement extends JComponent {
         this.isVisible = isVisible; 
     }
     
-    public void setWorld(World world) { this.world = world; }
+    public void setWorld(World world) { 
+        this.world = world; 
+    }
     
     public void setLocation(int xValue, int yValue) { 
         xPos = xValue;
