@@ -7,22 +7,13 @@ import java.util.ArrayList;
 public abstract class WorldElement extends JComponent {
 
     private World world;
-    
     private Image sprite;
-    private int xPos, yPos;
-    private int width, height;
-    private boolean isVisible;
     private String imagePath;
-    private boolean held;
-    private boolean isMovable;
-    private boolean isBurning;
-    private int burnedFor;
-    private int maxBurnTime;
+    private int xPos, yPos,width, height;
+    private boolean isVisible,held,isMovable,isBurning,isStationary;
+    private int burnedFor,maxBurnTime;
     private double playerMovement;
     private Image effect;
-    private boolean isStationary;
-    
-    private int testSteps;
     
     public WorldElement(boolean isMovable)
     {
@@ -38,33 +29,15 @@ public abstract class WorldElement extends JComponent {
        isVisible = true;
        isStationary = false;
        maxBurnTime = 50;
-       
-       testSteps = 0;
     }
     
-    public Rectangle getHitBox() {
-        return new Rectangle(xPos-width/2,yPos-height/2,width,height);
-    }
-    
+    // **GRAPHICS**
     public void draw(Graphics g) {
         if(isVisible) {
             g.drawImage(sprite, xPos-width/2, yPos-height/2,world);
             if(effect != null)
                 g.drawImage(effect, xPos-width/2, yPos-height/2,world);
         }
-    }
-    
-    public void setWorld(World world) { this.world = world; }
-    
-    public void setLocation(int xValue, int yValue) { 
-        xPos = xValue;
-        yPos = yValue;
-    }
-    
-    public boolean isTouching(WorldElement e) {
-        if(!equals(e)&&(getHitBox().intersects(e.getHitBox())))
-            return true;
-        return false;
     }
     
     public void update() {
@@ -83,15 +56,8 @@ public abstract class WorldElement extends JComponent {
             isVisible = false;
         behave();
     }
-    
-    public boolean isVisible() { return isVisible; }
-    
-    public void setVisble(boolean isVisible) { 
-        this.isVisible = isVisible; 
-    }
-    
-    public abstract void behave();
    
+    // **MOVEMENT**
     public void moveDown(int value) {
         yPos+= value;
     }
@@ -99,12 +65,9 @@ public abstract class WorldElement extends JComponent {
     public void moveUp(int value) {
         yPos-= value;
     }
-   
-    public World getWorld() { return world; }
     
     public void gravitate() {
         if(!held && !isStationary) {
-            testSteps++;
             boolean canFall = true;
             ArrayList<WorldElement> neighbours = getTouching();
             int neighbourIndex = 0;
@@ -146,6 +109,8 @@ public abstract class WorldElement extends JComponent {
         }
     }
     
+    // **OBJECTS/COLLISIONS**
+    
     // returns + if to right, - if to left
     public int getDirectionOf(WorldElement other) {
         return -1 * (getX() - other.getX());
@@ -177,6 +142,17 @@ public abstract class WorldElement extends JComponent {
                 ((getX()- getWidth()/2) < (other.getX() + other.getWidth()/2)) && ((getX() + getWidth()/2) > (other.getX() - other.getWidth()));
     }
     
+    public boolean isTouching(WorldElement e) {
+        if(!equals(e)&&(getHitBox().intersects(e.getHitBox())))
+            return true;
+        return false;
+    }
+    
+    public Rectangle getHitBox() {
+        return new Rectangle(xPos-width/2,yPos-height/2,width,height);
+    }
+    
+    // TODO: make not slow
     public boolean isSupportedBy(WorldElement other) {
         if(other instanceof Island)
             return true;
@@ -210,29 +186,46 @@ public abstract class WorldElement extends JComponent {
         return inBoundsX && inBoundsY;
     }
     
-    public String getImagePath(){ return imagePath; }
-    public int getX() { return xPos; }
-    public int getY() { return yPos; }
-    public int getWidth() { return width; }
-    public int getHeight() { return height; }
-
-    public Image getThumbnail() {
-        String imagePath = Game.MENU_THUMBNAIL_LOCATION;
-        imagePath += getClass().getName().toLowerCase() + ".png";
-        return Game.readImage(imagePath);
+    // **SET**
+    public void setSprite(Image newSprite) {sprite = newSprite; }
+    
+    public void setVisble(boolean isVisible) { 
+        this.isVisible = isVisible; 
+    }
+    
+    public void setWorld(World world) { this.world = world; }
+    
+    public void setLocation(int xValue, int yValue) { 
+        xPos = xValue;
+        yPos = yValue;
+    }
+    
+    // **MODIFY**
+    public void setBurning(boolean isBurning) {
+        this.isBurning = isBurning;
+        this.effect = Game.getEffectImage("fire",width,height);
     }
     
     public void hold() { held = true; }
     public void release() { held = false; }
     
+    // **GET**
+    public int getX() { return xPos; }
+    public int getY() { return yPos; }
+    public World getWorld() { return world; }
+    public int getWidth() { return width; }
+    public int getHeight() { return height; }
     public Image getSprite() { return sprite; }
+    public Image getThumbnail() {
+        String imagePath = Game.MENU_THUMBNAIL_LOCATION;
+        imagePath += getClass().getName().toLowerCase() + ".png";
+        return Game.readImage(imagePath);
+    }
+    public String getImagePath(){ return imagePath; }
     public boolean isMovable() { return isMovable; }
     public boolean isStationary() { return isStationary; }
+    public boolean isVisible() { return isVisible; }
     
-    public void setSprite(Image newSprite) {sprite = newSprite; }
-    
-    public void setBurning(boolean isBurning) {
-        this.isBurning = isBurning;
-        this.effect = Game.getEffectImage("fire",width,height);
-    }
+    // **ABSTRACT**
+    public abstract void behave();
 }
