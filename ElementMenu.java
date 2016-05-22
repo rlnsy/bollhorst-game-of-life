@@ -8,10 +8,10 @@ public class ElementMenu
     private int numItems = 7;
     private String[] elementTypeList = {"Water","Dirt","Island","Villager","Fire","Storm","Tree"};
    
-    public ElementMenuItem getMenuItem(int elementID) {
+    public ElementPickerItem getPickerItem(int elementID) {
         WorldElement element = getElement(elementID);
         String menuLabel = elementTypeList[elementID];
-        return new ElementMenuItem(menuLabel,elementID,element);
+        return new ElementPickerItem(menuLabel,elementID,element);
     }
     
     public WorldElement getElement(int elementID) {
