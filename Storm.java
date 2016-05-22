@@ -1,4 +1,4 @@
-public class Storm extends WorldElement {
+public class Storm extends NonPhysicsElement {
     public Storm() {
         super(false);
     }

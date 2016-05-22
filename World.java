@@ -64,7 +64,7 @@ public class World extends Scene {
     public void addElement(int xPos, int yPos, WorldElement element){
         element.setLocation(xPos, yPos);
         boolean canPlace = true;
-        if(!(element instanceof NonCollidable)) {
+        if(element instanceof PhysicsElement) {
             for(WorldElement e : elements) {
                 if(element.isTouching(e))
                     canPlace = false;

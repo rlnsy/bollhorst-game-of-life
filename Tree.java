@@ -1,4 +1,4 @@
-public class Tree extends WorldElement
+public class Tree extends PhysicsElement
 {
     public Tree() {
         super(true);

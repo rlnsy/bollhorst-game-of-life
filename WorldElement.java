@@ -10,10 +10,10 @@ public abstract class WorldElement extends JComponent {
     private Image sprite;
     private String imagePath;
     private int xPos, yPos,width, height;
-    private boolean isVisible,held,isMovable,isBurning,isStationary;
+    private boolean isVisible,isMovable,isBurning,held;
     private int burnedFor,maxBurnTime;
-    private double playerMovement;
     private Image effect;
+    private double playerMovement;
     
     public WorldElement(boolean isMovable)
     {
@@ -24,10 +24,9 @@ public abstract class WorldElement extends JComponent {
        sprite = Game.readImage(imagePath);
        width = sprite.getWidth(null);
        height = sprite.getHeight(null);
-       held = false;
        isMovable = isMovable;
        isVisible = true;
-       isStationary = false;
+       held = false;
        maxBurnTime = 50;
     }
     
@@ -41,10 +40,6 @@ public abstract class WorldElement extends JComponent {
     }
     
     public void update() {
-        int possibleSupports = getPossibleSupports().size();
-        
-        if(possibleSupports == 0)
-            isStationary = false;
         if(!inBounds())
             isVisible  = false;
         if(isBurning)
@@ -61,27 +56,6 @@ public abstract class WorldElement extends JComponent {
     
     public void moveUp(int value) {
         yPos-= value;
-    }
-    
-    public void gravitate() {
-        if(!held && !isStationary) {
-            boolean canFall = true;
-            ArrayList<WorldElement> neighbours = getTouching();
-            int neighbourIndex = 0;
-            while(neighbourIndex < neighbours.size()) {
-                WorldElement neighbour = neighbours.get(neighbourIndex);
-                if(isSupportedBy(neighbour)) {
-                    canFall = false;
-                    neighbourIndex = neighbours.size();
-                }
-                else
-                    neighbourIndex++;
-            }
-            if(canFall)
-                moveDown(2);
-            else
-                isStationary = true;
-        }
     }
     
     public void randomMove() {
@@ -106,6 +80,9 @@ public abstract class WorldElement extends JComponent {
         }
     }
     
+    public abstract boolean canMoveRight();
+    public abstract boolean canMoveLeft();
+    
     // **OBJECTS/COLLISIONS**
     
     // returns + if to right, - if to left
@@ -113,21 +90,7 @@ public abstract class WorldElement extends JComponent {
         return -1 * (getX() - other.getX());
     }
     
-    public boolean canMoveRight() {
-        for(WorldElement e : getTouching()) {
-            if(e.nextTo(this) && this.getDirectionOf(e) > 0)
-                return false;
-        }
-        return true;
-    }
     
-    public boolean canMoveLeft() {
-        for(WorldElement e : getTouching()) {
-            if(e.nextTo(this) && this.getDirectionOf(e) < 0)
-                return false;
-        }
-        return true;
-    }
     
     public boolean nextTo(WorldElement other) {
         boolean bool = (getY() < other.getY() + other.getHeight()/2) && (getY() > other.getY() - other.getHeight()/2);
@@ -150,23 +113,6 @@ public abstract class WorldElement extends JComponent {
     }
     
     // TODO: make not slow
-    public boolean isSupportedBy(WorldElement other) {
-        if(other instanceof Island)
-            return true;
-        else {
-            ArrayList<WorldElement> potentialSupports = other.getPossibleSupports();
-            int thisIndex = potentialSupports.indexOf(this);
-            if(thisIndex > 0)
-                potentialSupports.remove(thisIndex);
-            if(other.getY() > getY()) {
-                for(WorldElement e : potentialSupports) {
-                    if(other.isSupportedBy(e))
-                        return true;
-                }
-            }
-        }     
-        return false;
-    }
     
     public ArrayList<WorldElement> getTouching() {
         ArrayList<WorldElement> touching = new ArrayList<WorldElement>();
@@ -175,15 +121,6 @@ public abstract class WorldElement extends JComponent {
                 touching.add(e);
         }
         return touching;
-    }
-    
-    public ArrayList<WorldElement> getPossibleSupports() {
-        ArrayList<WorldElement> possible = new ArrayList<WorldElement>();
-        for(WorldElement e : getTouching()) {
-            if(e.isUnder(this))
-                possible.add(e);
-        }
-        return possible;
     }
     
     public boolean inBounds() {
@@ -231,8 +168,9 @@ public abstract class WorldElement extends JComponent {
     }
     public String getImagePath(){ return imagePath; }
     public boolean isMovable() { return isMovable; }
-    public boolean isStationary() { return isStationary; }
     public boolean isVisible() { return isVisible; }
+    public boolean isHeld() { return held; }
+    
     
     // **ABSTRACT**
     public abstract void behave();
