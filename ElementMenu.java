@@ -5,8 +5,8 @@ import javax.imageio.ImageIO;
 import java.util.ArrayList;
 public class ElementMenu
 {
-    private int numItems = 6;
-    private String[] elementTypeList = {"Water","Dirt","Island","Villager","Fire","Storm"};
+    private int numItems = 7;
+    private String[] elementTypeList = {"Water","Dirt","Island","Villager","Fire","Storm","Tree"};
    
     public ElementMenuItem getMenuItem(int elementID) {
         WorldElement element = getElement(elementID);
