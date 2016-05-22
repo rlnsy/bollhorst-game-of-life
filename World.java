@@ -47,7 +47,7 @@ public class World extends Scene {
             e.draw(g);
         for(WorldElement e : secondaryElements)
             e.draw(g);
-   }
+    }
     
     public void checkForDeadElements() {
         int i = 0;
@@ -83,6 +83,7 @@ public class World extends Scene {
         super.actionPerformed(e);
         checkForDeadElements();
         update();
+        //System.out.println(elements.size());
     }
     
     public void update() {
