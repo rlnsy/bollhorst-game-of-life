@@ -49,15 +49,23 @@ public class World extends Scene {
             e.draw(g);
    }
     
-    public void checkForDeadElements() {
+    public void checkForDeadElements(ArrayList<WorldElement> elementList) {
         int i = 0;
-        while(i < elements.size()) {
-            WorldElement e = elements.get(i);
+        while(i < elementList.size()) {
+            WorldElement e = elementList.get(i);
             if(!e.isVisible()) {
                 removeElement(i);
             }
             else
                 i++;
+        }
+    }
+    
+    public void removeSecondaryElements() {
+        int index = 0;
+        while(index < secondaryElements.size()) {
+            elements.add(secondaryElements.get(index));
+            secondaryElements.remove(index);
         }
     }
     
@@ -90,11 +98,12 @@ public class World extends Scene {
     // uses timer created in game
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
-        checkForDeadElements();
         update();
     }
     
     public void update() {
+        checkForDeadElements(elements);
+        //checkForDeadElements(secondaryElements);
         for(WorldElement e : elements)
             e.update();
         for(WorldElement e : secondaryElements)
