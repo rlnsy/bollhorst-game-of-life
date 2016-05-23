@@ -1,17 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
-import javax.imageio.ImageIO;
 
 public class Scene extends JPanel implements ActionListener{
 
     private Image backgroundImage;
     private int width,height;
 
-    public Scene(String imagePath) throws IOException {
+    public Scene(String imagePath) {
         super();
-        backgroundImage = ImageIO.read(new File(imagePath));
+        backgroundImage = Game.readImage(imagePath);
         width = (int)backgroundImage.getWidth(null);
         height = (int)backgroundImage.getHeight(null);
     }

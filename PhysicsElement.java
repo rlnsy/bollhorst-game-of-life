@@ -1,7 +1,3 @@
-import javax.swing.*;
-import java.awt.*;
-import java.io.*;
-import javax.imageio.ImageIO;
 import java.util.ArrayList;
 public class PhysicsElement extends WorldElement
 {

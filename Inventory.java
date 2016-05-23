@@ -1,13 +1,6 @@
 import javax.swing.*;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import java.awt.event.*;
-import java.io.*;
-import java.awt.event.*;
 import java.awt.*;
 import java.util.ArrayList;
- 
-
 public class Inventory extends JPanel {
     private final Image background;
     private boolean isVisible;
@@ -17,11 +10,7 @@ public class Inventory extends JPanel {
     public Inventory(World world )
     {
        world = world;
-        try {
-           background = ImageIO.read(new File("images/backgrounds/Toolbar.png"));
-       } catch (IOException e) {
-           throw new RuntimeException(e);
-       }
+       background = Game.readImage("images/backgrounds/Toolbar.png");
        setPreferredSize(new Dimension(background.getWidth(null),background.getHeight(null)));
        buttons = new ArrayList<InventoryButton>();
        for(int i = 0; i < world.getMenu().getNumItems(); i++)

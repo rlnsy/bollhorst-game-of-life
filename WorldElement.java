@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
-import javax.imageio.ImageIO;
 import java.util.ArrayList;
 
 public abstract class WorldElement extends JComponent {
