@@ -3,5 +3,7 @@ public class Tree extends PhysicsElement
     public Tree() {
         super(true);
     }
-    public void behave() {}
+    public void behave() {
+        gravitate();
+    }
 }

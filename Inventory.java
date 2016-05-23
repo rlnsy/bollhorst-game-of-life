@@ -22,6 +22,7 @@ public class Inventory extends JPanel {
        } catch (IOException e) {
            throw new RuntimeException(e);
        }
+       setPreferredSize(new Dimension(background.getWidth(null),background.getHeight(null)));
        buttons = new ArrayList<InventoryButton>();
        for(int i = 0; i < world.getMenu().getNumItems(); i++)
        {
