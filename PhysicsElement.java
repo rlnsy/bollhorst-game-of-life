@@ -9,15 +9,19 @@ public class PhysicsElement extends WorldElement
     
     public PhysicsElement(boolean isMovable) {
         super(isMovable);
+        physics = new Physics(0);
     }
     
     public void behave() {}
     
     public void update() {
         super.update();
+        physics.update();
     }
     
+    /*
     // returns the element that blocked the fall, or null
+    // old version
     public PhysicsElement gravitate() {
         PhysicsElement support = null;
         if(!isHeld()) {
@@ -38,10 +42,38 @@ public class PhysicsElement extends WorldElement
                 else
                     neighbourIndex++;
             }
+
             if(canFall)
-                moveDown(2);
+                setLocation(getX(),getY() + 1);
         }
         return support;
+    }
+    */
+    
+    // Physics version
+    public PhysicsElement gravitate() {
+        for(int i = 0; i < physics.getYVel(); i++) {
+            if(!isHeld()) {
+                boolean canFall = true;
+                ArrayList<PhysicsElement> physicalNeighbours = new ArrayList<PhysicsElement>();
+                for(WorldElement e : getTouching()) {
+                    if(e instanceof PhysicsElement)
+                        physicalNeighbours.add((PhysicsElement)(e));
+                }
+                int neighbourIndex = 0;
+                while(neighbourIndex < physicalNeighbours.size()) {
+                    PhysicsElement neighbour = physicalNeighbours.get(neighbourIndex);
+                    if(isSupportedBy(neighbour)) {
+                        canFall = false;
+                        return neighbour;
+                    }
+                    else
+                        neighbourIndex++;
+                }
+                setLocation(getX(),getY() + 1);
+            }
+        }
+        return null;
     }
     
     public boolean canMoveRight() {
