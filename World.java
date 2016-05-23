@@ -35,9 +35,28 @@ public class World extends Scene {
         });
         invOpener.setBackground(Color.white);
         add(invOpener);
+        
+        JButton clearAll = new JButton("Clear all");
+        clearAll.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                reset();
+            }
+        });
+        add(clearAll);
+        
+        addIsland();
+        addMouseMotionListener(clickListener);
+    }
+    
+    public void reset() {
+        removeElements(elements);
+        removeElements(secondaryElements);
+        addIsland();
+    }
+    
+    private void addIsland() {
         Island island = new Island();
         addElement(455, 490, island);
-        addMouseMotionListener(clickListener);
     }
 
     public void paintComponent(Graphics g) {
@@ -47,26 +66,24 @@ public class World extends Scene {
             e.draw(g);
         for(WorldElement e : secondaryElements)
             e.draw(g);
-   }
+    }
     
     public void checkForDeadElements(ArrayList<WorldElement> elementList) {
         int i = 0;
         while(i < elementList.size()) {
             WorldElement e = elementList.get(i);
             if(!e.isVisible()) {
-                removeElement(i);
+                elementList.remove(i);
             }
             else
                 i++;
         }
     }
     
-    public void removeSecondaryElements() {
-        int index = 0;
-        while(index < secondaryElements.size()) {
-            elements.add(secondaryElements.get(index));
-            secondaryElements.remove(index);
-        }
+    public void removeElements(ArrayList<WorldElement> elementList) {
+        int i = 0;
+        while(elementList.size() > 0)
+            elementList.remove(i);
     }
     
     public void addElement(int xPos, int yPos, WorldElement element){
@@ -90,10 +107,6 @@ public class World extends Scene {
         e.setWorld(this);
     }
     
-    public void removeElement(int index) {
-        elements.remove(index);
-    }
-    
     // refresh grpahics whenever action performed
     // uses timer created in game
     public void actionPerformed(ActionEvent e) {
@@ -103,7 +116,7 @@ public class World extends Scene {
     
     public void update() {
         checkForDeadElements(elements);
-        //checkForDeadElements(secondaryElements);
+        checkForDeadElements(secondaryElements);
         for(WorldElement e : elements)
             e.update();
         for(WorldElement e : secondaryElements)
