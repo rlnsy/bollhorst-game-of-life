@@ -2,3 +2,5 @@
 *.ctxt
 *.db
 *.bluej
+*.xml
+*.iml
