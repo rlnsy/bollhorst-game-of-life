@@ -45,7 +45,8 @@ public class Game extends JFrame {
         try {
            return ImageIO.read(new File(filePath));
         } catch (IOException e) {
-           System.out.println("Could not find suitable effect image");
+           System.out.println("Could not find suitable image for effect '"+ effectName +
+           "' - size " + width + " x " + height);
            throw new RuntimeException(e);
         }    
     }
