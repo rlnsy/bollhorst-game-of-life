@@ -18,38 +18,8 @@ public class PhysicsElement extends WorldElement
         super.update();
         physics.update();
     }
-    
-    /*
+   
     // returns the element that blocked the fall, or null
-    // old version
-    public PhysicsElement gravitate() {
-        PhysicsElement support = null;
-        if(!isHeld()) {
-            boolean canFall = true;
-            ArrayList<PhysicsElement> physicalNeighbours = new ArrayList<PhysicsElement>();
-            for(WorldElement e : getTouching()) {
-                if(e instanceof PhysicsElement)
-                    physicalNeighbours.add((PhysicsElement)(e));
-            }
-            int neighbourIndex = 0;
-            while(neighbourIndex < physicalNeighbours.size()) {
-                PhysicsElement neighbour = physicalNeighbours.get(neighbourIndex);
-                if(isSupportedBy(neighbour)) {
-                    canFall = false;
-                    support = neighbour;
-                    neighbourIndex = physicalNeighbours.size();
-                }
-                else
-                    neighbourIndex++;
-            }
-
-            if(canFall)
-                setLocation(getX(),getY() + 1);
-        }
-        return support;
-    }
-    */
-    
     // Physics version
     public PhysicsElement gravitate() {
         for(int i = 0; i < physics.getYVel(); i++) {
