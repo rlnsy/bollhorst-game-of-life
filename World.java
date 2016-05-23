@@ -6,8 +6,7 @@ import javax.swing.*;
 
 public class World extends Scene {
 
-    private ArrayList<WorldElement> elements;
-    private ArrayList<WorldElement> secondaryElements;
+    private ArrayList<WorldElement> elements, secondaryElements;
     private ElementMenu menu;
     private Inventory inventory;
     private WorldClickListener clickListener;
