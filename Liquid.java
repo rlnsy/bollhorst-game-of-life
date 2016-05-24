@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-
-public abstract class Liquid extends WorldElement
+public abstract class Liquid extends PhysicsElement
 {
     private WorldElement base;
     public boolean supported;
@@ -10,31 +8,12 @@ public abstract class Liquid extends WorldElement
     }
     
     public void behave() {
-        gravitate();
+        base = gravitate();
         if(base != null && !(base instanceof Liquid)) {
-            if(getX() > base.getX())
+            if(getX() > base.getX() && canMoveRight())
                 setLocation(getX()+1,getY());
-            else
+            else if(canMoveLeft())
                 setLocation(getX()-1,getY());
         }
     }
-    
-    public void gravitate() {
-        boolean canFall = true;
-        ArrayList<WorldElement> neighbours = getTouching();
-        int neighbourIndex = 0;
-        while(neighbourIndex < neighbours.size()) {
-            WorldElement neighbour = neighbours.get(neighbourIndex);
-            if(isSupportedBy(neighbour)) {
-                canFall = false;
-                neighbourIndex = neighbours.size();
-                base = neighbour;
-            }
-            else
-                neighbourIndex++;
-        }
-        if(canFall)
-            moveDown(2);
-    }
-    
 }

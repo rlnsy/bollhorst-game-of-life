@@ -1,8 +1,4 @@
-import javax.swing.*;
-import java.awt.*;
-import java.io.*;
-import javax.imageio.ImageIO;
-public class Villager extends WorldElement
+public class Villager extends PhysicsElement
 {
     public Villager() {
         super(true);

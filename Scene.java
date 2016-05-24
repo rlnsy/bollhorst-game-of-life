@@ -1,17 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
-import javax.imageio.ImageIO;
 
 public class Scene extends JPanel implements ActionListener{
 
     private Image backgroundImage;
     private int width,height;
+    private Game game;
 
-    public Scene(String imagePath) throws IOException {
+    public Scene(String imagePath,Game game) {
         super();
-        backgroundImage = ImageIO.read(new File(imagePath));
+        this.game = game;
+        backgroundImage = Game.readImage(imagePath);
         width = (int)backgroundImage.getWidth(null);
         height = (int)backgroundImage.getHeight(null);
     }
@@ -37,4 +37,6 @@ public class Scene extends JPanel implements ActionListener{
     public int getWidth() { return width; }
     
     public int getHeight() { return height; }
+    
+    public Game getGame() { return game; }
 }

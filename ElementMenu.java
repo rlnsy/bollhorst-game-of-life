@@ -5,13 +5,13 @@ import javax.imageio.ImageIO;
 import java.util.ArrayList;
 public class ElementMenu
 {
-    private int numItems = 6;
-    private String[] elementTypeList = {"Water","Dirt","Island","Villager","Fire","Wood"};
+    private int numItems = 7;
+    private String[] elementTypeList = {"Water","Dirt","Villager","Fire","Storm","Tree", "Wood"};
    
-    public ElementMenuItem getMenuItem(int elementID) {
+    public ElementPickerItem getPickerItem(int elementID) {
         WorldElement element = getElement(elementID);
         String menuLabel = elementTypeList[elementID];
-        return new ElementMenuItem(menuLabel,elementID,element);
+        return new ElementPickerItem(menuLabel,elementID,element);
     }
     
     public WorldElement getElement(int elementID) {

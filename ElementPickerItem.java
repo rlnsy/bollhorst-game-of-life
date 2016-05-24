@@ -1,10 +1,10 @@
 import javax.swing.*;
-public class ElementMenuItem extends JMenuItem
+public class ElementPickerItem extends JMenuItem
 {
     private int menuPosition;
     private WorldElement element;
     
-    public ElementMenuItem(String label, int positionInMenu, WorldElement element) {
+    public ElementPickerItem(String label, int positionInMenu, WorldElement element) {
         super(label);
         menuPosition = positionInMenu;
         this.element = element;

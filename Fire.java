@@ -1,9 +1,4 @@
-import javax.swing.*;
-import java.awt.*;
-import java.io.*;
-import javax.imageio.ImageIO;
-
-public class Fire extends WorldElement
+public class Fire extends NonPhysicsElement
 {
     private int age;
     private final int MAX_AGE = 10;
@@ -25,8 +20,6 @@ public class Fire extends WorldElement
     }
     
     public void burn(WorldElement e) {
-        //e.setSprite(Game.readImage("images/element_sprites/villager_forward_fire.png"));
-        //e.addEffect("fire");
         e.setBurning(true);
     }
 }
