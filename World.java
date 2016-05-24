@@ -72,7 +72,7 @@ public class World extends Scene {
             e.draw(g);
     }
     
-    public void checkForDeadElements(ArrayList<WorldElement> elementList) {
+    private void checkForDeadElements(ArrayList<WorldElement> elementList) {
         int i = 0;
         while(i < elementList.size()) {
             WorldElement e = elementList.get(i);
@@ -84,7 +84,7 @@ public class World extends Scene {
         }
     }
     
-    public void removeElements(ArrayList<WorldElement> elementList) {
+    private void removeElements(ArrayList<WorldElement> elementList) {
         int i = 0;
         while(elementList.size() > 0)
             elementList.remove(i);

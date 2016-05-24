@@ -26,11 +26,13 @@ public class Game extends JFrame {
         super(header);
         
         scenes = new Scene[2];
+        
         scenes[0] = new StartMenu(this); 
         scenes[1] = new World(this);
         
-        defaultPanel.add(scenes[0],"Start");
-        defaultPanel.add(scenes[1],"World");
+        for(Scene scene : scenes)
+            defaultPanel.add(scene,scene.getClass().getName());
+        
         defaultPanel.setVisible(true);
         add(defaultPanel); 
         
