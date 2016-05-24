@@ -10,6 +10,8 @@ public class Game extends JFrame {
     public static final String BACKGROUND_IMAGE_LOCATION = "images/backgrounds/";
     public static final String EFFECT_SPRITE_LOCATION = "images/effect_sprites/";
     
+    public static final Color GLOBAL_BUTTON_COLOR = Color.white;
+    
     private final int WINDOW_WIDTH = 910;
     private final int  WINDOW_HEIGHT = 512;
     

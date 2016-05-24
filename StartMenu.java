@@ -11,6 +11,7 @@ public class StartMenu extends Scene {
                 getGame().setLevel(1);
             }
         });
+        startButton.setBackground(Game.GLOBAL_BUTTON_COLOR);
         add(startButton);
     }
 }

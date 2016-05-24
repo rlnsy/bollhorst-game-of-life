@@ -36,7 +36,7 @@ public class World extends Scene {
                     invOpener.setText("Inventory");
             }
         });
-        invOpener.setBackground(Color.white);
+        invOpener.setBackground(Game.GLOBAL_BUTTON_COLOR);
         add(invOpener);
         
         JButton clearAll = new JButton("Clear all");
@@ -45,7 +45,7 @@ public class World extends Scene {
                 reset();
             }
         });
-        clearAll.setBackground(Color.white);
+        clearAll.setBackground(Game.GLOBAL_BUTTON_COLOR);
         add(clearAll);
         
         addIsland();
