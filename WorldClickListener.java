@@ -9,7 +9,7 @@ public class WorldClickListener extends MouseAdapter implements MouseMotionListe
     
     public WorldClickListener(World world) {
         this.world = world;
-        mouseElementID = 0;
+        mouseElementID = 1;
         movingElement = false;
     }
     
