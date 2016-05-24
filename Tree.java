@@ -4,8 +4,8 @@ public class Tree extends PhysicsElement
         super(true);
     }
     public void behave() {
-        if(isStationary()) {
-            setVisible(false); // NOT WORKING FOR SOME REASON
+        if(isStationary() && !isTouchingIsland() && !isHeld()) {
+            changeVisibility(false);
         }
         gravitate();
     }

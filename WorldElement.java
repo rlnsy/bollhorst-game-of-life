@@ -130,7 +130,7 @@ public abstract class WorldElement extends JComponent {
     // **SET**
     public void setSprite(Image newSprite) {sprite = newSprite; }
     
-    public void setVisble(boolean isVisible) { 
+    public void changeVisibility(boolean isVisible) { 
         this.isVisible = isVisible; 
     }
     
