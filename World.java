@@ -12,7 +12,7 @@ public class World extends Scene {
     private WorldClickListener clickListener;
 
     public World(Game game) {
-        super(Game.BACKGROUND_IMAGE_LOCATION + "Blue back.png",game);
+        super(Game.BACKGROUND_IMAGE_LOCATION + "islandworld.png",game);
         elements = new ArrayList<WorldElement>();
         secondaryElements = new ArrayList<WorldElement>();
         menu = new ElementMenu();
