@@ -30,6 +30,10 @@ public class World extends Scene {
         invOpener.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 inventory.changeVisibility();
+                if(inventory.isVisible())
+                    invOpener.setText("Close");
+                else
+                    invOpener.setText("Inventory");
             }
         });
         invOpener.setBackground(Color.white);
@@ -41,6 +45,7 @@ public class World extends Scene {
                 reset();
             }
         });
+        clearAll.setBackground(Color.white);
         add(clearAll);
         
         addIsland();

@@ -46,4 +46,8 @@ public class Inventory extends JPanel {
             b.setVisible(true);
         }
    }
+   
+   public boolean isVisible() {
+       return isVisible;
+   }
 }
