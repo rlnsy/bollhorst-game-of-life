@@ -169,6 +169,13 @@ public abstract class WorldElement extends JComponent {
     public boolean isVisible() { return isVisible; }
     public boolean isHeld() { return held; }
     
+    public boolean isTouchingIsland() {
+        for(WorldElement e : getTouching()) {
+            if(e instanceof Island)
+                return true;
+        }
+        return false;
+    }
     
     // **ABSTRACT**
     public abstract void behave();
