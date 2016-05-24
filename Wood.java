@@ -1,9 +1,9 @@
-public class Wood extends WorldElement
+public class Wood extends PhysicsElement
+
 {
     public Wood(){
         super(true);
     }
     public void behave(){
-        gravitate();
     }
 }
