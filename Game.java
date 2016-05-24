@@ -13,7 +13,8 @@ public class Game extends JFrame {
     private final int WINDOW_WIDTH = 910;
     private final int  WINDOW_HEIGHT = 512;
     
-    private World world;
+    JPanel defaultPanel = new JPanel(new CardLayout());
+    private Scene[] scenes;
    
     public static void main(String[] args) {
         new Game("Bollhorst's Game of Life").setVisible(true);
@@ -21,15 +22,21 @@ public class Game extends JFrame {
 
     public Game(String header) {
         super(header);
-        try {
-            world = new World();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        
+        scenes = new Scene[2];
+        scenes[0] = new StartMenu(this); 
+        scenes[1] = new World(this);
+        
+        defaultPanel.add(scenes[0],"Start");
+        defaultPanel.add(scenes[1],"World");
+        defaultPanel.setVisible(true);
+        add(defaultPanel); 
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-        getContentPane().add(world);
         pack();
+        
+        setLevel(0);
     }
     
     public static Image readImage(String imagePath) {
@@ -49,5 +56,10 @@ public class Game extends JFrame {
            "' - size " + width + " x " + height);
            throw new RuntimeException(e);
         }    
+    }
+    
+    public void setLevel(int levelID) {
+        CardLayout cl = (CardLayout)(defaultPanel.getLayout());
+        cl.show(defaultPanel,scenes[levelID].getClass().getName());
     }
 }

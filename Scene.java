@@ -6,9 +6,11 @@ public class Scene extends JPanel implements ActionListener{
 
     private Image backgroundImage;
     private int width,height;
+    private Game game;
 
-    public Scene(String imagePath) {
+    public Scene(String imagePath,Game game) {
         super();
+        this.game = game;
         backgroundImage = Game.readImage(imagePath);
         width = (int)backgroundImage.getWidth(null);
         height = (int)backgroundImage.getHeight(null);
@@ -35,4 +37,6 @@ public class Scene extends JPanel implements ActionListener{
     public int getWidth() { return width; }
     
     public int getHeight() { return height; }
+    
+    public Game getGame() { return game; }
 }
