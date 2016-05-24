@@ -1,13 +1,15 @@
 import javax.swing.*;
 import java.awt.event.*;
-public class StartMenu extends Scene {
+public class StartMenu extends World {
     public StartMenu(Game game) {
-        super(Game.BACKGROUND_IMAGE_LOCATION + "background2.png",game);
+        //super(Game.BACKGROUND_IMAGE_LOCATION + "background2.png",game);
+        super(game);
         super.init();
         
         JButton startButton = new JButton("Start");
         startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                reset();
                 getGame().setLevel(1);
             }
         });
