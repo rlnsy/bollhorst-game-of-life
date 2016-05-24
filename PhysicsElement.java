@@ -2,16 +2,20 @@ import java.util.ArrayList;
 public class PhysicsElement extends WorldElement
 {
     private Physics physics;
+    private boolean isStationary;
     
     public PhysicsElement(boolean isMovable) {
         super(isMovable);
         physics = new Physics(0);
+        isStationary = false;
     }
     
     public void behave() {}
     
     public void update() {
         super.update();
+        if(isStationary)
+            physics.setYVelocity(0);
         physics.update();
     }
    
@@ -20,7 +24,6 @@ public class PhysicsElement extends WorldElement
     public PhysicsElement gravitate() {
         for(int i = 0; i < physics.getYVel(); i++) {
             if(!isHeld()) {
-                boolean canFall = true;
                 ArrayList<PhysicsElement> physicalNeighbours = new ArrayList<PhysicsElement>();
                 for(WorldElement e : getTouching()) {
                     if(e instanceof PhysicsElement)
@@ -30,7 +33,7 @@ public class PhysicsElement extends WorldElement
                 while(neighbourIndex < physicalNeighbours.size()) {
                     PhysicsElement neighbour = physicalNeighbours.get(neighbourIndex);
                     if(isSupportedBy(neighbour)) {
-                        canFall = false;
+                        isStationary = true;
                         return neighbour;
                     }
                     else
@@ -84,4 +87,8 @@ public class PhysicsElement extends WorldElement
         }     
         return false;
     }
+    
+    public Physics getPhysics() { return physics; }
+    
+    public boolean isStationary() { return isStationary; }
 }
