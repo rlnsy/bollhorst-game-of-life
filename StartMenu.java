@@ -12,6 +12,8 @@ public class StartMenu extends Scene {
             }
         });
         startButton.setBackground(Game.GLOBAL_BUTTON_COLOR);
+        setLayout(null);
+        startButton.setBounds(405,231,100,50);
         add(startButton);
     }
 }
