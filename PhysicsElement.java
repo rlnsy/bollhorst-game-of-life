@@ -32,16 +32,18 @@ public class PhysicsElement extends WorldElement
                 int neighbourIndex = 0;
                 while(neighbourIndex < physicalNeighbours.size()) {
                     PhysicsElement neighbour = physicalNeighbours.get(neighbourIndex);
-                    if(isSupportedBy(neighbour)) {
+                    if(isSupportedBy(neighbour) || neighbour instanceof Wood) {
                         isStationary = true;
                         return neighbour;
                     }
-                    else
+                    else {
                         neighbourIndex++;
+                    }
                 }
                 setLocation(getX(),getY() + 1);
             }
         }
+        isStationary = false;
         return null;
     }
     

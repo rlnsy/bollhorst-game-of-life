@@ -60,7 +60,7 @@ public class World extends Scene {
     
     private void addIsland() {
         Island island = new Island();
-        addElement(455, 490, island);
+        addElement(455, 496, island);
     }
 
     public void paintComponent(Graphics g) {
