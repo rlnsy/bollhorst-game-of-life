@@ -5,7 +5,7 @@ import javax.imageio.ImageIO;
 import java.util.ArrayList;
 public class ElementMenu
 {
-    private int numItems = 7;
+    private int numItems = 8;
     private String[] elementTypeList = {"Water","Dirt","Villager","Fire","Storm","Tree", "Wood", "Bollhorst"};
    
     public ElementPickerItem getPickerItem(int elementID) {

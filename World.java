@@ -51,6 +51,14 @@ public class World extends Scene {
         
         addIsland();
         addMouseMotionListener(clickListener);
+        
+        createBollhorstListener();
+    }
+    
+    public void createBollhorstListener() {
+        this.setFocusable(true);
+        this.requestFocus();
+        this.addKeyListener(new BollhorstListener());
     }
     
     public void reset() {
