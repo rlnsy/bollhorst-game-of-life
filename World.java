@@ -10,6 +10,7 @@ public class World extends Scene {
     private ElementMenu menu;
     private Inventory inventory;
     private WorldClickListener clickListener;
+    private WorldElement lastPlaced;
 
     public World(Game game) {
         super(Game.BACKGROUND_IMAGE_LOCATION + "islandworld.png",game);
@@ -91,6 +92,7 @@ public class World extends Scene {
     }
     
     public void addElement(int xPos, int yPos, WorldElement element){
+        lastPlaced = element;
         element.setLocation(xPos, yPos);
         boolean canPlace = true;
         if(element instanceof PhysicsElement) {
@@ -130,6 +132,7 @@ public class World extends Scene {
     public ArrayList<WorldElement> getElements() { return elements; }
     
     public ElementMenu getMenu() { return menu; }
+    public WorldElement getLastPlaced() { return lastPlaced; }
     
     public void setMouseElement(int elementID) {
         clickListener.setMouseElement(elementID);

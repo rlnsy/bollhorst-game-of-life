@@ -110,6 +110,10 @@ public abstract class WorldElement extends JComponent {
         return new Rectangle(xPos-width/2,yPos-height/2,width,height);
     }
     
+    public Point getLocation() {
+        return new Point(getX(),getY());
+    }
+    
     // TODO: make not slow
     
     public ArrayList<WorldElement> getTouching() {
