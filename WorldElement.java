@@ -9,9 +9,8 @@ public abstract class WorldElement extends JComponent {
     private String imagePath;
     private int xPos, yPos,width, height;
     private boolean isVisible,isMovable,isBurning,held;
-    private int burnedFor,maxBurnTime;
+    private int burnedFor,maxBurnTime, age;
     private Image effect;
-    private double playerMovement;
     
     public WorldElement(boolean isMovable)
     {
@@ -26,6 +25,7 @@ public abstract class WorldElement extends JComponent {
        isVisible = true;
        held = false;
        maxBurnTime = 50;
+       age = 0;
     }
     
     // **GRAPHICS**
@@ -38,12 +38,13 @@ public abstract class WorldElement extends JComponent {
     }
     
     public void update() {
+        age++;
         if(!inBounds())
             isVisible  = false;
         if(isBurning)
             burnedFor++;
         if(burnedFor == maxBurnTime)
-            isVisible = false;
+            burn();
         behave();
     }
    
@@ -54,28 +55,6 @@ public abstract class WorldElement extends JComponent {
     
     public void moveUp(int value) {
         yPos-= value;
-    }
-    
-    public void randomMove() {
-        double randomNum = Math.random();
-        int numMove = 0;
-        if(randomNum < 0.990) {
-            if(numMove%100 == 0)
-               if((playerMovement == 1 && canMoveRight()) || (playerMovement == -1 && canMoveLeft()))
-                    xPos += playerMovement;  
-        }
-        else if(randomNum <= 0.993 && randomNum >= 0.990) {
-            playerMovement = 1;
-            numMove++;
-        }
-        else if(randomNum > 0.993 && randomNum <= 0.997) {
-            playerMovement = 0;
-            numMove++;
-        }
-        else if(randomNum > 0.997 && canMoveLeft()) {
-            playerMovement = -1;
-            numMove++;
-        }
     }
     
     public abstract boolean canMoveRight();
@@ -156,6 +135,11 @@ public abstract class WorldElement extends JComponent {
     public void hold() { held = true; }
     public void release() { held = false; }
     
+    public void burn() {
+        isVisible = false;
+        world.addSecondaryElement(getX(),getY(),new Ash());
+    }
+    
     // **GET**
     public int getX() { return xPos; }
     public int getY() { return yPos; }
@@ -168,6 +152,7 @@ public abstract class WorldElement extends JComponent {
         imagePath += getClass().getName().toLowerCase() + ".png";
         return Game.readImage(imagePath);
     }
+    public int getAge() { return age; }
     public String getImagePath(){ return imagePath; }
     public boolean isMovable() { return isMovable; }
     public boolean isVisible() { return isVisible; }
