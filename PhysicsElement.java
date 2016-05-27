@@ -73,7 +73,7 @@ public class PhysicsElement extends WorldElement
     }
     
     public boolean isSupportedBy(PhysicsElement other) {
-        if(other instanceof Island)
+        if(other instanceof Island || other instanceof Wood)
             return true;
         else {
             ArrayList<PhysicsElement> potentialSupports = other.getPossibleSupports();

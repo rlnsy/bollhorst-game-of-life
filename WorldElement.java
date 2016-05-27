@@ -49,14 +49,6 @@ public abstract class WorldElement extends JComponent {
     }
    
     // **MOVEMENT**
-    public void moveDown(int value) {
-        yPos+= value;
-    }
-    
-    public void moveUp(int value) {
-        yPos-= value;
-    }
-    
     public abstract boolean canMoveRight();
     public abstract boolean canMoveLeft();
     
@@ -66,8 +58,6 @@ public abstract class WorldElement extends JComponent {
     public int getDirectionOf(WorldElement other) {
         return -1 * (getX() - other.getX());
     }
-    
-    
     
     public boolean nextTo(WorldElement other) {
         boolean bool = (getY() < other.getY() + other.getHeight()/2) && (getY() > other.getY() - other.getHeight()/2);
