@@ -14,7 +14,7 @@ public class Fire extends NonPhysicsElement
         if(age == MAX_AGE)
             setLocation(10000,10000);
         for(WorldElement e : getTouching()) {
-            if(!(e instanceof Liquid || e instanceof Island || e instanceof Fire || e instanceof Storm))
+            if(!(e instanceof Liquid || e instanceof Island || e instanceof Fire || e instanceof Storm || e instanceof Ash))
                 burn(e);
         }
     }
