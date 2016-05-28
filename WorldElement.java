@@ -47,12 +47,11 @@ public abstract class WorldElement extends JComponent {
             burn();
         behave();
     }
-   
-    // **MOVEMENT**
-    public abstract boolean canMoveRight();
-    public abstract boolean canMoveLeft();
     
     // **OBJECTS/COLLISIONS**
+    
+    public abstract boolean canMoveRight();
+    public abstract boolean canMoveLeft();
     
     // returns + if to right, - if to left
     public int getDirectionOf(WorldElement other) {
