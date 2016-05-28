@@ -3,6 +3,7 @@ import java.awt.*;
 public class Bollhorst extends PhysicsElement {
     private Image speechBox;
     private final int DETECT_RADIUS = 100;
+    private final int SPEEDY_SPEED = 3;
     public Bollhorst() {
         super(true);
         speechBox = Game.readImage(Game.EFFECT_SPRITE_LOCATION + "bollhorst_speech.png");
@@ -27,5 +28,13 @@ public class Bollhorst extends PhysicsElement {
                 return true;    
         }
         return false;
+    }
+    public void moveRight() {
+        setLocation(getX()+SPEEDY_SPEED,getY());
+    }
+    public void moveLeft() {
+        setLocation(getX()-SPEEDY_SPEED,getY());
+    }
+    public void jump() {
     }
 }

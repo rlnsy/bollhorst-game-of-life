@@ -10,6 +10,7 @@ public class World extends Scene {
     private ElementMenu menu;
     private Inventory inventory;
     private WorldClickListener clickListener;
+    private BollhorstController bollhorstControl;
     private WorldElement lastPlaced;
 
     public World(Game game) {
@@ -51,14 +52,12 @@ public class World extends Scene {
         
         addIsland();
         addMouseMotionListener(clickListener);
-        
-        createBollhorstListener();
     }
     
-    public void createBollhorstListener() {
-        this.setFocusable(true);
-        this.requestFocus();
-        this.addKeyListener(new BollhorstListener());
+    public void createBollhorstListener(Bollhorst bollhorst) {
+        bollhorstControl = new BollhorstController(bollhorst);
+        addKeyListener(bollhorstControl);
+        setFocusable(true);
     }
     
     public void reset() {
@@ -102,6 +101,7 @@ public class World extends Scene {
     public void addElement(int xPos, int yPos, WorldElement element){
         lastPlaced = element;
         element.setLocation(xPos, yPos);
+        
         boolean canPlace = true;
         if(element instanceof PhysicsElement) {
             for(WorldElement e : elements) {
@@ -109,10 +109,14 @@ public class World extends Scene {
                     canPlace = false;
             }
         }
+        
         if(canPlace) {
             elements.add(element);
             element.setWorld(this);
         }
+        
+        if(element instanceof Bollhorst)
+            createBollhorstListener((Bollhorst)element);
     }
     
     public void addSecondaryElement(int xPos, int yPos, WorldElement e){
@@ -129,6 +133,7 @@ public class World extends Scene {
     }
     
     public void update() {
+        requestFocus();
         checkForDeadElements(elements);
         checkForDeadElements(secondaryElements);
         for(WorldElement e : elements)
@@ -140,6 +145,7 @@ public class World extends Scene {
     public ArrayList<WorldElement> getElements() { return elements; }
     
     public ElementMenu getMenu() { return menu; }
+    
     public WorldElement getLastPlaced() { return lastPlaced; }
     
     public void setMouseElement(int elementID) {
