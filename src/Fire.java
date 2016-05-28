@@ -7,7 +7,7 @@ public class Fire extends NonPhysicsElement
     public Fire() {
         super(false);
         int fireVar = (int)(Math.random()*3) + 1;
-        setSprite(ImageReader.readImage(Game.DEFAULT_SPRITE_LOCATION + "fire" + fireVar + ".png"));
+        setSprite(ImageReader.readImage(ImageReader.DEFAULT_SPRITE_LOCATION + "fire" + fireVar + ".png"));
         age = 0;
     }
     

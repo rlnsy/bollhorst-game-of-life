@@ -8,11 +8,6 @@ import java.awt.event.*;
 
 public class Game extends JFrame {
     
-    public static final String DEFAULT_SPRITE_LOCATION = "/images/element_sprites/";
-    public static final String MENU_THUMBNAIL_LOCATION = "/images/toolbar_sprites/";
-    public static final String BACKGROUND_IMAGE_LOCATION = "/images/backgrounds/";
-    public static final String EFFECT_SPRITE_LOCATION = "/images/effect_sprites/";
-    
     public static final Color GLOBAL_BUTTON_COLOR = Color.white;
     
     private final int WINDOW_WIDTH = 910;

@@ -10,7 +10,7 @@ public class Wood extends PhysicsElement
     public Wood(){
         super(true);
         isFixed = false;
-        markerImage = ImageReader.readImage(Game.EFFECT_SPRITE_LOCATION + "woodmarker.png");
+        markerImage = ImageReader.readImage(ImageReader.EFFECT_SPRITE_LOCATION + "woodmarker.png");
     }
     
     public void behave(){
