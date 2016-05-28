@@ -9,7 +9,8 @@ public abstract class Liquid extends PhysicsElement
     
     public void behave() {
         base = gravitate();
-        if(base != null && !(base instanceof Liquid)) {
+        //if(base != null && !(base instanceof Liquid)) {
+        if(base != null) {
             if(getX() > base.getX() && canMoveRight())
                 setLocation(getX()+1,getY());
             else if(canMoveLeft())
