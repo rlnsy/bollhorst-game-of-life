@@ -8,6 +8,7 @@ import javax.swing.*;
 import src.popmenu.PopUpListener;
 import src.game_world_elements.*;
 import res.ImageReader;
+import res.AudioPlayer;
 
 public class World extends Scene {
 
@@ -42,6 +43,7 @@ public class World extends Scene {
         JButton clearAll = new JButton("Clear all");
         clearAll.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                AudioPlayer.playClip("buttonpush.wav");
                 reset();
             }
         });
@@ -53,6 +55,7 @@ public class World extends Scene {
         JButton invOpener = new JButton("Inventory");
         invOpener.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                AudioPlayer.playClip("buttonpush.wav");
                 inventory.changeVisibility();
                 if(inventory.isVisible())
                     invOpener.setText("Close");

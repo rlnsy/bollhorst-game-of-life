@@ -2,6 +2,7 @@ package src;
 
 import javax.swing.*;
 import java.awt.event.*;
+import res.AudioPlayer;
 
 public class StartMenu extends World {
     public StartMenu(Game game) {
@@ -11,8 +12,9 @@ public class StartMenu extends World {
         JButton startButton = new JButton("Start");
         startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                AudioPlayer.playClip("buttonpush.wav");
                 reset();
-                getGame().setLevel(1);
+                getGame().setLevel(1); 
             }
         });
         startButton.setBackground(Game.GLOBAL_BUTTON_COLOR);
