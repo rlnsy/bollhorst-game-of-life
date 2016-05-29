@@ -23,7 +23,7 @@ public class ElementMenu
     public WorldElement getElement(int elementID) {
         WorldElement newElement = new Dorito();
         try {
-            newElement = (WorldElement) (Class.forName("src."+elementTypeList[elementID]).newInstance());
+            newElement = (WorldElement) (Class.forName("src.game_world_elements."+elementTypeList[elementID]).newInstance());
         }
         catch(ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             System.out.println("Could not read class from menu");
