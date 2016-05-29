@@ -19,4 +19,12 @@ public abstract class Liquid extends PhysicsElement
                 setLocation(getX()-1,getY());
         }
     }
+    
+    public boolean isTouchingLiquid() {
+        for(WorldElement e : getTouching()) {
+            if(e instanceof Liquid)
+                return true;
+        }
+        return false;
+    }
 }

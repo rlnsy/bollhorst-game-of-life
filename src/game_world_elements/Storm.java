@@ -1,8 +1,11 @@
 package src.game_world_elements;
 
+import res.AudioPlayer;
+
 public class Storm extends NonPhysicsElement {
     public Storm() {
         super(false);
+        AudioPlayer.playClip("storm.wav");
     }
     public void behave() {
         setLocation(getX()+1,getY());

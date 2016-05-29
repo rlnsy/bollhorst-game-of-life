@@ -100,8 +100,8 @@ public class PhysicsElement extends WorldElement
     public boolean isStationary() { return isStationary; }
     
     public void makeStationary() {
-        if(!isStationary())
-            AudioPlayer.playClip("thud.wav");
+        if(!isStationary() && !(this instanceof Liquid))
+            AudioPlayer.playClip("thud.wav"); 
         isStationary = true;
     }
 }
