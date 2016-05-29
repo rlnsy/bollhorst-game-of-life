@@ -5,6 +5,7 @@ import java.io.*;
 import java.awt.*;
 import javax.imageio.ImageIO;
 import java.awt.event.*;
+import res.AudioPlayer;
 
 public class Game extends JFrame {
     
@@ -39,8 +40,11 @@ public class Game extends JFrame {
         pack();
         
         setLevel(0);
+        
+        AudioPlayer.playClip("waves.wav");
     }
     
+    /*
     public static Image getEffectImage(String effectName, int width, int height) {
         String filePath = "images/effect_sprites/" + effectName + "_" + width + "x" + height + ".png";
         try {
@@ -51,6 +55,8 @@ public class Game extends JFrame {
            throw new RuntimeException(e);
         }    
     }
+    */
+   
     
     public void setLevel(int levelID) {
         CardLayout cl = (CardLayout)(defaultPanel.getLayout());
