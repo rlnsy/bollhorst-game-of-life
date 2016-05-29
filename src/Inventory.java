@@ -10,8 +10,7 @@ public class Inventory extends JPanel {
     private World world;
     private ArrayList<InventoryButton> buttons;
     
-    public Inventory(World world )
-    {
+    public Inventory(World world ) {
        world = world;
        background = ImageReader.readImage(ImageReader.BACKGROUND_IMAGE_LOCATION + "Toolbar.png");
        setPreferredSize(new Dimension(background.getWidth(null),background.getHeight(null)));
@@ -36,21 +35,15 @@ public class Inventory extends JPanel {
     }
     
     public void changeVisibility() {
-        if(isVisible)
-        { 
+        if(isVisible) { 
           isVisible = false;
           for(JButton b : buttons)
             b.setVisible(false);
         }
-        else
-        {
+        else {
           isVisible = true;
           for(JButton b : buttons)
             b.setVisible(true);
         }
-   }
-   
-   public boolean isVisible() {
-       return isVisible;
    }
 }

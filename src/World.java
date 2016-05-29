@@ -23,15 +23,32 @@ public class World extends Scene {
         secondaryElements = new ArrayList<WorldElement>();
         menu = new ElementMenu();
         inventory = new Inventory(this);
+        clickListener = new WorldClickListener(this);
         init();
     }
     
     public void init() {
         super.init();
         addMouseListener(new PopUpListener(this));
-        clickListener = new WorldClickListener(this);
         addMouseListener(clickListener);
-        
+        add(createInventoryOpener());
+        add(createClearButton());
+        addIsland();
+        addMouseMotionListener(clickListener);
+    }
+    
+    private JButton createClearButton() {
+        JButton clearAll = new JButton("Clear all");
+        clearAll.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                reset();
+            }
+        });
+        clearAll.setBackground(Game.GLOBAL_BUTTON_COLOR);
+        return clearAll;
+    }
+    
+    private JButton createInventoryOpener() {
         JButton invOpener = new JButton("Inventory");
         invOpener.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -43,22 +60,10 @@ public class World extends Scene {
             }
         });
         invOpener.setBackground(Game.GLOBAL_BUTTON_COLOR);
-        add(invOpener);
-        
-        JButton clearAll = new JButton("Clear all");
-        clearAll.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                reset();
-            }
-        });
-        clearAll.setBackground(Game.GLOBAL_BUTTON_COLOR);
-        add(clearAll);
-        
-        addIsland();
-        addMouseMotionListener(clickListener);
+        return invOpener;
     }
     
-    public void createBollhorstListener(Bollhorst boll) {
+    public void addBollhorstListener(Bollhorst boll) {
         bollhorstControl = new BollhorstController(boll);
         addKeyListener(bollhorstControl);
         setFocusable(true);
@@ -120,7 +125,7 @@ public class World extends Scene {
         }
         
         if(element instanceof Bollhorst)
-            createBollhorstListener((Bollhorst)element);
+            addBollhorstListener((Bollhorst)element);
     }
     
     public void addSecondaryElement(int xPos, int yPos, WorldElement e){
@@ -146,13 +151,13 @@ public class World extends Scene {
             e.update();
     }
     
+    public void setMouseElement(int elementID) {
+        clickListener.setMouseElement(elementID);
+    }
+    
     public ArrayList<WorldElement> getElements() { return elements; }
     
     public ElementMenu getMenu() { return menu; }
     
     public WorldElement getLastPlaced() { return lastPlaced; }
-    
-    public void setMouseElement(int elementID) {
-        clickListener.setMouseElement(elementID);
-    }
 }

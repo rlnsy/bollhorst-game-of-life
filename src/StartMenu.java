@@ -5,7 +5,6 @@ import java.awt.event.*;
 
 public class StartMenu extends World {
     public StartMenu(Game game) {
-        //super(Game.BACKGROUND_IMAGE_LOCATION + "background2.png",game);
         super(game);
         super.init();
         
