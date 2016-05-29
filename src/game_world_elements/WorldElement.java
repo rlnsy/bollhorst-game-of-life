@@ -48,6 +48,8 @@ public abstract class WorldElement extends JComponent {
             isVisible  = false;
         if(isBurning)
             burnedFor++;
+        else
+            effect = null;
         if(burnedFor == maxBurnTime)
             burn();
         behave();
@@ -121,9 +123,10 @@ public abstract class WorldElement extends JComponent {
     }
     
     // **MODIFY**
-    public void setBurning(boolean isBurning) {
-        AudioPlayer.playClip("fire.wav");
-        this.isBurning = isBurning;
+    public void setBurning(boolean value) {
+        if(value)
+            AudioPlayer.playClip("fire.wav");
+        this.isBurning = value;
         this.effect = ImageReader.getEffectImage("fire",width,height);
     }
     
