@@ -5,6 +5,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import src.*;
 import res.ImageReader;
+import res.AudioPlayer;
 
 public abstract class WorldElement extends JComponent {
     
@@ -28,7 +29,7 @@ public abstract class WorldElement extends JComponent {
        isMovable = isMovable;
        isVisible = true;
        held = false;
-       maxBurnTime = 50;
+       maxBurnTime = 250;
        age = 0;
     }
     
@@ -121,6 +122,7 @@ public abstract class WorldElement extends JComponent {
     
     // **MODIFY**
     public void setBurning(boolean isBurning) {
+        AudioPlayer.playClip("fire.wav");
         this.isBurning = isBurning;
         this.effect = ImageReader.getEffectImage("fire",width,height);
     }
@@ -146,6 +148,7 @@ public abstract class WorldElement extends JComponent {
     public boolean isMovable() { return isMovable; }
     public boolean isVisible() { return isVisible; }
     public boolean isHeld() { return held; }
+    public boolean isBurning() { return isBurning; }
     
     public boolean isTouchingIsland() {
         for(WorldElement e : getTouching()) {

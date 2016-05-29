@@ -19,11 +19,8 @@ public class Fire extends NonPhysicsElement
             setLocation(10000,10000);
         for(WorldElement e : getTouching()) {
             if(!(e instanceof Liquid || e instanceof Island || e instanceof Fire || e instanceof Storm || e instanceof Ash))
-                burn(e);
+                if(!e.isBurning())
+                    e.setBurning(true);
         }
-    }
-    
-    public void burn(WorldElement e) {
-        e.setBurning(true);
     }
 }
