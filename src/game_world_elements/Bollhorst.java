@@ -17,7 +17,7 @@ public class Bollhorst extends PhysicsElement {
     }
     public void draw(Graphics g) {
         super.draw(g);
-        if(villagerDetected())
+        if(targetDetected())
             drawMessage(g);
     }
     public void drawMessage(Graphics g) {
@@ -26,9 +26,9 @@ public class Bollhorst extends PhysicsElement {
     public Rectangle getDetectionBox () {
         return new Rectangle(getX()-getWidth()/2-DETECT_RADIUS,getY()-getHeight()/2,(2*DETECT_RADIUS)+getWidth(),getHeight());
     }
-    public boolean villagerDetected() {
+    public boolean targetDetected() {
         for(WorldElement e : getWorld().getElements()) {
-            if(getDetectionBox().contains(e.getLocation()) && e instanceof Villager)
+            if(getDetectionBox().contains(e.getLocation()) && (e instanceof Villager || (e instanceof Bollhorst && !e.equals(this))))
                 return true;    
         }
         return false;
