@@ -1,4 +1,4 @@
-package src;
+package res;
 
 import java.io.*;
 import java.awt.*;

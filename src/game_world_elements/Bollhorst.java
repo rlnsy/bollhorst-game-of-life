@@ -2,7 +2,7 @@ package src.game_world_elements;
 
 import java.awt.event.*;
 import java.awt.*;
-import src.ImageReader;
+import res.ImageReader;
 
 public class Bollhorst extends PhysicsElement {
     private Image speechBox;

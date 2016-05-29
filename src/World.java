@@ -7,6 +7,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import src.popmenu.PopUpListener;
 import src.game_world_elements.*;
+import res.ImageReader;
 
 public class World extends Scene {
 

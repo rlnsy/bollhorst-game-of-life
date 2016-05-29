@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import src.*;
+import res.ImageReader;
 
 public abstract class WorldElement extends JComponent {
     

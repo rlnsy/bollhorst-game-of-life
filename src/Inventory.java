@@ -3,6 +3,7 @@ package src;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import res.ImageReader;
 
 public class Inventory extends JPanel {
     private final Image background;

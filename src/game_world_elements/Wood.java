@@ -2,7 +2,7 @@ package src.game_world_elements;
 
 import java.util.ArrayList;
 import java.awt.*;
-import src.ImageReader;
+import res.ImageReader;
 
 public class Wood extends PhysicsElement
 {

@@ -4,6 +4,7 @@ import java.awt.*;
 import src.popmenu.*;
 import src.game_world_elements.WorldElement;
 import src.game_world_elements.Dorito;
+import res.ImageReader;
 
 public class ElementMenu
 {
