@@ -22,7 +22,7 @@ public abstract class WorldElement extends JComponent {
     {
        this.xPos = 0;
        this.yPos = 0;
-       String classType = getBasicClassName();
+       String classType = getClass().getSimpleName();
        String imagePath = ImageReader.DEFAULT_SPRITE_LOCATION + classType + ".png";
        sprite = ImageReader.readImage(imagePath);
        width = sprite.getWidth(null);
@@ -32,10 +32,6 @@ public abstract class WorldElement extends JComponent {
        held = false;
        maxBurnTime = 50;
        age = 0;
-    }
-    
-    public String getBasicClassName() {
-        return getClass().getName().toLowerCase().substring(PACKAGE_NAME.length());
     }
     
     // **GRAPHICS**
@@ -148,7 +144,7 @@ public abstract class WorldElement extends JComponent {
     public Image getSprite() { return sprite; }
     
     public Image getThumbnail() {
-        String classType = getBasicClassName();
+        String classType = getClass().getSimpleName();
         String imagePath = ImageReader.MENU_THUMBNAIL_LOCATION + classType + ".png";
         return ImageReader.readImage(imagePath);
     }
