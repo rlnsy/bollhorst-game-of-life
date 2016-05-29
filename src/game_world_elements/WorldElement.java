@@ -7,9 +7,6 @@ import src.*;
 
 public abstract class WorldElement extends JComponent {
     
-    private final String PACKAGE_NAME = "src.game_world_elements.";
-    //for image purposes
-    
     private World world;
     private Image sprite;
     private String imagePath;
