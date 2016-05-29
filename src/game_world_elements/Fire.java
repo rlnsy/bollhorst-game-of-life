@@ -1,4 +1,6 @@
-package src;
+package src.game_world_elements;
+
+import src.ImageReader;
 
 public class Fire extends NonPhysicsElement
 {

@@ -1,4 +1,4 @@
-package src;
+package src.game_world_elements;
 
 public abstract class Liquid extends PhysicsElement
 {

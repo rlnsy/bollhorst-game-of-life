@@ -1,8 +1,9 @@
-package src;
+package src.game_world_elements;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import src.*;
 
 public abstract class WorldElement extends JComponent {
     

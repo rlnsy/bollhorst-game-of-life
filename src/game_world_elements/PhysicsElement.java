@@ -1,6 +1,8 @@
-package src;
+package src.game_world_elements;
 
 import java.util.ArrayList;
+import src.Physics;
+
 public class PhysicsElement extends WorldElement
 {
     private Physics physics;

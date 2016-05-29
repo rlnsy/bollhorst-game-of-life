@@ -1,7 +1,9 @@
-package src;
+package src.game_world_elements;
 
 import java.util.ArrayList;
 import java.awt.*;
+import src.ImageReader;
+
 public class Wood extends PhysicsElement
 {
     private boolean isFixed;
