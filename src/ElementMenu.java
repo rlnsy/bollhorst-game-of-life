@@ -6,6 +6,9 @@ import java.io.*;
 import javax.imageio.ImageIO;
 import java.util.ArrayList;
 import src.popmenu.*;
+import src.game_world_elements.WorldElement;
+import src.game_world_elements.Dorito;
+
 public class ElementMenu
 {
     private int numItems = 8;

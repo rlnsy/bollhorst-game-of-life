@@ -2,6 +2,7 @@ package src;
 
 import java.awt.event.*;
 import java.awt.Point;
+import src.game_world_elements.WorldElement;
 
 public class WorldClickListener extends MouseAdapter implements MouseMotionListener {
     private World world;

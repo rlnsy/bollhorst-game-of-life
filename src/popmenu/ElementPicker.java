@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import src.World;
-import src.WorldElement;
+import src.game_world_elements.WorldElement;
 
 class ElementPicker extends JPopupMenu implements ActionListener {
     

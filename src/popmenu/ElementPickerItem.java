@@ -1,7 +1,8 @@
 package src.popmenu;
 
 import javax.swing.*;
-import src.WorldElement;
+import src.game_world_elements.WorldElement;
+
 public class ElementPickerItem extends JMenuItem
 {
     private int menuPosition;

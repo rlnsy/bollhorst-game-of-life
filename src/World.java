@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.awt.event.*;
 import javax.swing.*;
 import src.popmenu.PopUpListener;
+import src.game_world_elements.*;
 
 public class World extends Scene {
 
@@ -57,8 +58,8 @@ public class World extends Scene {
         addMouseMotionListener(clickListener);
     }
     
-    public void createBollhorstListener(Bollhorst bollhorst) {
-        bollhorstControl = new BollhorstController(bollhorst);
+    public void createBollhorstListener(Bollhorst boll) {
+        bollhorstControl = new BollhorstController(boll);
         addKeyListener(bollhorstControl);
         setFocusable(true);
     }
@@ -101,7 +102,7 @@ public class World extends Scene {
             elementList.remove(i);
     }
     
-    public void addElement(int xPos, int yPos, WorldElement element){
+    public void addElement(int xPos, int yPos, src.game_world_elements.WorldElement element){
         lastPlaced = element;
         element.setLocation(xPos, yPos);
         

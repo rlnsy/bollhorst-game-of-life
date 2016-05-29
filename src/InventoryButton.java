@@ -2,6 +2,7 @@ package src;
 
 import javax.swing.*;
 import java.awt.event.*;
+
 public class InventoryButton extends JButton{
     private final int CLICK_ELEMENT_ID;
     private final World WORLD;

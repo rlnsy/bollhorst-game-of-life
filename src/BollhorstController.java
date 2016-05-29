@@ -1,6 +1,7 @@
 package src;
 
 import java.awt.event.*;
+import src.game_world_elements.Bollhorst;
 
 public class BollhorstController implements KeyListener
 {
