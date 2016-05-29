@@ -122,7 +122,7 @@ public abstract class WorldElement extends JComponent {
     // **MODIFY**
     public void setBurning(boolean isBurning) {
         this.isBurning = isBurning;
-        this.effect = Game.getEffectImage("fire",width,height);
+        this.effect = ImageReader.getEffectImage("fire",width,height);
     }
     
     public void hold() { held = true; }

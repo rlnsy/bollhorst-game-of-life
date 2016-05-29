@@ -15,11 +15,16 @@ public class ImageReader
         return new ImageReader().findImage(imagePath);
     }
     
-    public Image findImage(String imagePath) {
+    private Image findImage(String imagePath) {
         try {
            return ImageIO.read(getClass().getResource(imagePath));
        } catch (IOException e) {
            throw new RuntimeException(e);
        }    
+    }
+    
+    public static Image getEffectImage(String effectName, int width, int height) {
+        String filePath = EFFECT_SPRITE_LOCATION + effectName + "_" + width + "x" + height + ".png";
+        return readImage(filePath);
     }
 }
