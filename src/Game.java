@@ -42,21 +42,7 @@ public class Game extends JFrame {
         setLevel(0);
         
         AudioPlayer.playClip("waves.wav");
-    }
-    
-    /*
-    public static Image getEffectImage(String effectName, int width, int height) {
-        String filePath = "images/effect_sprites/" + effectName + "_" + width + "x" + height + ".png";
-        try {
-           return ImageIO.read(new File(filePath));
-        } catch (IOException e) {
-           System.out.println("Could not find suitable image for effect '"+ effectName +
-           "' - size " + width + " x " + height);
-           throw new RuntimeException(e);
-        }    
-    }
-    */
-   
+    }  
     
     public void setLevel(int levelID) {
         CardLayout cl = (CardLayout)(defaultPanel.getLayout());
