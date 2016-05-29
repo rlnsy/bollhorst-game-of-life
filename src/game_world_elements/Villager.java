@@ -1,10 +1,14 @@
 package src.game_world_elements;
 
+import res.AudioPlayer;
+
 public class Villager extends PhysicsElement
 {
     private double playerMovement;
+    private int stepsWalked;
     public Villager() {
         super(true);
+        stepsWalked = 0;
     }
     public void behave() {
         gravitate();
@@ -23,8 +27,13 @@ public class Villager extends PhysicsElement
         int numMove = 0;
         if(randomNum < 0.990) {
             if(numMove%100 == 0)
-               if((playerMovement == 1 && canMoveRight()) || (playerMovement == -1 && canMoveLeft()))
-                    setLocation((int)(getX() + playerMovement),getY());
+               if((playerMovement == 1 && canMoveRight()) || (playerMovement == -1 && canMoveLeft())) {
+                   if(stepsWalked % 25 == 0) {
+                       AudioPlayer.playClip("step.wav");
+                   }
+                   setLocation((int)(getX() + playerMovement),getY());
+                   stepsWalked++;
+               }
         }
         else if(randomNum <= 0.993 && randomNum >= 0.990) {
             playerMovement = 1;
