@@ -29,7 +29,9 @@ public class ElementMenu
     }
     
     public Image getElementThumbnail(int elementID) {
-        return getElement(elementID).getThumbnail();
+        String simpleClassName = elementTypeList[elementID].toLowerCase();
+        String imagePath = ImageReader.MENU_THUMBNAIL_LOCATION + simpleClassName + ".png";
+        return ImageReader.readImage(imagePath);
     }
     
     public int getNumItems() { return numItems; }
