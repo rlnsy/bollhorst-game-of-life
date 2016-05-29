@@ -2,6 +2,7 @@ package src.game_world_elements;
 
 import java.util.ArrayList;
 import src.Physics;
+import res.AudioPlayer;
 
 public class PhysicsElement extends WorldElement
 {
@@ -37,7 +38,7 @@ public class PhysicsElement extends WorldElement
                 while(neighbourIndex < physicalNeighbours.size()) {
                     PhysicsElement neighbour = physicalNeighbours.get(neighbourIndex);
                     if(isSupportedBy(neighbour) || neighbour instanceof Wood) {
-                        isStationary = true;
+                        makeStationary();
                         return neighbour;
                     }
                     else {
@@ -97,4 +98,10 @@ public class PhysicsElement extends WorldElement
     public Physics getPhysics() { return physics; }
     
     public boolean isStationary() { return isStationary; }
+    
+    public void makeStationary() {
+        if(!isStationary())
+            AudioPlayer.playClip("thud.wav");
+        isStationary = true;
+    }
 }
