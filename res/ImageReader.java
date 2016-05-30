@@ -6,10 +6,11 @@ import javax.imageio.ImageIO;
 
 public class ImageReader
 {
-    public static final String DEFAULT_SPRITE_LOCATION = "images/element_sprites/";
-    public static final String MENU_THUMBNAIL_LOCATION = "images/toolbar_sprites/";
-    public static final String BACKGROUND_IMAGE_LOCATION = "images/backgrounds/";
-    public static final String EFFECT_SPRITE_LOCATION = "images/effect_sprites/";
+    private static final String IMAGE_LOCATION = "images/";
+    public static final String DEFAULT_SPRITE_LOCATION = IMAGE_LOCATION + "element_sprites/";
+    public static final String MENU_THUMBNAIL_LOCATION = IMAGE_LOCATION + "toolbar_sprites/";
+    public static final String BACKGROUND_IMAGE_LOCATION = IMAGE_LOCATION + "backgrounds/";
+    public static final String EFFECT_SPRITE_LOCATION = IMAGE_LOCATION + "effect_sprites/";
     
     public static Image readImage(String imagePath) {
         return new ImageReader().findImage(imagePath);
