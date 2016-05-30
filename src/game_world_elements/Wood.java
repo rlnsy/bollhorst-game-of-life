@@ -3,6 +3,7 @@ package src.game_world_elements;
 import java.util.ArrayList;
 import java.awt.*;
 import res.ImageReader;
+import res.AudioPlayer;
 
 public class Wood extends PhysicsElement
 {
@@ -13,6 +14,7 @@ public class Wood extends PhysicsElement
         super(true);
         isFixed = false;
         markerImage = ImageReader.readImage(ImageReader.EFFECT_SPRITE_LOCATION + "woodmarker.png");
+        AudioPlayer.playClip("wood.wav");
     }
     
     public void behave(){
