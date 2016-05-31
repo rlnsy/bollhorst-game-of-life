@@ -55,6 +55,8 @@ public abstract class WorldElement extends JComponent {
         behave();
     }
     
+    public void playSound() {}
+    
     // **OBJECTS/COLLISIONS**
     
     public abstract boolean canMoveRight();

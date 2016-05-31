@@ -114,6 +114,7 @@ public class World extends Scene {
     public void addElement(int xPos, int yPos, src.game_world_elements.WorldElement element){
         lastPlaced = element;
         element.setLocation(xPos, yPos);
+        element.playSound();
         
         boolean canPlace = true;
         if(element instanceof PhysicsElement) {
@@ -160,6 +161,7 @@ public class World extends Scene {
     }
     
     public ArrayList<WorldElement> getElements() { return elements; }
+    public ArrayList<WorldElement> getSecondaryElements() { return secondaryElements; }
     
     public ElementMenu getMenu() { return menu; }
     
