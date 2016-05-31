@@ -1,6 +1,6 @@
 package src.game_world_elements;
 
-public class NonPhysicsElement extends WorldElement
+public abstract class NonPhysicsElement extends WorldElement
 {
     public NonPhysicsElement(boolean isMovable) {
         super(isMovable);

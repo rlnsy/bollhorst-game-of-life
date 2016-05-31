@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import src.Physics;
 import res.AudioPlayer;
 
-public class PhysicsElement extends WorldElement
+public abstract class PhysicsElement extends WorldElement
 {
     private Physics physics;
     private boolean isStationary;
@@ -37,7 +37,7 @@ public class PhysicsElement extends WorldElement
                 int neighbourIndex = 0;
                 while(neighbourIndex < physicalNeighbours.size()) {
                     PhysicsElement neighbour = physicalNeighbours.get(neighbourIndex);
-                    if(isSupportedBy(neighbour) || neighbour instanceof Wood) {
+                    if(isSupportedBy(neighbour) || neighbour instanceof BuildBlock) {
                         makeStationary();
                         return neighbour;
                     }
@@ -78,7 +78,7 @@ public class PhysicsElement extends WorldElement
     }
     
     public boolean isSupportedBy(PhysicsElement other) {
-        if(other instanceof Island || other instanceof Wood)
+        if(other instanceof Island || other instanceof BuildBlock)
             return true;
         else {
             ArrayList<PhysicsElement> potentialSupports = other.getPossibleSupports();
