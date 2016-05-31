@@ -3,6 +3,7 @@ package src;
 import java.awt.event.*;
 import java.awt.Point;
 import src.game_world_elements.WorldElement;
+import src.game_world_elements.PhysicsElement;
 
 public class WorldClickListener extends MouseAdapter implements MouseMotionListener {
     private World world;
@@ -30,8 +31,7 @@ public class WorldClickListener extends MouseAdapter implements MouseMotionListe
             for(WorldElement elem : world.getElements()) {
                 if(elem.isMovable()) {
                     if(elem.getHitBox().contains(new Point(e.getX(),e.getY()))) {
-                        elem.hold();
-                        pickedUp = elem;
+                        pickedUp = elem.hold();
                         movingElement = true;
                     }
                 }

@@ -30,7 +30,7 @@ public class ElementMenu
     
     public Image getElementThumbnail(int elementID) {
         String simpleClassName = elementTypeList[elementID].toLowerCase();
-        String imagePath = ImageReader.MENU_THUMBNAIL_LOCATION + simpleClassName + ".png";
+        String imagePath = ImageReader.getThumbnailLocation() + simpleClassName + ".png";
         return ImageReader.readImage(imagePath);
     }
     

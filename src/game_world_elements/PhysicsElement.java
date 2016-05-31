@@ -19,8 +19,6 @@ public abstract class PhysicsElement extends WorldElement
     
     public void update() {
         super.update();
-        if(isStationary)
-            physics.setYVelocity(0);
         physics.update();
     }
    
@@ -100,6 +98,7 @@ public abstract class PhysicsElement extends WorldElement
     public boolean isStationary() { return isStationary; }
     
     public void makeStationary() {
+        physics.setYVelocity(0);
         if(!isStationary() && !(this instanceof Liquid))
             AudioPlayer.playClip("thud.wav"); 
         isStationary = true;

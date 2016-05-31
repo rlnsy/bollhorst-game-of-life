@@ -20,7 +20,7 @@ public class World extends Scene {
     private WorldElement lastPlaced;
 
     public World(Game game) {
-        super(ImageReader.BACKGROUND_IMAGE_LOCATION + "islandworld.png",game);
+        super(ImageReader.getBackgroundLocation() + "islandworld.png",game);
         elements = new ArrayList<WorldElement>();
         secondaryElements = new ArrayList<WorldElement>();
         menu = new ElementMenu();

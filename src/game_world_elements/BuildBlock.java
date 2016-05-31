@@ -12,7 +12,7 @@ public abstract class BuildBlock extends PhysicsElement
     public BuildBlock(){
         super(true);
         isFixed = false;
-        markerImage = ImageReader.readImage(ImageReader.EFFECT_SPRITE_LOCATION + "block_marker.png");
+        markerImage = ImageReader.readImage(ImageReader.getEffectLocation() + "block_marker.png");
     }
     
     public void behave(){

@@ -13,7 +13,7 @@ public class Inventory extends JPanel {
     
     public Inventory(World world ) {
        world = world;
-       background = ImageReader.readImage(ImageReader.BACKGROUND_IMAGE_LOCATION + "toolbar.png");
+       background = ImageReader.readImage(ImageReader.getBackgroundLocation() + "toolbar.png");
        setPreferredSize(new Dimension(background.getWidth(null),background.getHeight(null)));
        buttons = new ArrayList<InventoryButton>();
        for(int i = 0; i < world.getMenu().getNumItems(); i++)

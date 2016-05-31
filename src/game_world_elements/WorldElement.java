@@ -22,11 +22,11 @@ public abstract class WorldElement extends JComponent {
        this.xPos = 0;
        this.yPos = 0;
        String classType = getClass().getSimpleName().toLowerCase();
-       String imagePath = ImageReader.DEFAULT_SPRITE_LOCATION + classType + ".png";
+       String imagePath = ImageReader.getDefaultSpriteLocation() + classType + ".png";
        sprite = ImageReader.readImage(imagePath);
        width = sprite.getWidth(null);
        height = sprite.getHeight(null);
-       isMovable = isMovable;
+       this.isMovable = isMovable;
        isVisible = true;
        held = false;
        maxBurnTime = 250;
@@ -130,7 +130,10 @@ public abstract class WorldElement extends JComponent {
         this.effect = ImageReader.getEffectImage("fire",width,height);
     }
     
-    public void hold() { held = true; }
+    public WorldElement hold() { 
+        held = true; 
+        return this;
+    }
     public void release() { held = false; }
     
     public void burn() {

@@ -10,7 +10,7 @@ public class Bollhorst extends PhysicsElement {
     private final int SPEEDY_SPEED = 3;
     public Bollhorst() {
         super(true);
-        speechBox = ImageReader.readImage(ImageReader.EFFECT_SPRITE_LOCATION + "bollhorst_speech.png");
+        speechBox = ImageReader.readImage(ImageReader.getEffectLocation() + "bollhorst_speech.png");
     }
     public void behave() {
         gravitate();
