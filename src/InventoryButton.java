@@ -11,7 +11,8 @@ public class InventoryButton extends JButton {
         WORLD = world;
         addActionListener( new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                WORLD.setMouseElement(CLICK_ELEMENT_ID);
+                if(WORLD.getMenu().hasUnlocked(WORLD.getMenu().getElement(CLICK_ELEMENT_ID)))
+                    WORLD.setMouseElement(CLICK_ELEMENT_ID);
             }
         });
     }

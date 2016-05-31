@@ -16,6 +16,12 @@ public class Inventory extends JPanel {
        background = ImageReader.readImage(ImageReader.getBackgroundLocation() + "toolbar.png");
        setPreferredSize(new Dimension(background.getWidth(null),background.getHeight(null)));
        buttons = new ArrayList<InventoryButton>();
+       buildButtons(world);
+       isVisible = false;
+    }
+    
+    public void buildButtons(World world) {
+       this.removeAll();
        for(int i = 0; i < world.getMenu().getNumItems(); i++)
        {
            InventoryButton newButton = new InventoryButton(i,world);
@@ -27,7 +33,6 @@ public class Inventory extends JPanel {
            buttons.add(newButton);
            world.add(newButton);
        }
-       isVisible = false;
     }
   
     public void draw(Graphics g) {
