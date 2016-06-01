@@ -3,17 +3,11 @@ package res;
 import java.io.*;
 import java.awt.*;
 import javax.imageio.ImageIO;
+import src.Game;
 
 public class ImageReader
 {
-    private static final String IMAGE_LOCATION = "alternate_images/";
-    
-    /*
-    public static final String DEFAULT_SPRITE_LOCATION = IMAGE_LOCATION + "element_sprites/";
-    public static final String MENU_THUMBNAIL_LOCATION = IMAGE_LOCATION + "toolbar_sprites/";
-    public static final String BACKGROUND_IMAGE_LOCATION = IMAGE_LOCATION + "backgrounds/";
-    public static final String EFFECT_SPRITE_LOCATION = IMAGE_LOCATION + "effect_sprites/";
-    */
+    public static final boolean USE_ALTERNATE_STYLE = true;
     
     public static Image readImage(String imagePath) {
         return new ImageReader().findImage(imagePath);
@@ -32,19 +26,26 @@ public class ImageReader
         return readImage(filePath);
     }
     
+    public static String getImageLocation() {
+        if(USE_ALTERNATE_STYLE)
+            return "alternate_images/";
+        else
+            return "images/";
+    }
+    
     public static String getDefaultSpriteLocation() {
-        return IMAGE_LOCATION + "element_sprites/";
+        return getImageLocation() + "element_sprites/";
     }
     
     public static String getThumbnailLocation() {
-        return IMAGE_LOCATION + "toolbar_sprites/";
+        return getImageLocation() + "toolbar_sprites/";
     }
     
     public static String getBackgroundLocation() {
-        return IMAGE_LOCATION + "backgrounds/";
+        return getImageLocation() + "backgrounds/";
     }
     
     public static String getEffectLocation() {
-        return IMAGE_LOCATION + "effect_sprites/";
+        return getImageLocation() + "effect_sprites/";
     }
 }
