@@ -57,6 +57,8 @@ public class Bollhorst extends PhysicsElement {
         return false;
     }
     
+    public void touchedElement(WorldElement other) {}
+    
     public void moveRight() {
         setLocation(getX()+velocityRight,getY());
     }

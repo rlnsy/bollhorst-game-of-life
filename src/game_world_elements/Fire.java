@@ -19,11 +19,6 @@ public class Fire extends NonPhysicsElement
         age++;
         if(age == MAX_AGE)
             setLocation(10000,10000);
-        for(WorldElement e : getTouching()) {
-            if(checkIfFlammable(e))
-                if(!e.isBurning())
-                    e.setBurning(true);
-        }
     }
     
     public static boolean checkIfFlammable(WorldElement element) {
@@ -33,5 +28,11 @@ public class Fire extends NonPhysicsElement
                 return false;
         }
         return true;
+    }
+    
+    public void touchedElement(WorldElement other) {
+        if(checkIfFlammable(other))
+                if(!other.isBurning())
+                    other.setBurning(true);
     }
 }

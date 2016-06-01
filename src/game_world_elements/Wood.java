@@ -11,4 +11,6 @@ public class Wood extends BuildBlock {
     public void playSound() {
         AudioPlayer.playClip("wood.wav");
     }
+    
+    public void touchedElement(WorldElement other) {}
 }

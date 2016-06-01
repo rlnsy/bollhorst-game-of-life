@@ -48,4 +48,6 @@ public class Villager extends PhysicsElement
             numMove++;
         }
     }
+    
+    public void touchedElement(WorldElement other) {}
 }

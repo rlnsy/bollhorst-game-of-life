@@ -53,6 +53,9 @@ public abstract class WorldElement extends JComponent {
         if(burnedFor == maxBurnTime)
             burn();
         behave();
+        for(WorldElement other : getTouching()) {
+            touchedElement(other);
+        }
     }
     
     public void playSound() {}
@@ -170,4 +173,6 @@ public abstract class WorldElement extends JComponent {
     public abstract void behave();
     public abstract boolean canMoveRight();
     public abstract boolean canMoveLeft();
+    
+    public abstract void touchedElement(WorldElement other);
 }

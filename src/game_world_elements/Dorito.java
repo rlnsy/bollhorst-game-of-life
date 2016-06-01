@@ -8,4 +8,6 @@ public class Dorito extends PhysicsElement {
     public void behave() {
         gravitate();
     }
+    
+    public void touchedElement(WorldElement other) {}
  }

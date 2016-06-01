@@ -16,4 +16,6 @@ public class Storm extends NonPhysicsElement {
     public void playSound() {
         AudioPlayer.playClip("storm.wav");
     }
+    
+    public void touchedElement(WorldElement other) {}
 }

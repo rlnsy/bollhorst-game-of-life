@@ -12,4 +12,6 @@ public class Water extends Liquid {
                 e.setBurning(false);
         }
     }
+    
+    public void touchedElement(WorldElement other) {}
 }

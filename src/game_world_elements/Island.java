@@ -6,4 +6,6 @@ public class Island extends PhysicsElement {
     }
     
     public void behave() {}
+    
+    public void touchedElement(WorldElement other) {}
 }

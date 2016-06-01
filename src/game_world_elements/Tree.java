@@ -11,4 +11,6 @@ public class Tree extends PhysicsElement
         }
         gravitate();
     }
+    
+    public void touchedElement(WorldElement other) {}
 }
