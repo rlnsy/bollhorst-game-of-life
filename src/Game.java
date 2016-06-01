@@ -8,13 +8,12 @@ import java.awt.event.*;
 import res.AudioPlayer;
 
 public class Game extends JFrame {
-    
     public static final Color GLOBAL_BUTTON_COLOR = Color.white;
     
-    private final int WINDOW_WIDTH = 910;
-    private final int  WINDOW_HEIGHT = 512;
+    private static final int DEFAULT_WINDOW_WIDTH = 910;
+    private static final int  DEFAULT_WINDOW_HEIGHT = 512;
     
-    JPanel defaultPanel = new JPanel(new CardLayout());
+    JPanel defaultPanel;
     private Scene[] scenes;
    
     public static void main(String[] args) {
@@ -29,14 +28,14 @@ public class Game extends JFrame {
         scenes[0] = new StartMenu(this); 
         scenes[1] = new World(this);
         
+        defaultPanel = new JPanel(new CardLayout());
         for(Scene scene : scenes)
             defaultPanel.add(scene,scene.getClass().getName());
-        
         defaultPanel.setVisible(true);
         add(defaultPanel); 
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        setSize(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT);
         pack();
         
         setLevel(0);

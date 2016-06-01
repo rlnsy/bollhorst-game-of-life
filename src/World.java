@@ -24,6 +24,7 @@ public class World extends Scene {
         elements = new ArrayList<WorldElement>();
         secondaryElements = new ArrayList<WorldElement>();
         menu = new ElementMenu();
+        menu.unlockAll();
         inventory = new Inventory(this);
         clickListener = new WorldClickListener(this);
         init();
@@ -114,7 +115,6 @@ public class World extends Scene {
     public void addElement(int xPos, int yPos, src.game_world_elements.WorldElement element){
         lastPlaced = element;
         element.setLocation(xPos, yPos);
-        element.playSound();
         
         boolean canPlace = true;
         if(element instanceof PhysicsElement) {
@@ -125,6 +125,7 @@ public class World extends Scene {
         }
         
         if(canPlace) {
+            element.playSound();
             elements.add(element);
             element.setWorld(this);
         }
