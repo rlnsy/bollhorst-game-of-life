@@ -10,7 +10,7 @@ import res.ImageReader;
 public class ElementMenu
 {
     private final String ELEMENT_PACKAGE = "src.game_world_elements";
-    private String[] elementTypeList = {"Water","Dirt","Villager","Fire","Storm","Tree", "Wood", "Bollhorst","Dorito"};
+    private String[] elementList = {"Water","Dirt","Villager","Fire","Storm","Tree", "Wood", "Bollhorst","Dorito"};
     private ArrayList<String> unlockedElements;
     
     public ElementMenu() {
@@ -19,14 +19,14 @@ public class ElementMenu
    
     public ElementPickerItem getPickerItem(int elementID) {
         WorldElement element = getElement(elementID);
-        String menuLabel = elementTypeList[elementID];
+        String menuLabel = elementList[elementID];
         return new ElementPickerItem(menuLabel,elementID,element);
     }
     
     public WorldElement getElement(int elementID) {
         WorldElement newElement = new Dorito();
         try {
-            newElement = (WorldElement) (Class.forName(ELEMENT_PACKAGE + "." + elementTypeList[elementID]).newInstance());
+            newElement = (WorldElement) (Class.forName(ELEMENT_PACKAGE + "." + elementList[elementID]).newInstance());
         }
         catch(ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             System.out.println("Could not read class from menu");
@@ -37,7 +37,7 @@ public class ElementMenu
     public Image getElementThumbnail(int elementID) {
         WorldElement element = getElement(elementID);
         if(hasUnlocked(element)) {
-            String simpleClassName = elementTypeList[elementID].toLowerCase();
+            String simpleClassName = elementList[elementID].toLowerCase();
             String imagePath = ImageReader.getThumbnailLocation() + simpleClassName + ".png";
             return ImageReader.readImage(imagePath);
         }
@@ -56,5 +56,10 @@ public class ElementMenu
         unlockedElements.add(elementName);
     }
     
-    public int getNumItems() { return elementTypeList.length; }
+    public void unlockAll() {
+        for(String type : elementList)
+            unlock(type);
+    }
+    
+    public int getNumItems() { return elementList.length; }
 }
