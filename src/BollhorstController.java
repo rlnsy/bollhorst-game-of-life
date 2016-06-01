@@ -2,6 +2,11 @@ package src;
 
 import java.awt.event.*;
 import src.game_world_elements.Bollhorst;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import javax.swing.KeyStroke;
+import javax.swing.Action;
+import javax.swing.AbstractAction;
 
 public class BollhorstController implements KeyListener
 {
@@ -14,11 +19,13 @@ public class BollhorstController implements KeyListener
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()) {
             case KeyEvent.VK_LEFT :
-                bollhorst.moveLeft();
+                bollhorst.addLeftVelocity();
             break;
             case KeyEvent.VK_RIGHT :
-                bollhorst.moveRight();
+                bollhorst.addRightVelocity();
             break;
+            case KeyEvent.VK_UP :
+                bollhorst.addUpVelocity();
         }
     }
     public void keyTyped(KeyEvent e) {
