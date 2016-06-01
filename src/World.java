@@ -30,6 +30,7 @@ public class World extends Scene {
         init();
     }
     
+    @Override
     public void init() {
         super.init();
         addMouseListener(new PopUpListener(this));
@@ -85,6 +86,7 @@ public class World extends Scene {
         addElement(455, 496, island);
     }
 
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         inventory.draw(g);
@@ -140,6 +142,7 @@ public class World extends Scene {
         e.setWorld(this);
     }
     
+    @Override
     // refresh grpahics whenever action performed
     // uses timer created in game
     public void actionPerformed(ActionEvent e) {
@@ -162,6 +165,7 @@ public class World extends Scene {
     }
     
     public ArrayList<WorldElement> getElements() { return elements; }
+    
     public ArrayList<WorldElement> getSecondaryElements() { return secondaryElements; }
     
     public ElementMenu getMenu() { return menu; }

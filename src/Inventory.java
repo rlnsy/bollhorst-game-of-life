@@ -34,7 +34,7 @@ public class Inventory extends JPanel {
            world.add(newButton);
        }
     }
-  
+    
     public void draw(Graphics g) {
         if(isVisible)
            g.drawImage(background,0,0,world);
@@ -51,5 +51,5 @@ public class Inventory extends JPanel {
           for(JButton b : buttons)
             b.setVisible(true);
         }
-   }
+    }
 }

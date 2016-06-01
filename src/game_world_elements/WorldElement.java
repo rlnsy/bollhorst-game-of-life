@@ -57,11 +57,6 @@ public abstract class WorldElement extends JComponent {
     
     public void playSound() {}
     
-    // **OBJECTS/COLLISIONS**
-    
-    public abstract boolean canMoveRight();
-    public abstract boolean canMoveLeft();
-    
     // returns + if to right, - if to left
     public int getDirectionOf(WorldElement other) {
         return -1 * (getX() - other.getX());
@@ -136,6 +131,7 @@ public abstract class WorldElement extends JComponent {
         held = true; 
         return this;
     }
+    
     public void release() { held = false; }
     
     public void burn() {
@@ -147,8 +143,12 @@ public abstract class WorldElement extends JComponent {
     public int getX() { return xPos; }
     public int getY() { return yPos; }
     public World getWorld() { return world; }
+    
+    @Override
     public int getWidth() { return width; }
+    @Override
     public int getHeight() { return height; }
+    
     public Image getSprite() { return sprite; }
     
     public int getAge() { return age; }
@@ -168,4 +168,6 @@ public abstract class WorldElement extends JComponent {
     
     // **ABSTRACT**
     public abstract void behave();
+    public abstract boolean canMoveRight();
+    public abstract boolean canMoveLeft();
 }
