@@ -5,8 +5,8 @@ public abstract class Liquid extends PhysicsElement
     private WorldElement base;
     public boolean supported;
     
-    public Liquid(boolean isMovable) {
-        super(isMovable);
+    public Liquid() {
+        super();
     }
     
     public void behave() {

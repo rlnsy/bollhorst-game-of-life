@@ -17,7 +17,8 @@ public class Bollhorst extends PhysicsElement {
     private int behaveCount = 0;
     
     public Bollhorst() {
-        super(true);
+        super();
+        setMovable(true);
         speechBox = ImageReader.readImage(ImageReader.getEffectLocation() + "bollhorst_speech.png");
     }
     
@@ -41,11 +42,11 @@ public class Bollhorst extends PhysicsElement {
             drawMessage(g);
     }
     
-    public void drawMessage(Graphics g) {
+    private void drawMessage(Graphics g) {
         g.drawImage(speechBox,getX()-getWidth()/2-speechBox.getWidth(null),getY() - getHeight()/2,getWorld());
     }
     
-    public Rectangle getDetectionBox () {
+    private Rectangle getDetectionBox () {
         return new Rectangle(getX()-getWidth()/2-DETECT_RADIUS,getY()-getHeight()/2,(2*DETECT_RADIUS)+getWidth(),getHeight());
     }
     
@@ -57,7 +58,14 @@ public class Bollhorst extends PhysicsElement {
         return false;
     }
     
-    public void touchedElement(WorldElement other) {}
+    public void touchedElement(WorldElement other) {
+        if(other instanceof Dorito)
+            eat(other);
+    }
+    
+    public void eat(WorldElement other) {
+        other.removeFromWorld();
+    }
     
     public void moveRight() {
         setLocation(getX()+velocityRight,getY());

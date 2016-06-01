@@ -7,7 +7,8 @@ public class Villager extends PhysicsElement
     private double playerMovement;
     private int stepsWalked;
     public Villager() {
-        super(true);
+        super();
+        setMovable(true);
         stepsWalked = 0;
     }
     public void behave() {

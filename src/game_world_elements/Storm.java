@@ -4,7 +4,7 @@ import res.AudioPlayer;
 
 public class Storm extends NonPhysicsElement {
     public Storm() {
-        super(false);
+        super();
     }
     public void behave() {
         setLocation(getX()+1,getY());

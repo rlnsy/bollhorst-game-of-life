@@ -8,17 +8,22 @@ public class Fire extends NonPhysicsElement
     
     private int age;
     private final int MAX_AGE = 10;
+    
     public Fire() {
-        super(false);
+        super(); 
+        age = 0;
+        randomizeAppearence();
+    }
+    
+    public void randomizeAppearence() {
         int fireVar = (int)(Math.random()*3) + 1;
         setSprite(ImageReader.readImage(ImageReader.getDefaultSpriteLocation() + "fire" + fireVar + ".png"));
-        age = 0;
     }
     
     public void behave() {
         age++;
         if(age == MAX_AGE)
-            setLocation(10000,10000);
+            removeFromWorld();
     }
     
     public static boolean checkIfFlammable(WorldElement element) {

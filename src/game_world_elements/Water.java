@@ -2,16 +2,15 @@ package src.game_world_elements;
 
 public class Water extends Liquid {
     public Water () {
-        super(true);
+        super();
     }
     
     public void behave() {
         super.behave();
-        for(WorldElement e : getTouching()) {
-            if(e.isBurning())
-                e.setBurning(false);
-        }
     }
     
-    public void touchedElement(WorldElement other) {}
+    public void touchedElement(WorldElement other) {
+        if(other.isBurning())
+                other.setBurning(false);
+    }
 }

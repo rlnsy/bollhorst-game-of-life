@@ -170,5 +170,12 @@ public class World extends Scene {
     
     public ElementMenu getMenu() { return menu; }
     
+    public Island getIsland() {
+        if(getElements().get(0) instanceof Island)
+            return (Island)(getElements().get(0));
+        else
+            return null;
+    }
+    
     public WorldElement getLastPlaced() { return lastPlaced; }
 }

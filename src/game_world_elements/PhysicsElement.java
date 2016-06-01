@@ -10,8 +10,8 @@ public abstract class PhysicsElement extends WorldElement
     
     private double yVel;
     
-    public PhysicsElement(boolean isMovable) {
-        super(isMovable);
+    public PhysicsElement() {
+        super();
         isStationary = false;
         yVel = 0;
     }
@@ -22,39 +22,43 @@ public abstract class PhysicsElement extends WorldElement
         super.update();
         if(!isStationary)
             yVel += DEFAULT_GRAVITY_ACCELERATION;
+        else
+            yVel = 0;
     }
    
-    // returns the element that blocked the fall, or null
-    // Physics version
+    /* pre:
+     * post: moves this element downwards until it collides with a supported
+     * element, Returns the element that blocked fall if one did
+     */
     public PhysicsElement gravitate() {
-        for(int i = 0; i < yVel; i++) {
-            if(!isHeld()) {
-                ArrayList<PhysicsElement> physicalNeighbours = new ArrayList<PhysicsElement>();
-                for(WorldElement e : getTouching()) {
-                    if(e instanceof PhysicsElement)
-                        physicalNeighbours.add((PhysicsElement)(e));
-                }
-                int neighbourIndex = 0;
-                while(neighbourIndex < physicalNeighbours.size()) {
-                    PhysicsElement neighbour = physicalNeighbours.get(neighbourIndex);
-                    if(isSupportedBy(neighbour) || neighbour instanceof BuildBlock) {
-                        makeStationary();
-                        return neighbour;
+        if(!isHeld())
+            for(int i = 0; i < yVel; i++) {
+                    ArrayList<PhysicsElement> physicalNeighbours = new ArrayList<PhysicsElement>();
+                    for(WorldElement e : getTouching()) {
+                        if(e instanceof PhysicsElement)
+                            physicalNeighbours.add((PhysicsElement)(e));
                     }
-                    else {
-                        neighbourIndex++;
+                    int neighbourIndex = 0;
+                    while(neighbourIndex < physicalNeighbours.size()) {
+                        PhysicsElement neighbour = physicalNeighbours.get(neighbourIndex);
+                        if(isSupportedBy(neighbour) || neighbour instanceof BuildBlock) {
+                            if(!isStationary())
+                                makeStationary();
+                            return neighbour;
+                        }
+                        else {
+                            neighbourIndex++;
+                        }
                     }
-                }
-                setLocation(getX(),getY() + 1);
+                    isStationary = false;
+                    setLocation(getX(),getY() + 1);
             }
-        }
-        isStationary = false;
         return null;
     }
     
     public boolean canMoveRight() {
         for(WorldElement e : getTouching()) {
-            if(e.nextTo(this) && this.getDirectionOf(e) > 0)
+            if(e.isTouching(this) && this.getDirectionOf(e) > 0)
                 return false;
         }
         return true;
@@ -62,7 +66,7 @@ public abstract class PhysicsElement extends WorldElement
     
     public boolean canMoveLeft() {
         for(WorldElement e : getTouching()) {
-            if(e.nextTo(this) && this.getDirectionOf(e) < 0)
+            if(e.isTouching(this) && this.getDirectionOf(e) < 0)
                 return false;
         }
         return true;
@@ -100,7 +104,7 @@ public abstract class PhysicsElement extends WorldElement
     public void makeStationary() {
         yVel = 0;
         if(!isStationary() && !(this instanceof Liquid))
-            AudioPlayer.playClip("thud.wav"); 
+            AudioPlayer.playClip("thud.wav");
         isStationary = true;
     }
 }
