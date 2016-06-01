@@ -48,7 +48,7 @@ public class World extends Scene {
                 reset();
             }
         });
-        clearAll.setBackground(Game.GLOBAL_BUTTON_COLOR);
+        clearAll.setBackground(new Color(228,28,36));
         return clearAll;
     }
     
@@ -64,7 +64,7 @@ public class World extends Scene {
                     invOpener.setText("Inventory");
             }
         });
-        invOpener.setBackground(Game.GLOBAL_BUTTON_COLOR);
+        invOpener.setBackground(new Color(123,214,248));
         return invOpener;
     }
     

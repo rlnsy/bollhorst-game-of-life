@@ -3,7 +3,7 @@ package src.game_world_elements;
 public class Tree extends PhysicsElement
 {
     public Tree() {
-        super(true);
+        super(false);
         getPhysics().setYAcceleration(1);
     }
     public void behave() {
