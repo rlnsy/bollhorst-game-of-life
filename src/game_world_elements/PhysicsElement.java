@@ -1,31 +1,33 @@
 package src.game_world_elements;
 
 import java.util.ArrayList;
-import src.Physics;
 import res.AudioPlayer;
 
 public abstract class PhysicsElement extends WorldElement
 {
-    private Physics physics;
+    private final double DEFAULT_GRAVITY_ACCELERATION = 0.5;
     private boolean isStationary;
+    
+    private double yVel;
     
     public PhysicsElement(boolean isMovable) {
         super(isMovable);
-        physics = new Physics(0);
         isStationary = false;
+        yVel = 0;
     }
     
     public void behave() {}
     
     public void update() {
         super.update();
-        physics.update();
+        if(!isStationary)
+            yVel += DEFAULT_GRAVITY_ACCELERATION;
     }
    
     // returns the element that blocked the fall, or null
     // Physics version
     public PhysicsElement gravitate() {
-        for(int i = 0; i < physics.getYVel(); i++) {
+        for(int i = 0; i < yVel; i++) {
             if(!isHeld()) {
                 ArrayList<PhysicsElement> physicalNeighbours = new ArrayList<PhysicsElement>();
                 for(WorldElement e : getTouching()) {
@@ -93,12 +95,10 @@ public abstract class PhysicsElement extends WorldElement
         return false;
     }
     
-    public Physics getPhysics() { return physics; }
-    
     public boolean isStationary() { return isStationary; }
     
     public void makeStationary() {
-        physics.setYVelocity(0);
+        yVel = 0;
         if(!isStationary() && !(this instanceof Liquid))
             AudioPlayer.playClip("thud.wav"); 
         isStationary = true;

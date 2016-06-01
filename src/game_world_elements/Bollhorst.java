@@ -10,10 +10,12 @@ public class Bollhorst extends PhysicsElement {
     private Image speechBox;
     private final int DETECT_RADIUS = 100;
     private final int SPEEDY_SPEED = 3;
+    
     private int velocityLeft = 0;
     private int velocityRight = 0;
     private int velocityUp = 0;
     private int velocityCount = 0;
+    
     public Bollhorst() {
         super(true);
         speechBox = ImageReader.readImage(ImageReader.getEffectLocation() + "bollhorst_speech.png");
