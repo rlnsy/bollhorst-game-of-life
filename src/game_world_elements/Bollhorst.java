@@ -13,6 +13,7 @@ public class Bollhorst extends PhysicsElement {
     private int velocityLeft = 0;
     private int velocityRight = 0;
     private int velocityUp = 0;
+    private int velocityCount = 0;
     public Bollhorst() {
         super(true);
         speechBox = ImageReader.readImage(ImageReader.getEffectLocation() + "bollhorst_speech.png");
@@ -20,14 +21,15 @@ public class Bollhorst extends PhysicsElement {
     public void behave() {
         gravitate();
         moveRight();
-        if(velocityRight > 0)
+        if(velocityRight > 0 && velocityCount%4 == 0)
             velocityRight--;
         moveLeft();
-        if(velocityLeft > 0)
+        if(velocityLeft > 0 && velocityCount%4 == 0)
             velocityLeft--;
         jump();
-        if(velocityUp > 0)
+        if(velocityUp > 0 && velocityCount%2 == 0)
             velocityUp--;
+        velocityCount++;
     }
     public void draw(Graphics g) {
         super.draw(g);
@@ -49,21 +51,21 @@ public class Bollhorst extends PhysicsElement {
     }
     
     public void moveRight() {
-        setLocation(getX()+velocityRight/2,getY());
+        setLocation(getX()+velocityRight,getY());
     }
     public void addRightVelocity(){
-        velocityRight += 4;
+        velocityRight += 2;
     }
     public void moveLeft() {
-        setLocation(getX()-velocityLeft/2,getY());
+        setLocation(getX()-velocityLeft,getY());
     }
     public void addLeftVelocity(){
-        velocityLeft += 4;
+        velocityLeft += 2;
     }
     public void jump() {
-        setLocation(getX(), getY()-velocityUp/2);
+        setLocation(getX(), getY()-velocityUp);
     }
     public void addUpVelocity(){
-        velocityUp += 5;
+        velocityUp += 10;
     }
 }
