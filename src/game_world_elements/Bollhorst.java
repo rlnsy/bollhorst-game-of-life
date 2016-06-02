@@ -2,9 +2,11 @@ package src.game_world_elements;
 
 import java.awt.event.*;
 import java.awt.*;
-import res.ImageReader;
 import javax.swing.Action;
 import javax.swing.AbstractAction;
+import res.ImageReader;
+import res.AudioPlayer;
+
 
 public class Bollhorst extends PhysicsElement {
     private Image speechBox;
@@ -22,6 +24,10 @@ public class Bollhorst extends PhysicsElement {
         super.draw(g);
         if(targetDetected())
             drawMessage(g);
+    }
+    
+    public void behave() {
+        super.behave();
     }
     
     private void drawMessage(Graphics g) {
@@ -49,10 +55,6 @@ public class Bollhorst extends PhysicsElement {
         other.removeFromWorld();
     }
     
-    public void behave() {
-        super.behave();
-    }
-    
     @Override
     public void accelerate() {
         if(getXVelocity() > 0 && physicsCount%4 == 0)
@@ -69,5 +71,31 @@ public class Bollhorst extends PhysicsElement {
     public void applyPhysics() {
         super.applyPhysics();
         physicsCount++;
+    }
+    
+    public void spitFire() {
+        AudioPlayer.playClip("fire.wav");
+        Point[] spots = new Point[6];
+        int padding = new FireBall().getWidth();
+        FireBall[] fires = new FireBall[6];
+        for(int i = 0; i < fires.length; i++)
+            fires[i] = new FireBall();
+        
+        spots[0] = new Point(getX() + getWidth()/2 + padding,getY() - getHeight()/2 - padding);
+        spots[1] = new Point(getX() + getWidth()/2 + padding, getY());
+        spots[2] = new Point(getX() + getWidth()/2 + padding, getY() + getHeight()/2 + padding);
+        spots[3] = new Point(getX() - getWidth()/2 - padding,getY() - getHeight()/2 - padding);
+        spots[4] = new Point(getX() - getWidth()/2 - padding, getY());
+        spots[5] = new Point(getX() - getWidth()/2 - padding, getY() + getHeight()/2 + padding);
+        
+        fires[0].setXVelocity(3); fires[0].setYVelocity(3);
+        fires[1].setXVelocity(3);
+        fires[2].setXVelocity(3); fires[2].setYVelocity(-3);
+        fires[3].setXVelocity(-3); fires[3].setYVelocity(3);
+        fires[4].setXVelocity(-3); 
+        fires[5].setXVelocity(-3); fires[5].setYVelocity(-3);
+        
+        for(int i = 0; i < spots.length; i++)
+            getWorld().addSecondaryElement(spots[i],fires[i]);
     }
 }

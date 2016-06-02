@@ -30,6 +30,8 @@ public class BollhorstController implements KeyListener
             case KeyEvent.VK_DOWN :
                 bollhorst.changeYVelocity(-10);
             break;
+            case KeyEvent.VK_SPACE :
+                bollhorst.spitFire();
         }
     }
     public void keyTyped(KeyEvent e) {

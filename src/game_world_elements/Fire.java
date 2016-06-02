@@ -4,7 +4,7 @@ import res.ImageReader;
 
 public class Fire extends NonPhysicsElement
 {
-    public static final String[] nonFlammables = {"Liquid","Island","Fire","Storm","Ash","Dorito"};
+    public static final String[] nonFlammables = {"Liquid","Island","Fire","Storm","Ash","Dorito","FireBall","Bollhorst"};
     
     private int age;
     private final int MAX_AGE = 10;
