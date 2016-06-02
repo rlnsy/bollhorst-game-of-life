@@ -136,7 +136,6 @@ public abstract class PhysicsElement extends WorldElement
     }
     
     public void makeStationary() {
-        //setXVelocity(0);
         setYVelocity(0);
         if(!isStationary() && !(this instanceof Liquid)) {
             AudioPlayer.playClip("thud.wav");

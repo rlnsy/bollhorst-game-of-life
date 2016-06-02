@@ -132,6 +132,10 @@ public abstract class WorldElement extends JComponent {
             if(isTouching(e))
                 touching.add(e);
         }
+        for(WorldElement e : world.getSecondaryElements()) {
+            if(isTouching(e))
+                touching.add(e);
+        }
         return touching;
     }
     
