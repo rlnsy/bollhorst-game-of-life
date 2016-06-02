@@ -9,6 +9,10 @@ public abstract class BuildBlock extends PhysicsElement
     private boolean isFixed;
     private Image markerImage;
     
+    /*
+     * pre: block marker image present in directory
+     * post: constructs a new BuildBlock
+     */
     public BuildBlock(){
         super();
         setMovable(true);
@@ -16,6 +20,10 @@ public abstract class BuildBlock extends PhysicsElement
         markerImage = ImageReader.readImage(ImageReader.getEffectLocation() + "block_marker.png");
     }
     
+    /*
+     * pre: none
+     * post: aligns to a nearby build block if not already fixed
+     */
     public void behave(){
         if(!isFixed) {
             alignToBuildBlock();
@@ -23,6 +31,12 @@ public abstract class BuildBlock extends PhysicsElement
         }
     }
     
+    /*
+     * pre: none
+     * post: finds BuildBlock neighbours and uses closest one to pull this
+     * to alignment, returns the rleative location of this block to the pulling
+     * block or -1 if no alignment took place
+     */
     public int alignToBuildBlock() {
         ArrayList<BuildBlock> blockNeighbours = new ArrayList<BuildBlock>();
         for(WorldElement e : getWorld().getElements()) {
@@ -40,6 +54,10 @@ public abstract class BuildBlock extends PhysicsElement
         return -1;
     }
     
+    /*
+     * pre: side is between 1 and 4, corresponing to the 4 sides surrounding this block
+     * post: sets the location of the tsrget block o that of the corresponding adjacent spot
+     */
     public void pull(BuildBlock target, int side) {
         Rectangle dest = target.getHitBox();
         switch(side) {
@@ -59,6 +77,10 @@ public abstract class BuildBlock extends PhysicsElement
         target.setLocation((int)(dest.getX()+dest.getWidth()/2),(int)(dest.getY()+dest.getHeight()/2));
     }
     
+    /*
+     * pre: none
+     * post: returns the adjacent spot that contains spot, or -1 if none do
+     */
     public int getRelativeLocationOf(Point spot) {
         if(getRightSpot().contains(spot))
             return 1;
@@ -71,11 +93,19 @@ public abstract class BuildBlock extends PhysicsElement
         return -1;
     }
     
+    /*
+     * pre: none
+     * post: draws the block and its markers
+     */
     public void draw(Graphics g) {
         super.draw(g);
         drawMarkers(g);
     }
     
+    /*
+     * pre: marker image is correctly read
+     * post: draws markers at the four rectangles surrunding the block
+     */
     public void drawMarkers(Graphics g) {
         if(getWorld().getLastPlaced().equals(this)) {
             g.drawImage(markerImage,(int)getRightSpot().getX(),(int)getRightSpot().getY(),getWorld());

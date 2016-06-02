@@ -11,6 +11,10 @@ public class Inventory extends JPanel {
     private World world;
     private ArrayList<InventoryButton> buttons;
     
+    /*
+     * pre: none
+     * post: constructs and sets up a new Inventory
+     */
     public Inventory(World world ) {
        world = world;
        background = ImageReader.readImage(ImageReader.getBackgroundLocation() + "toolbar.png");
@@ -20,6 +24,11 @@ public class Inventory extends JPanel {
        isVisible = false;
     }
     
+    /*
+     * pre: the element menu conaints a least one element type
+     * post: creates and adds a series of buttons to the inventory panel connected
+     * to each menu element
+     */
     public void buildButtons(World world) {
        this.removeAll();
        for(int i = 0; i < world.getMenu().getNumItems(); i++)
@@ -35,11 +44,19 @@ public class Inventory extends JPanel {
        }
     }
     
+    /*
+     * pre: background Image is initialized as a valid Image
+     * post: draws the inventory background image
+     */
     public void draw(Graphics g) {
         if(isVisible)
            g.drawImage(background,0,0,world);
     }
     
+    /*
+     * pre: none
+     * post: switches inventory's visibility from true to false or vise-versa
+     */
     public void changeVisibility() {
         if(isVisible) { 
           isVisible = false;

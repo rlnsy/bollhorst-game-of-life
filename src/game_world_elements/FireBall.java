@@ -2,9 +2,13 @@ package src.game_world_elements;
 
 public class FireBall extends PhysicsElement
 {
+    @Override
+    /*
+     * pre: none
+     * post: element moves and disapears if touching another element
+     */
     public void behave() {
         super.behave();
-        if(getXVelocity() == 0 || getYVelocity() == 0)
         if(getTouching().size() > 0)
             removeFromWorld();
     }
@@ -12,6 +16,11 @@ public class FireBall extends PhysicsElement
     @Override
     public void accelerate() {}
     
+    @Override
+    /*
+     * pre: none
+     * post: if other is flammable, sets other burning
+     */
     public void touchedElement(WorldElement other) {
         if(new Fire().checkIfFlammable(other))
                 if(!other.isBurning())

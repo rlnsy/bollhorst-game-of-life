@@ -5,6 +5,10 @@ import java.awt.event.*;
 import res.AudioPlayer;
 
 public class StartMenu extends World {
+    /*
+     * pre: none
+     * post: creates a new start menu scene with a single button that switches to the world scene
+     */
     public StartMenu(Game game) {
         super(game);
         super.init();

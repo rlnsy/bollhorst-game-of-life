@@ -13,6 +13,9 @@ import res.AudioPlayer;
 public class World extends Scene {
 
     private ArrayList<WorldElement> elements, secondaryElements;
+    /*  one list stores most of the elements added by the user, the second stores those
+     *  added by other elements
+     */
     private ElementMenu menu;
     private Inventory inventory;
     private WorldClickListener clickListener;
@@ -20,6 +23,10 @@ public class World extends Scene {
     private WorldElement lastPlaced;
     private boolean hasBollhorst;
 
+    /*
+     * pre: islandworld background correctly placed in resource directory
+     * post: constructs a new World and initializes attributes
+     */
     public World(Game game) {
         super(ImageReader.getBackgroundLocation() + "islandworld.png",game);
         elements = new ArrayList<WorldElement>();
@@ -31,6 +38,11 @@ public class World extends Scene {
         init();
     }
     
+    /*
+     * pre: none
+     * post: adds essential listeners to the world as well as the 
+     * first WorldElement, Island
+     */
     @Override
     public void init() {
         super.init();
@@ -42,6 +54,11 @@ public class World extends Scene {
         addMouseMotionListener(clickListener);
     }
     
+    /*
+     * pre: buttonpush audio file present in resource directory
+     * post: creates and adds a new button labled "clear all" for
+     * resetting the world
+     */
     private JButton createClearButton() {
         JButton clearAll = new JButton("Clear all");
         clearAll.addActionListener(new ActionListener() {
@@ -54,39 +71,58 @@ public class World extends Scene {
         return clearAll;
     }
     
+    /*
+     * pre: buttonpush audio file present in resource directory
+     * post: adds a new button with ability to open and close the
+     * element inventory
+     */
     private JButton createInventoryOpener() {
-        JButton invOpener = new JButton("Inventory");
+        JButton invOpener = new JButton("Open/Close Inventory");
         invOpener.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 AudioPlayer.playClip("buttonpush.wav");
                 inventory.changeVisibility();
-                if(inventory.isVisible())
-                    invOpener.setText("Close");
-                else
-                    invOpener.setText("Inventory");
             }
         });
         invOpener.setBackground(new Color(123,214,248));
         return invOpener;
     }
     
+    /*
+     * pre: none
+     * post: creates and adds a BollhorstController linked to the Bollhorst
+     * 'boll' and makes the world focusable
+     */
     public void addBollhorstListener(Bollhorst boll) {
         bollhorstControl = new BollhorstController(boll);
         addKeyListener(bollhorstControl);
         setFocusable(true);
     }
     
+    /*
+     * pre: none
+     * post: removes all elements from the world, then restores the island
+     */
     public void reset() {
         removeElements(elements);
         removeElements(secondaryElements);
+        hasBollhorst = false;
         addIsland();
     }
     
+    /*
+     * pre: none
+     * post: creates and adds a new Island at a certain location
+     */
     private void addIsland() {
         Island island = new Island();
         addElement(new Point(455, 496), island);
     }
 
+    /*
+     * paints all objects contained within the panel, including the inventory,
+     * elements, and secondary elements
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -97,6 +133,11 @@ public class World extends Scene {
             e.draw(g);
     }
     
+    /*
+     * pre: none
+     * post: removes all invisible elements from elementsList, notes
+     * if a Bollhorst has been removed
+     */
     private void checkForDeadElements(ArrayList<WorldElement> elementList) {
         int i = 0;
         while(i < elementList.size()) {
@@ -111,12 +152,21 @@ public class World extends Scene {
         }
     }
     
+    /*
+     * pre: none
+     * post: removes all elements from elementList
+     */
     private void removeElements(ArrayList<WorldElement> elementList) {
         int i = 0;
         while(elementList.size() > 0)
             elementList.remove(i);
     }
     
+    /*
+     * pre: location is a valid point within the world
+     * post: adds element to the world's elements list, provided that it does not collide
+     * with existing elements, and plays a sound if applicable
+     */
     public void addElement(Point location, src.game_world_elements.WorldElement element){
         lastPlaced = element;
         element.setLocation(location);
@@ -145,20 +195,32 @@ public class World extends Scene {
         }
     }
     
-    public void addSecondaryElement(Point location, WorldElement e){
-        e.setLocation(location);
-        secondaryElements.add(e);
-        e.setWorld(this);
+    /*
+     * pre: "
+     * post: adds element to the addtional elements list
+     */
+    public void addSecondaryElement(Point location, WorldElement element){
+        element.setLocation(location);
+        secondaryElements.add(element);
+        element.setWorld(this);
     }
     
     @Override
-    // refresh grpahics whenever action performed
-    // uses timer created in game
+    /*
+     * [activated by game timer]
+     * pre: none
+     * post: repaints the panel by calling super method and updates the world
+     */
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
         update();
     }
     
+    /*
+     * pre: elements lists are properly initialized
+     * post: checks for invisible elements and updates every element
+     *       requests focus to make sure controller listeners are activated
+     */
     public void update() {
         requestFocus();
         checkForDeadElements(elements);
@@ -169,10 +231,15 @@ public class World extends Scene {
             e.update();
     }
     
+    /*
+     * pre: elementID is a valid element ID corresponding to an element in the menu
+     * post: sets the default placed element type to that corresponding to elementID
+     */
     public void setMouseElement(int elementID) {
         clickListener.setMouseElement(elementID);
     }
     
+    //===GET METHODS===
     public ArrayList<WorldElement> getElements() { return elements; }
     
     public ArrayList<WorldElement> getSecondaryElements() { return secondaryElements; }

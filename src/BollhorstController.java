@@ -12,10 +12,19 @@ public class BollhorstController implements KeyListener
 {
     private Bollhorst bollhorst;
     
+    /*
+     * pre: none
+     * post: constructs a new BollhorstController liked to bollhorst
+     */
     public BollhorstController(Bollhorst bollhorst) {
         this.bollhorst = bollhorst;
     }
-    //TODO: add moving functions
+
+    /*
+     * pre: none
+     * post: reponds to key input from the user and activates certain methods in bollhorst
+     */
+    @Override
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()) {
             case KeyEvent.VK_LEFT :
@@ -34,8 +43,12 @@ public class BollhorstController implements KeyListener
                 bollhorst.spitFire();
         }
     }
+    
+    @Override
     public void keyTyped(KeyEvent e) {
     }
+    
+    @Override
     public void keyReleased(KeyEvent e) {
     }
 }

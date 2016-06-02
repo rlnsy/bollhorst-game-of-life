@@ -9,6 +9,10 @@ public class Water extends Liquid {
         super.behave();
     }
     
+    /*
+     * pre: none
+     * post: if other is burning, sets it to stop burning
+     */
     public void touchedElement(WorldElement other) {
         if(other.isBurning())
                 other.setBurning(false);

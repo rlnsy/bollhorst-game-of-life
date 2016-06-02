@@ -6,7 +6,13 @@ import res.AudioPlayer;
 
 public class InventoryButton extends JButton {
     private final int CLICK_ELEMENT_ID;
+    //single ID pertains to the element selected by pressing this button
     private final World WORLD;
+    
+    /*
+     * pre: none
+     * post: constructs a new InventoryButton with the given elementID and linked to world
+     */
     public InventoryButton(int elementID, World world) {
         CLICK_ELEMENT_ID = elementID;
         WORLD = world;

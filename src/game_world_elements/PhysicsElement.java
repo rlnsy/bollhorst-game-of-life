@@ -13,20 +13,28 @@ public abstract class PhysicsElement extends WorldElement
     private int yVelocity = 0;
     private WorldElement support;
     
+    /*
+     * pre: none
+     * post: constructs a new PhysicsElement
+     */
     public PhysicsElement() {
         super();
         isStationary = false;
     }
     
-    public void update() {
-        super.update();
-    }
-    
+    /*
+     * pre: none
+     * post: calls methods to update the element's velocity and location
+     */
     public void behave() {
         accelerate();
         applyPhysics();
     }
     
+    /*
+     * pre: none
+     * post: applies velocities to move element, taking collisions into account
+     */
     public void applyPhysics() {
         int newX = getX();
         int newY = getY();
@@ -61,13 +69,19 @@ public abstract class PhysicsElement extends WorldElement
         setLocation(new Point(newX,newY));
     }
     
+    /*
+     * pre: none
+     * post: applies acceleration due to gravity
+     */
     public void accelerate() {
-        changeYVelocity(DEFAULT_GRAVITY_ACCELERATION);
+        if(!isHeld())
+            changeYVelocity(DEFAULT_GRAVITY_ACCELERATION);
     }
    
-    /* pre:
-     * post: moves this element downwards until it collides with a supported
-     * element, Returns the element that blocked fall if one did
+    /* pre: none
+     * post: returns true if and only if no supported element is beneath
+     * this one, and in that case sets the support attribute to the element
+     * that blocked the potential movement
      */
     public boolean canMoveDown() {
         if(!isHeld()) {
@@ -92,6 +106,10 @@ public abstract class PhysicsElement extends WorldElement
         return true;
     }
     
+    /*
+     * pre: none
+     * post: returns true if and only if no element is touching from the right
+     */
     public boolean canMoveRight() {
         for(WorldElement e : getTouching()) {
             if(e.isTouching(this) && this.getDirectionOf(e) > 0)
@@ -100,6 +118,10 @@ public abstract class PhysicsElement extends WorldElement
         return true;
     }
     
+    /*
+     * pre: none
+     * post: returns true if and only if no element is touching from the left
+     */
     public boolean canMoveLeft() {
         for(WorldElement e : getTouching()) {
             if(e.isTouching(this) && this.getDirectionOf(e) < 0)
@@ -108,6 +130,10 @@ public abstract class PhysicsElement extends WorldElement
         return true;
     }
     
+    /*
+     * pre: none
+     * post: returns all elements that are touching and are under this element
+     */
     public ArrayList<PhysicsElement> getPossibleSupports() {
         ArrayList<PhysicsElement> possible = new ArrayList<PhysicsElement>();
         for(WorldElement e : getTouching()) {
@@ -117,14 +143,16 @@ public abstract class PhysicsElement extends WorldElement
         return possible;
     }
     
+    /*
+     * pre: none
+     * post: returns true if other is in a sequence of touching elements
+     * that at some point touches the island or a building block
+     */
     public boolean isSupportedBy(PhysicsElement other) {
         if(other instanceof Island || other instanceof BuildBlock)
             return true;
         else {
             ArrayList<PhysicsElement> potentialSupports = other.getPossibleSupports();
-            int thisIndex = potentialSupports.indexOf(this);
-            if(thisIndex > 0)
-                potentialSupports.remove(thisIndex);
             if(other.getY() > getY()) {
                 for(PhysicsElement e : potentialSupports) {
                     if(other.isSupportedBy(e))
@@ -135,6 +163,10 @@ public abstract class PhysicsElement extends WorldElement
         return false;
     }
     
+    /*
+     * pre: "thud" audio file is present in resource directory
+     * post: sets y velocity to zero and plays a thud noise
+     */
     public void makeStationary() {
         setYVelocity(0);
         if(!isStationary() && !(this instanceof Liquid)) {
@@ -143,10 +175,12 @@ public abstract class PhysicsElement extends WorldElement
         isStationary = true;
     }
     
+    //increases X velocity by value
     public void changeXVelocity(int value){
         xVelocity += value;
     }
     
+    //increases Y velocity by value
     public void changeYVelocity(int value){
         yVelocity += value;
     }
