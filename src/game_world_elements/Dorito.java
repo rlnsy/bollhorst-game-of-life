@@ -7,7 +7,7 @@ public class Dorito extends PhysicsElement {
     }
     
     public void behave() {
-        gravitate();
+        super.behave();
     }
     
     public void touchedElement(WorldElement other) {

@@ -5,57 +5,90 @@ import res.AudioPlayer;
 
 public abstract class PhysicsElement extends WorldElement
 {
-    private final double DEFAULT_GRAVITY_ACCELERATION = 0.5;
+    private final int DEFAULT_GRAVITY_ACCELERATION = -1;
     private boolean isStationary;
     
-    private double yVel; // OLD
     private int xVelocity = 0;
     private int yVelocity = 0;
+    private WorldElement support;
     
     public PhysicsElement() {
         super();
         isStationary = false;
-        yVel = 0;
     }
-    
-    public void behave() {}
     
     public void update() {
         super.update();
-        if(!isStationary)
-            yVel += DEFAULT_GRAVITY_ACCELERATION;
-        else
-            yVel = 0;
+    }
+    
+    public void behave() {
+        accelerate();
+        applyPhysics();
+    }
+    
+    public void applyPhysics() {
+        int newX = getX();
+        int newY = getY();
+        
+        if(getYVelocity() < 0) {
+            for(int i = 0; i < (-1*getYVelocity()); i++) {
+                if(canMoveDown())    
+                    newY += 1;
+                setLocation(newX,newY);
+            }
+        }
+        else if(getYVelocity() > 0) {
+            for(int i = 0; i < getYVelocity(); i++) {
+                newY -= 1;
+            }
+        }
+        
+        if(getXVelocity() < 0) {
+            for(int i = 0; i < -1*getXVelocity(); i++) {
+                if(canMoveLeft())    
+                    newX -= 1;
+                setLocation(newX,newY);
+            }
+        }
+        else if(getXVelocity() > 0) {
+            for(int i = 0; i < getXVelocity(); i++) {
+                if(canMoveRight())    
+                    newX += 1;
+                setLocation(newX,newY);
+            }
+        }
+        setLocation(newX,newY);
+    }
+    
+    public void accelerate() {
+        changeYVelocity(DEFAULT_GRAVITY_ACCELERATION);
     }
    
     /* pre:
      * post: moves this element downwards until it collides with a supported
      * element, Returns the element that blocked fall if one did
      */
-    public PhysicsElement gravitate() {
-        if(!isHeld())
-            for(int i = 0; i < yVel; i++) {
-                    ArrayList<PhysicsElement> physicalNeighbours = new ArrayList<PhysicsElement>();
-                    for(WorldElement e : getTouching()) {
-                        if(e instanceof PhysicsElement)
-                            physicalNeighbours.add((PhysicsElement)(e));
-                    }
-                    int neighbourIndex = 0;
-                    while(neighbourIndex < physicalNeighbours.size()) {
-                        PhysicsElement neighbour = physicalNeighbours.get(neighbourIndex);
-                        if(isSupportedBy(neighbour) || neighbour instanceof BuildBlock) {
-                            if(!isStationary())
-                                makeStationary();
-                            return neighbour;
-                        }
-                        else {
-                            neighbourIndex++;
-                        }
-                    }
-                    isStationary = false;
-                    setLocation(getX(),getY() + 1);
+    public boolean canMoveDown() {
+        if(!isHeld()) {
+            ArrayList<PhysicsElement> physicalNeighbours = new ArrayList<PhysicsElement>();
+            for(WorldElement e : getTouching()) {
+                if(e instanceof PhysicsElement)
+                    physicalNeighbours.add((PhysicsElement)(e));
             }
-        return null;
+            int neighbourIndex = 0;
+            while(neighbourIndex < physicalNeighbours.size()) {
+                PhysicsElement neighbour = physicalNeighbours.get(neighbourIndex);
+                if(isSupportedBy(neighbour) || neighbour instanceof BuildBlock) {
+                    makeStationary();
+                    support = neighbour;
+                    return false;
+                }
+                else {
+                    neighbourIndex++;
+                }
+            }
+        }
+        return true;
     }
     
     public boolean canMoveRight() {
@@ -102,9 +135,11 @@ public abstract class PhysicsElement extends WorldElement
     }
     
     public void makeStationary() {
-        yVel = 0;
-        if(!isStationary() && !(this instanceof Liquid))
+        changeYVelocity(getYVelocity() * -1);
+        changeXVelocity(getXVelocity() * -1);
+        if(!isStationary() && !(this instanceof Liquid)) {
             AudioPlayer.playClip("thud.wav");
+        }
         isStationary = true;
     }
     
@@ -116,9 +151,18 @@ public abstract class PhysicsElement extends WorldElement
         yVelocity += value;
     }
     
-    public boolean isStationary() { return isStationary; }
+    public boolean isStationary() { 
+        return isStationary; 
+    }
     
     public int getXVelocity() { return xVelocity; }
     
     public int getYVelocity() { return yVelocity; }
+    
+    public WorldElement getSupport() {
+        if(support != null)
+            return support;
+        else
+            return null;
+    }
 }

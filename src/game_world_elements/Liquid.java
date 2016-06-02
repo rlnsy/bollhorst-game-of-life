@@ -10,7 +10,8 @@ public abstract class Liquid extends PhysicsElement
     }
     
     public void behave() {
-        base = gravitate();
+        super.behave();
+        base = getSupport();
         //if(base != null && !(base instanceof Liquid)) {
         if(base != null) {
             if(getX() > base.getX() && canMoveRight())

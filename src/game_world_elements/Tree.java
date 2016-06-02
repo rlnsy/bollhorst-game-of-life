@@ -6,10 +6,10 @@ public class Tree extends PhysicsElement
         super();
     }
     public void behave() {
+        super.behave();
         if(isStationary() && !isTouching(getWorld().getIsland()) && !isHeld()) {
             changeVisibility(false);
         }
-        gravitate();
     }
     
     public void touchedElement(WorldElement other) {}

@@ -7,7 +7,7 @@ public class Ash extends PhysicsElement
         setMovable(true);
     }
     public void behave() {
-        gravitate();
+        super.behave();
     }
     public void touchedElement(WorldElement other) {}
 }

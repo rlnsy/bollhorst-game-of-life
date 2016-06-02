@@ -50,10 +50,11 @@ public class Bollhorst extends PhysicsElement {
     }
     
     public void behave() {
-        applyPhysics();
+        super.behave();
     }
     
-    public void applyPhysics() {
+    @Override
+    public void accelerate() {
         if(getXVelocity() > 0 && physicsCount%4 == 0)
             changeXVelocity(-1);
         else if(getXVelocity() < 0 && physicsCount%4 == 0)
@@ -63,8 +64,10 @@ public class Bollhorst extends PhysicsElement {
             changeYVelocity(-1);
         else if(getYVelocity() < 0 && physicsCount%2 == 0)
             changeYVelocity(1);
-            
-        setLocation(getX()+getXVelocity(),getY()-getYVelocity());    
+    }
+    
+    public void applyPhysics() {
+        super.applyPhysics();
         physicsCount++;
     }
 }

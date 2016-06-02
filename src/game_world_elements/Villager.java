@@ -12,7 +12,7 @@ public class Villager extends PhysicsElement
         stepsWalked = 0;
     }
     public void behave() {
-        gravitate();
+        super.behave();
         if(onGround())
             randomMove();
     }
