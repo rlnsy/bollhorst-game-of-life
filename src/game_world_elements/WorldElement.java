@@ -167,7 +167,7 @@ public abstract class WorldElement extends JComponent {
      */
     public void burn() {
         removeFromWorld();
-        world.addSecondaryElement(getX(),getY(),new Ash());
+        world.addSecondaryElement(new Point(getX(),getY()),new Ash());
     }
     
     /*
@@ -192,7 +192,9 @@ public abstract class WorldElement extends JComponent {
      * post: sets the element's x and positions to the corresponding given values,
      * or sets them to zero if given a negative value
      */
-    public void setLocation(int xValue, int yValue) { 
+    public void setLocation(Point location) { 
+        int xValue = (int)location.getX();
+        int yValue = (int)location.getY();
         if(xValue < 0)
             xValue = 0;
         if(yValue < 0)

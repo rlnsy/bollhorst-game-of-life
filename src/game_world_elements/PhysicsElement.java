@@ -2,6 +2,7 @@ package src.game_world_elements;
 
 import java.util.ArrayList;
 import res.AudioPlayer;
+import java.awt.*;
 
 public abstract class PhysicsElement extends WorldElement
 {
@@ -34,7 +35,7 @@ public abstract class PhysicsElement extends WorldElement
             for(int i = 0; i < (-1*getYVelocity()); i++) {
                 if(canMoveDown())    
                     newY += 1;
-                setLocation(newX,newY);
+                setLocation(new Point(newX,newY));
             }
         }
         else if(getYVelocity() > 0) {
@@ -47,17 +48,17 @@ public abstract class PhysicsElement extends WorldElement
             for(int i = 0; i < -1*getXVelocity(); i++) {
                 if(canMoveLeft())    
                     newX -= 1;
-                setLocation(newX,newY);
+                setLocation(new Point(newX,newY));
             }
         }
         else if(getXVelocity() > 0) {
             for(int i = 0; i < getXVelocity(); i++) {
                 if(canMoveRight())    
                     newX += 1;
-                setLocation(newX,newY);
+                setLocation(new Point(newX,newY));
             }
         }
-        setLocation(newX,newY);
+        setLocation(new Point(newX,newY));
     }
     
     public void accelerate() {

@@ -36,13 +36,16 @@ public class WorldClickListener extends MouseAdapter implements MouseMotionListe
                     }
                 }
             }
-            if(!movingElement)
-                world.addElement(e.getX(),e.getY(),world.getMenu().getElement(mouseElementID));
+            if(!movingElement) {
+                Point location = new Point(e.getX(),e.getY());
+                world.addElement(location,world.getMenu().getElement(mouseElementID));
+            }
         }
     }
     
     public void mouseDragged(MouseEvent e) {
-       world.addElement(e.getX(),e.getY(),world.getMenu().getElement(mouseElementID));
+       Point location = new Point(e.getX(),e.getY());
+       world.addElement(location,world.getMenu().getElement(mouseElementID));
     }
     
     public void mouseMoved(MouseEvent e) {

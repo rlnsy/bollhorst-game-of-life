@@ -83,7 +83,7 @@ public class World extends Scene {
     
     private void addIsland() {
         Island island = new Island();
-        addElement(455, 496, island);
+        addElement(new Point(455, 496), island);
     }
 
     @Override
@@ -114,9 +114,9 @@ public class World extends Scene {
             elementList.remove(i);
     }
     
-    public void addElement(int xPos, int yPos, src.game_world_elements.WorldElement element){
+    public void addElement(Point location, src.game_world_elements.WorldElement element){
         lastPlaced = element;
-        element.setLocation(xPos, yPos);
+        element.setLocation(location);
         
         boolean canPlace = true;
         if(element instanceof PhysicsElement) {
@@ -136,8 +136,8 @@ public class World extends Scene {
             addBollhorstListener((Bollhorst)element);
     }
     
-    public void addSecondaryElement(int xPos, int yPos, WorldElement e){
-        e.setLocation(xPos, yPos);
+    public void addSecondaryElement(Point location, WorldElement e){
+        e.setLocation(location);
         secondaryElements.add(e);
         e.setWorld(this);
     }

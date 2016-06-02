@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import src.World;
 import src.game_world_elements.WorldElement;
+import java.awt.*;
 
 class ElementPicker extends JPopupMenu implements ActionListener {
     
@@ -37,7 +38,7 @@ class ElementPicker extends JPopupMenu implements ActionListener {
             if(i.getPosition() == index)
             {
                 WorldElement placeElement = i.getPlaceElement();
-                world.addElement(xPos,yPos, placeElement);
+                world.addElement(new Point(xPos,yPos), placeElement);
             }
         }
     }
