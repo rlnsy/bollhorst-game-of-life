@@ -19,13 +19,17 @@ public class BollhorstController implements KeyListener
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()) {
             case KeyEvent.VK_LEFT :
-                bollhorst.addLeftVelocity();
+                bollhorst.changeXVelocity(-10);
             break;
             case KeyEvent.VK_RIGHT :
-                bollhorst.addRightVelocity();
+                bollhorst.changeXVelocity(10);
             break;
             case KeyEvent.VK_UP :
-                bollhorst.addUpVelocity();
+                bollhorst.changeYVelocity(10);
+            break;
+            case KeyEvent.VK_DOWN :
+                bollhorst.changeYVelocity(-10);
+            break;
         }
     }
     public void keyTyped(KeyEvent e) {

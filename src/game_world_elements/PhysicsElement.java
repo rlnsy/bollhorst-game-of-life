@@ -8,7 +8,9 @@ public abstract class PhysicsElement extends WorldElement
     private final double DEFAULT_GRAVITY_ACCELERATION = 0.5;
     private boolean isStationary;
     
-    private double yVel;
+    private double yVel; // OLD
+    private int xVelocity = 0;
+    private int yVelocity = 0;
     
     public PhysicsElement() {
         super();
@@ -99,12 +101,24 @@ public abstract class PhysicsElement extends WorldElement
         return false;
     }
     
-    public boolean isStationary() { return isStationary; }
-    
     public void makeStationary() {
         yVel = 0;
         if(!isStationary() && !(this instanceof Liquid))
             AudioPlayer.playClip("thud.wav");
         isStationary = true;
     }
+    
+    public void changeXVelocity(int value){
+        xVelocity += value;
+    }
+    
+    public void changeYVelocity(int value){
+        yVelocity += value;
+    }
+    
+    public boolean isStationary() { return isStationary; }
+    
+    public int getXVelocity() { return xVelocity; }
+    
+    public int getYVelocity() { return yVelocity; }
 }

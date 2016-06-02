@@ -10,30 +10,12 @@ public class Bollhorst extends PhysicsElement {
     private Image speechBox;
     private final int DETECT_RADIUS = 100;
     private final int SPEEDY_SPEED = 3;
-    
-    private int velocityLeft = 0;
-    private int velocityRight = 0;
-    private int velocityUp = 0;
-    private int behaveCount = 0;
+    private int physicsCount = 0;
     
     public Bollhorst() {
         super();
         setMovable(true);
         speechBox = ImageReader.readImage(ImageReader.getEffectLocation() + "bollhorst_speech.png");
-    }
-    
-    public void behave() {
-        gravitate();
-        moveRight();
-        if(velocityRight > 0 && behaveCount%4 == 0)
-            velocityRight--;
-        moveLeft();
-        if(velocityLeft > 0 && behaveCount%4 == 0)
-            velocityLeft--;
-        jump();
-        if(velocityUp > 0 && behaveCount%2 == 0)
-            velocityUp--;
-        behaveCount++;
     }
     
     public void draw(Graphics g) {
@@ -67,27 +49,22 @@ public class Bollhorst extends PhysicsElement {
         other.removeFromWorld();
     }
     
-    public void moveRight() {
-        setLocation(getX()+velocityRight,getY());
+    public void behave() {
+        applyPhysics();
     }
     
-    public void addRightVelocity(){
-        velocityRight += 2;
-    }
-    
-    public void moveLeft() {
-        setLocation(getX()-velocityLeft,getY());
-    }
-    
-    public void addLeftVelocity(){
-        velocityLeft += 2;
-    }
-    
-    public void jump() {
-        setLocation(getX(), getY()-velocityUp);
-    }
-    
-    public void addUpVelocity(){
-        velocityUp += 10;
+    public void applyPhysics() {
+        if(getXVelocity() > 0 && physicsCount%4 == 0)
+            changeXVelocity(-1);
+        else if(getXVelocity() < 0 && physicsCount%4 == 0)
+            changeXVelocity(1);
+
+        if(getYVelocity() > 0 && physicsCount%2 == 0)
+            changeYVelocity(-1);
+        else if(getYVelocity() < 0 && physicsCount%2 == 0)
+            changeYVelocity(1);
+            
+        setLocation(getX()+getXVelocity(),getY()-getYVelocity());    
+        physicsCount++;
     }
 }
