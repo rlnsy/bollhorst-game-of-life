@@ -18,6 +18,7 @@ public class World extends Scene {
     private WorldClickListener clickListener;
     private BollhorstController bollhorstControl;
     private WorldElement lastPlaced;
+    private boolean hasBollhorst;
 
     public World(Game game) {
         super(ImageReader.getBackgroundLocation() + "islandworld.png",game);
@@ -102,6 +103,8 @@ public class World extends Scene {
             WorldElement e = elementList.get(i);
             if(!e.isVisible()) {
                 elementList.remove(i);
+                if(e instanceof Bollhorst)
+                    hasBollhorst = false;
             }
             else
                 i++;
@@ -117,12 +120,21 @@ public class World extends Scene {
     public void addElement(Point location, src.game_world_elements.WorldElement element){
         lastPlaced = element;
         element.setLocation(location);
-        
+
         boolean canPlace = true;
+        
         if(element instanceof PhysicsElement) {
             for(WorldElement e : elements) {
                 if(element.isTouching(e))
                     canPlace = false;
+            }
+        }
+        
+        if(element instanceof Bollhorst) {
+            canPlace = !hasBollhorst && canPlace;
+            if(canPlace) {
+                hasBollhorst = true;
+                addBollhorstListener((Bollhorst)element);
             }
         }
         
@@ -131,9 +143,6 @@ public class World extends Scene {
             elements.add(element);
             element.setWorld(this);
         }
-        
-        if(element instanceof Bollhorst)
-            addBollhorstListener((Bollhorst)element);
     }
     
     public void addSecondaryElement(Point location, WorldElement e){
