@@ -135,8 +135,8 @@ public abstract class PhysicsElement extends WorldElement
     }
     
     public void makeStationary() {
-        changeYVelocity(getYVelocity() * -1);
-        changeXVelocity(getXVelocity() * -1);
+        //setXVelocity(0);
+        setYVelocity(0);
         if(!isStationary() && !(this instanceof Liquid)) {
             AudioPlayer.playClip("thud.wav");
         }
@@ -149,6 +149,14 @@ public abstract class PhysicsElement extends WorldElement
     
     public void changeYVelocity(int value){
         yVelocity += value;
+    }
+    
+    public void setXVelocity(int value) {
+        this.xVelocity = value;
+    }
+    
+    public void setYVelocity(int value) {
+        this.yVelocity = value;
     }
     
     public boolean isStationary() { 
